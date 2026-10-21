@@ -1,9 +1,14 @@
 {
+ "id": "./",
  "name": "Grade 5 Term Four Revision Whizz",
  "short_name": "Revision Whizz",
  "start_url": "./",
  "scope": "./",
- "display": "fullscreen",
+ "display": "standalone",
+ "display_override": [
+  "fullscreen",
+  "standalone"
+ ],
  "orientation": "any",
  "background_color": "#f5f8fd",
  "theme_color": "#f5f8fd",
@@ -16,6 +21,11 @@
   {
    "src": "icon-512.png",
    "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "apple-touch-icon.png",
+   "sizes": "180x180",
    "type": "image/png"
   }
  ]
