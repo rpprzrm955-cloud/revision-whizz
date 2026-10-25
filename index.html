@@ -221,6 +221,48 @@ html{overscroll-behavior:none}
 .step{border:2px solid var(--ink);border-radius:8px;padding:3px 8px;background:var(--blue-soft);font-size:16px;line-height:1.2}
 .step b{font-family:var(--display);font-size:16px;margin-right:6px}
 .step.peak{background:var(--hi)}
+sup.ref{font-family:var(--display);font-weight:700;font-size:11px;color:#fff;background:var(--pink);border-radius:8px;padding:0 4px;margin-left:1px}
+/* story workshop */
+.storybox h3{font-size:24px;margin-bottom:6px}
+.storytext{font-size:21px;line-height:1.65}
+mark.seg.cur{background:var(--hi);padding:2px 4px;border-radius:4px;box-shadow:0 0 0 2px var(--ink)}
+.seg.done{border-bottom:3px solid var(--green)}
+.seg.done.no{border-bottom-color:var(--red)}
+.segtag{font-family:var(--display);font-weight:700;font-size:13px;background:var(--blue-soft);border:1.5px solid var(--blue);border-radius:6px;padding:0 5px;margin-left:4px;white-space:nowrap}
+.hunt{font-size:24px;line-height:2.1;margin-top:10px;text-align:left}
+.hw-word{font:inherit;background:none;border:0;border-radius:6px;padding:0 3px;cursor:pointer;color:var(--ink)}
+.hw-word:hover{background:var(--blue-soft)}
+.hw-word.caught{background:var(--red-soft);color:var(--red);text-decoration:line-through;text-decoration-thickness:3px}
+.hw-word.nope{animation:shake .4s}
+.wtext{width:100%;font-family:var(--body);font-size:21px;line-height:1.45;border:2.5px solid var(--ink);border-radius:12px;padding:10px 12px;margin-top:12px;background:#fffef8;color:var(--ink);resize:vertical;-webkit-user-select:text;user-select:text}
+.wtext.big{min-height:300px}
+.tellw{background:var(--red-soft);color:var(--red);border-radius:4px;padding:0 4px;text-decoration:underline wavy var(--red)}
+.model{margin-top:10px;background:#fff6cf;border:2px solid #d6b230;border-radius:10px;padding:6px 10px;text-align:left}
+.dots i.y{background:var(--hi)}
+.studio-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.studio-top .say{text-align:left}
+#w-body .box+.box{margin-top:14px}
+.planrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.pl{display:flex;flex-direction:column;gap:3px;font-family:var(--display);font-weight:700}
+.pl input{font:inherit;font-family:var(--body);font-weight:400;font-size:18px;border:2px solid var(--ink);border-radius:8px;padding:5px 8px;min-width:0;background:#fff;color:var(--ink);-webkit-user-select:text;user-select:text}
+.tipstrip{display:flex;flex-wrap:wrap;gap:6px}
+.tipstrip span{font-family:var(--display);font-weight:700;font-size:14px;background:var(--hi);border:1.5px solid var(--ink);border-radius:14px;padding:0 9px}
+.robot{margin-top:10px;font-size:15px;color:var(--muted)}
+.saved{display:flex;flex-direction:column;gap:8px}
+.savedrow{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;text-align:left;background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:18px}
+.savedrow span{color:var(--muted)}
+.report-top{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.report-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-top:14px}
+.report-grid .box+.box{margin-top:0}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;font-size:15px}
+.legend span{border-radius:5px;padding:0 6px}
+.hm{background:#ffe066}.hs{background:#cdeedc}.hp{background:#dce6ff}.ho{background:#ffd0e0;font-weight:700}.hw{background:#f0dcff}
+.hb{text-decoration:underline wavy var(--red);text-decoration-thickness:2px;color:var(--red)}
+.rub{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-bottom:2px dashed var(--grid);font-size:17px;line-height:1.3}
+.rdots{display:flex;gap:4px;padding-top:4px;flex:none}
+.rdots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--ink);background:var(--card)}
+.rdots i.g{background:var(--green)}
+.tipnext{background:var(--blue-soft);border:2px solid var(--blue);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:18px}
 /* app shell for iPad */
 html{-webkit-text-size-adjust:100%}
 body{-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none;overscroll-behavior-y:none}
@@ -264,6 +306,9 @@ table.att tr.best td{background:#fff6cf}
 .empty{color:var(--muted);padding:8px 0}
 
 @media (max-width:760px){
+  .planrow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .report-grid{grid-template-columns:1fr}
+  .storytext{font-size:19px}
   .hero-bike,.vs{display:none}
   .hi-bike{width:80px}
   .panel-row{grid-template-columns:1fr}
@@ -282,8 +327,6 @@ table.att tr.best td{background:#fff6cf}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
-</head>
-<body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z" stroke="#1c2230" stroke-width="1.8" stroke-linejoin="round"/></symbol>
@@ -520,6 +563,11 @@ table.att tr.best td{background:#fff6cf}
     </div>
     <div class="strategy">The faster you answer, the more points you score.</div>
   </div>
+</section>
+
+<section id="v-workshop" hidden>
+  <div class="gamehead"><h2 id="w-title">Story Workshop</h2><button class="btn white" data-home>Map</button></div>
+  <div class="arena" id="w-arena"><div id="w-body"></div></div>
 </section>
 
 <section id="v-match" hidden>
@@ -950,20 +998,23 @@ const TOPICS=[
 
 /* 12 CREATIVE WRITING */
 {id:"writing",t:"Creative Writing",d:"Tips sheet: plan, hook, show don't tell, strong endings",mode:"battle",monster:{n:"Writer's Block",line:"freezes your pencil mid-sentence",c:"#a9bcd8"},
- learn:{intro:'Your <span class="hl">story writing power-ups</span>! Plan first, grab the reader with a hook, and finish strong.',
+ learn:{intro:'Your <span class="hl">story writing power-ups</span>! Everything from your Creative Writing tips sheet. Plan first, grab the reader with a hook, and finish strong.',
   boxes:[
-   {h:"Plan first (5 minutes)",b:'Read the topic <b>twice</b> and underline key words. Answer the <b>5 W\'s</b>: Who? Where? When? What goes wrong? How is it fixed?<div class="steps"><div class="step"><b>1. Beginning</b>Hook! Who and where.</div><div class="step"><b>2. Build-up</b>Something starts to happen.</div><div class="step peak"><b>3. Problem</b>The big moment.</div><div class="step"><b>4. Solution</b>How it gets fixed.</div><div class="step"><b>5. Ending</b>How they feel.</div></div>One paragraph for each step.'},
-   {h:"Start with a hook",b:'Never start with "One day...".<br><span class="burst-mini">CRASH!</span> The vase hit the floor.<br>"Don\'t open that box!" Gran shouted.<br>Have you ever seen a monkey steal a sandwich?<br>I pedalled faster as the storm chased me home.'},
-   {h:"Show, don\'t tell",b:'<span class="wrong">Tell: I was scared.</span><br><span class="right">Show: My knees shook and my heart thumped like a drum.</span><br><span class="wrong">Tell: It was hot.</span><br><span class="right">Show: Sweat trickled down my back.</span>'},
-   {h:"Use your 5 senses",b:'<b>See</b> the purple sky &middot; <b>hear</b> waves crashing &middot; <b>smell</b> boerewors on the braai &middot; <b>taste</b> salty sea spray &middot; <b>touch</b> rough bark. Try to use at least three.'},
-   {h:"Figures of speech",b:'Simile: <i>as fast as a cheetah</i><br>Metaphor: <i>the classroom was a zoo</i><br>Personification: <i>the wind howled</i><br>Onomatopoeia: <i>BOOM!</i><br>Two or three good ones is plenty.'},
-   {h:"Swap boring words",b:'<b>said</b> &rarr; whispered, shouted, gasped<br><b>went</b> &rarr; raced, crept, dashed<br><b>big</b> &rarr; enormous, gigantic<br><b>nice</b> &rarr; brilliant, delicious<br><b>then</b> &rarr; suddenly, a moment later, finally'},
-   {h:"Writing speech",b:'Inverted commas go around the spoken words, with punctuation <b>inside</b>.<br><span class="ex">"Watch out!" shouted Sam.</span><br><span class="ex">"I\'m hungry," said Lily.</span><br>New speaker = new line.'},
-   {h:"New paragraph when...",b:'the <b>time</b> changes, the <b>place</b> changes, a new <b>person</b> speaks, or something new <b>happens</b>. Start with time words: <i>Later that day</i>, <i>Suddenly</i>.'},
-   {h:"Strong endings",b:'<span class="wrong">&#10007; "...and then I woke up. It was all a dream."</span><br><span class="right">&#10003; A feeling, a lesson learnt, a twist, or circle back to how you started.</span>'},
-   {h:"\"Describe...\" topics",b:'A <b>descriptive</b> piece paints a picture, with no big plot. Zoom in like a camera, use all 5 senses, similes and adjectives, and keep one tense.'},
-   {h:"Example opening",b:'<span class="burst-mini">SPLASH!</span> My mountain bike skidded through the muddy puddle. The trail was <u>as slippery as a bar of soap</u>, and the dark clouds <u>grumbled angrily</u> above me. I could <u>smell the wet pine trees</u>. Somewhere behind me, <u>something was crashing through the bushes</u>...'},
-   {h:"Final checklist",b:'&#9744; Title &nbsp;&#9744; Beginning, middle, end &nbsp;&#9744; Paragraphs &nbsp;&#9744; Capital letters &nbsp;&#9744; Full stops &nbsp;&#9744; Past tense &nbsp;&#9744; Spelling &nbsp;&#9744; Power words'}],
+   {h:"Plan first! (5 minutes)",b:'Read the topic <b>twice</b> and underline the key words. Then jot down quick answers to the <span class="hl">5 W\'s</span>: <b>Who</b> is in it? <b>Where</b> is it? <b>When</b> does it happen? <b>What</b> goes wrong? <b>How</b> is it fixed? Then sketch your story mountain:<div class="steps"><div class="step"><b>1. Beginning</b>Hook! Who and where.</div><div class="step"><b>2. Build-up</b>Something starts to happen.</div><div class="step peak"><b>3. Problem</b>The big, exciting moment.</div><div class="step"><b>4. Solution</b>How the problem gets fixed.</div><div class="step"><b>5. Ending</b>How it ends + how they feel.</div></div>One paragraph for each step = a well-organised story. Most of your words go into steps 2 to 4.'},
+   {h:"Start with a hook",b:'Never start with "One day...". Grab the reader straight away:<br><span class="chip">Sound</span> <span class="burst-mini">CRASH!</span> The vase hit the floor.<br><span class="chip">Speech</span> "Don\'t open that box!" Gran shouted.<br><span class="chip">Question</span> Have you ever seen a monkey steal a sandwich?<br><span class="chip">Action</span> I pedalled faster as the storm chased me home.<br><span class="chip">Mystery</span> Nobody knew where the old key came from.'},
+   {h:"Show, don\'t tell",b:'Show how characters feel through what they <b>do</b> and <b>feel in their body</b>.<br><span class="wrong">Tell: I was scared.</span><br><span class="right">Show: My knees shook and my heart thumped like a drum.</span><br><span class="wrong">Tell: She was happy.</span><br><span class="right">Show: She grinned from ear to ear and jumped up and down.</span><br><span class="wrong">Tell: It was hot.</span><br><span class="right">Show: Sweat trickled down my back and the road shimmered.</span>'},
+   {h:"Use your 5 senses",b:'Put the reader <b>inside</b> your story:<br><b>See:</b> the purple sky, flashing lightning<br><b>Hear:</b> waves crashing, a dog howling<br><b>Smell:</b> smoky boerewors on the braai<br><b>Taste:</b> salty sea spray on my lips<br><b>Touch:</b> the rough bark, icy water<br>Try to use at least three senses in your story.'},
+   {h:"Figures of speech you know",b:'You learnt these for your English exam. Now use them!<br><b>Simile:</b> as fast as a cheetah<br><b>Metaphor:</b> The classroom was a zoo.<br><b>Personification:</b> The wind howled at the door.<br><b>Onomatopoeia:</b> BOOM! went the thunder.<br><b>Alliteration:</b> slippery, slimy snake<br><b>Hyperbole:</b> My bag weighed a ton!<br>Two or three good ones is plenty. Don\'t stuff them in every line.'},
+   {h:"See it in action: an opening paragraph",b:'<span class="burst-mini">SPLASH!</span><sup class="ref">A</sup> My mountain bike skidded through the muddy puddle and I nearly flew over the handlebars. The trail was as slippery as a bar of soap,<sup class="ref">B</sup> and the dark clouds grumbled angrily above me.<sup class="ref">C</sup> I could smell the wet pine trees and taste the rain on my lips.<sup class="ref">D</sup> My heart thumped. Somewhere behind me, something was crashing through the bushes,<sup class="ref">E</sup> and it was getting closer.<br><span style="font-size:15px;color:var(--muted)"><b>A</b> sound-word hook &middot; <b>B</b> simile &middot; <b>C</b> personification &middot; <b>D</b> senses &middot; <b>E</b> mystery that makes you want to read on</span>'},
+   {h:"Swap boring words",b:'<b>said</b> &rarr; whispered, shouted, giggled, muttered, gasped, yelled<br><b>went</b> &rarr; raced, crept, dashed, stumbled, wandered, zoomed<br><b>big</b> &rarr; huge, enormous, gigantic, towering<br><b>small</b> &rarr; tiny, little, miniature<br><b>nice / good</b> &rarr; amazing, brilliant, delicious, kind<br><b>bad</b> &rarr; terrible, awful, horrible, dreadful<br><b>happy</b> &rarr; delighted, thrilled, overjoyed<br><b>sad</b> &rarr; miserable, upset, heartbroken<br><b>scared</b> &rarr; terrified, nervous, petrified<br><b>then</b> &rarr; suddenly, after that, a moment later, meanwhile, finally'},
+   {h:"Writing speech correctly",b:'&bull; Put inverted commas <b>around the words spoken</b>.<br><span class="ex">"Watch out!" shouted Sam.</span><br>&bull; Punctuation goes <b>inside</b> the inverted commas.<br><span class="ex">"Where are you going?" asked Mom.</span><br>&bull; Start a <b>new line</b> every time a new person speaks.<br>&bull; Use a comma if the sentence carries on.<br><span class="ex">"I\'m hungry," said Lily.</span><br>A little speech brings characters to life. Too much and the story stops moving.'},
+   {h:"New paragraph when...",b:'the <b>time</b> changes &middot; the <b>place</b> changes &middot; a new <b>person</b> speaks &middot; something new <b>happens</b>.<br>Tip: start paragraphs with time words like <i>Later that day</i>, <i>Suddenly</i>, <i>The next morning</i>.'},
+   {h:"Strong endings",b:'<span class="wrong">&#10007; "...and then I woke up. It was all a dream."</span><br><span class="wrong">&#10007; "The end." with nothing else.</span><br>Try one of these instead:<br><span class="chip">Feeling</span> As I hugged my dog, I knew I\'d never forget that day.<br><span class="chip">Lesson</span> From then on, I always checked the weather before a ride.<br><span class="chip">Twist</span> But when I looked down, the old key was glowing...<br><span class="chip">Circle back</span> End with the same sound or place you started with.'},
+   {h:"If the topic says \"Describe...\"",b:'A <b>descriptive</b> piece paints a picture. You don\'t need a big problem or plot.<br>&bull; Pick one place, person or moment.<br>&bull; Zoom in like a camera: far away first, then closer and closer.<br>&bull; Use all 5 senses and lots of adjectives.<br>&bull; Use similes and personification.<br>&bull; Write in one tense and keep it the same all the way through.<br>Read the question carefully: "Write a story" and "Describe" are different tasks!'},
+   {h:"Story ideas to get your brain going",b:'&#9733; The day my mountain bike started to fly<br>&#9733; A wizard moves in next door<br>&#9733; Lost on a hike in the Drakensberg<br>&#9733; The monkey that stole my lunch box<br>&#9733; A storm on the beach<br>&#9733; The mysterious box in Grandpa\'s garage<br>&#9733; The best (or worst) day of the holidays<br>&#9733; I found a secret door at school<br>The exam will give you a topic. Use the same planning, hooks and tips for whatever comes up!'},
+   {h:"Use your time well",b:'<b>Plan:</b> about 5 to 10 minutes. 5 W\'s + story mountain.<br><b>Write:</b> most of your time. One paragraph per step.<br><b>Check:</b> the last 5 to 10 minutes. Use the checklist.<br>Stick to the word count your teacher gives you. Quality beats length!'},
+   {h:"Final checklist",b:'&#9744; I have a <b>title</b>.<br>&#9744; My story has a beginning, middle and end.<br>&#9744; I used <b>paragraphs</b>.<br>&#9744; <b>Capital letters</b> for sentences and names.<br>&#9744; <b>Full stops</b>, question marks and exclamation marks.<br>&#9744; I stayed in the <b>past tense</b> (ran, said, saw).<br>&#9744; I checked my <b>spelling</b>.<br>&#9744; I used power words and at least one figure of speech.'},
+   {h:"Practice: plan a story in 5 minutes",b:'Pick an idea from <b>Story ideas</b> and fill in a word or two for each:<br><b>Who?</b> ______<br><b>Where?</b> ______<br><b>Problem?</b> ______<br><b>Solution?</b> ______<br><b>Hook?</b> ______<br>Then try it for real in <b>Story Studio</b>!'}],
   warn:"Plan → Hook → Show, don't tell → Senses → Strong ending → Check!"},
  bank:[
   {ask:"Which is the best HOOK to start a story?",q:"Pick one:",a:"\"Don't open that box!\" Gran shouted.",opts:["\"Don't open that box!\" Gran shouted.","One day I went to the shop.","This is a story about my day.","Once there was a boy."]},
@@ -991,6 +1042,33 @@ const TOPICS=[
   {ask:"Which figure of speech is this?",q:"\"The dark clouds grumbled angrily above me.\"",a:"Personification",opts:["Personification","Simile","Alliteration","Onomatopoeia"]},
   {ask:"The topic says \"Describe your favourite place\". You should...",q:"Pick the best answer:",a:"Paint a picture using your senses, no big plot needed",opts:["Paint a picture using your senses, no big plot needed","Write a story about a robbery","Write a list of facts","Write one sentence"]},
   {ask:"Quick question",q:"Which tense should most stories stay in?",a:"Past tense (ran, said, saw)",opts:["Past tense (ran, said, saw)","Future tense (will run)","A mix of all tenses","No tense"]}]},
+
+/* 12b STORY WORKSHOP */
+{id:"w-detective",t:"Story Detective",d:"Spot the power-ups in real stories, then hunt boring words",mode:"detective",
+ learn:{intro:'Be a <span class="hl">Story Detective</span>! Read short stories and spot the writing power-ups from your tips sheet.',
+  boxes:[
+   {h:"How to play",b:'<b>Part 1:</b> one sentence in the story is highlighted. Tap the power-up it uses.<br><b>Part 2:</b> a boring paragraph appears. Tap every boring word you can find!'},
+   {h:"Power-ups to look for",b:'<b>Hook</b>: a grabbing first line<br><b>Simile</b>: like / as ... as<br><b>Metaphor</b>: one thing IS another<br><b>Personification</b>: things acting human<br><b>Onomatopoeia</b>: sound words<br><b>Hyperbole</b>: huge exaggeration'},
+   {h:"More power-ups",b:'<b>Senses</b>: see, hear, smell, taste, touch<br><b>Show, don\'t tell</b>: feelings shown through the body<br><b>Speech marks</b>: "Help!" shouted Sam.<br><b>Strong ending</b>: a feeling, lesson or twist'},
+   {h:"Boring words",b:'said, went, nice, good, bad, big, got, very, thing, stuff, then, really'}],
+  warn:"Spot it, name it, then use it in your own stories!"}},
+{id:"w-rewrite",t:"Power-Up Rewrites",d:"Turn boring sentences into brilliant ones",mode:"rewrite",
+ learn:{intro:'Five quick <span class="hl">writing challenges</span>. Type your answer and the app checks it straight away.',
+  boxes:[
+   {h:"The challenges",b:'Show, don\'t tell &middot; Add a simile &middot; Swap the boring words &middot; Write a hook &middot; Add the senses &middot; Fix the speech &middot; Write a strong ending'},
+   {h:"Scoring",b:'<b>2 points</b>: power-up! &middot; <b>1 point</b>: nearly there &middot; <b>0 points</b>: try again<br>After each one you\'ll see an <b>example answer</b>.'},
+   {h:"Hints",b:'Stuck? Spend <b>1 coin</b> on a hint to get a sentence starter.'},
+   {h:"Show, don\'t tell",b:'<span class="wrong">I was scared.</span> &rarr; <span class="right">My knees shook and my heart thumped like a drum.</span>'}],
+  warn:"No answer is wrong for trying. Read the example and have another go next time!"}},
+{id:"w-studio",t:"Story Studio",d:"Plan and write your own story, then get it marked",mode:"story",
+ learn:{intro:'Write your <span class="hl">own story</span>! The story checker marks it against your Creative Writing tips and shows you what to try next.',
+  boxes:[
+   {h:"Step 1: Plan",b:'Fill in Who, Where, Problem, Solution and Hook. Planning earns <b>bonus points</b>!'},
+   {h:"Step 2: Write",b:'Aim for <b>120 to 250 words</b>. Press <b>return</b> to start a new paragraph.'},
+   {h:"Step 3: Get marked",b:'You get points out of 20 for: hook, paragraphs, length, senses, figures of speech, power words, show don\'t tell, ending, capitals and full stops, and time words.'},
+   {h:"Your highlighted story",b:'See your similes, senses and power words light up, and spot any boring words to swap next time.'},
+   {h:"Saved stories",b:'Every story is saved under <b>My saved stories</b>, so a grown-up can read them later.'}],
+  warn:"16+ points = 3 stars. 11+ = 2 stars. 6+ = 1 star."}},
 
 /* 12 FINAL BOSS */
 {id:"final",t:"Final Exam Boss",d:"Random questions from every topic. The real test!",mode:"battle",final:true,monster:{n:"The Exam-inator",line:"knows every topic in the book",c:"#ff8a7a"}}
@@ -2902,7 +2980,7 @@ const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()
 const pick=(a,n)=>shuffle(a.slice()).slice(0,n);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt=n=>Number(n).toLocaleString("en-ZA");
-const MODE_NAME={battle:"Boss Battle",sort:"Sort-It",rush:"Rush",match:"Match-Up"};
+const MODE_NAME={battle:"Boss Battle",sort:"Sort-It",rush:"Rush",match:"Match-Up",detective:"Detective",rewrite:"Rewrites",story:"Write & Mark"};
 const AV_COL=["#2457d6","#e3427a","#1f8f5b","#c9781a","#7b4fd6","#d43a3a"];
 
 let DB={players:{},order:[],current:null};
@@ -3010,7 +3088,6 @@ function renderMap(){
   }
   let h="";
   SUB.topics.forEach((t,i)=>{
-    if(i===4)h+=`<div class="map-cloud"><div class="cloud"><svg viewBox="0 0 260 160"><use href="#cloudsym"/></svg><span>${esc(S.name)}'s ${SUB.t} Exam</span></div></div>`;
     const stn=sp.stars[t.id]||0,best=sp.best[t.id];
     h+=`<div class="box topic${t.final?" boss":""}">
       <div class="head"><span class="num">${i+1}</span><h3 style="font-size:22px">${t.t}</h3></div>
@@ -3020,6 +3097,7 @@ function renderMap(){
       <div class="row">${t.learn?`<button class="btn white" data-learn="${t.id}">Learn</button>`:""}<button class="btn${t.final?" blue":""}" data-play="${t.id}">${t.final?"Face the boss":"Play"}</button></div>
     </div>`;
   });
+  h+=`<div class="map-cloud"><div class="cloud"><svg viewBox="0 0 260 160"><use href="#cloudsym"/></svg><span>${esc(S.name)}'s ${SUB.t} Exam</span></div></div>`;
   $("#map").innerHTML=h;
 }
 const byId=id=>SUB.topics.find(t=>t.id===id);
@@ -3045,7 +3123,7 @@ function openLearn(t){
   show("v-learn");
 }
 $("#l-play").onclick=()=>play(T);
-function play(t){T=t;({battle:startBattle,sort:startSort,rush:startRush,match:startMatch})[t.mode]()}
+function play(t){T=t;({battle:startBattle,sort:startSort,rush:startRush,match:startMatch,detective:startDetective,rewrite:startRewrite,story:startStudio})[t.mode]()}
 
 /* ---------- shared ---------- */
 function burst(arena,text,good){const d=document.createElement("div");d.className="burst"+(good?" good":"");d.textContent=text;$(arena).appendChild(d);setTimeout(()=>d.remove(),950)}
@@ -3071,6 +3149,8 @@ function starsFor(c,total){const r=c/total;return r>=.9?3:r>=.7?2:r>=.45?1:0}
 
 function toMCQ(t,n){
   n=n||12;
+  if(t.mode==="detective"){const out=[];DSTORIES.forEach(st=>st.seg.forEach(sg=>{if(typeof sg==="string")return;const ex=new Set([sg.g,...(sg.x||[])]);out.push({ask:"Which writing power-up is this?",q:`"${sg.t}"`,a:TAGL[sg.g],opts:[TAGL[sg.g],...pick(Object.keys(TAGL).filter(k=>!ex.has(k)),3).map(k=>TAGL[k])],why:TAGWHY[sg.g]})}));return out}
+  if(t.mode==="rewrite"||t.mode==="story")return [];
   if(t.mode==="sort"){
     const items=t.items||Array.from({length:n},()=>t.genSort());
     return items.map(i=>{const right=t.bins.find(b=>b.c===i.c).l;
@@ -3270,6 +3350,327 @@ $("#x-reveal").onclick=()=>{
   S.coins-=2;save();stats();$("#x-reveal").disabled=S.coins<2;
   const k=pick(left,1)[0].dataset.k;$("#x-explain").innerHTML=`<b>Revealed:</b> ${T.pairs[+k].t} = ${T.pairs[+k].d}.`;matched(k);
 };
+
+/* =================== STORY WORKSHOP (Grade 5 English) =================== */
+const TAGL={hook:"Hook",simile:"Simile",metaphor:"Metaphor",personification:"Personification",senses:"Senses",show:"Show, don't tell",onomatopoeia:"Onomatopoeia",hyperbole:"Hyperbole",speech:"Speech marks",ending:"Strong ending"};
+const TAGWHY={hook:"It grabs the reader straight away, so they want to read on.",simile:"It compares two things using like or as.",metaphor:"It says one thing IS something else, without like or as.",personification:"Something that isn't human is doing a human action.",senses:"It tells us what the character can see, hear, smell, taste or feel.",show:"It shows the feeling through the body instead of just naming the feeling.",onomatopoeia:"It's a sound word you can hear when you say it.",hyperbole:"It's a huge exaggeration that nobody means for real.",speech:"The spoken words are inside inverted commas, with the punctuation inside too.",ending:"It finishes with a feeling or a lesson, not 'it was all a dream'."};
+const DSTORIES=[
+ {t:"The Storm Ride",seg:[
+  {t:"CRASH! Thunder exploded above the mountain.",g:"onomatopoeia",x:["hook"]}," ",
+  {t:"I pedalled harder, and my heart thumped like a drum.",g:"simile",x:["show"]}," ",
+  {t:"The wind howled and tugged at my jacket.",g:"personification",x:["senses"]}," ",
+  {t:"I could smell the wet pine trees and taste the rain on my lips.",g:"senses"}," ",
+  {t:"My hands shook on the handlebars.",g:"show"},"\n\n",
+  {t:"\"Keep going, Max!\" shouted Dad from behind me.",g:"speech"}," Suddenly, the lights of our house appeared through the trees.\n\n",
+  {t:"When we finally burst through the front door, I knew I would never forget that wild ride.",g:"ending"}]},
+ {t:"The Monkey Thief",seg:[
+  {t:"Have you ever been robbed by a monkey?",g:"hook"}," ",
+  {t:"It was a scorching day at the beach, and the sand was as hot as a frying pan.",g:"simile",x:["senses"]},"\n\n",
+  "Suddenly, a grey monkey crept towards my lunch box. ",
+  {t:"Rustle, rustle! went the bushes behind me.",g:"onomatopoeia",x:["senses"]}," ",
+  {t:"My mouth dropped open and my cheeks turned bright red.",g:"show"}," ",
+  {t:"The monkey was a furry little pirate.",g:"metaphor"},"\n\n",
+  {t:"I've told my brother a million times to close the cooler box!",g:"hyperbole"}," ",
+  {t:"From that day on, I always kept my lunch zipped up tight.",g:"ending"}]},
+ {t:"The Mysterious Box",seg:[
+  {t:"\"Don't open that box!\" Gran shouted.",g:"hook",x:["speech"]}," But it was too late.\n\n",
+  {t:"The old lid creaked like a haunted door.",g:"simile",x:["onomatopoeia","senses"]}," ",
+  {t:"Dust danced in the beam of my torch.",g:"personification"}," ",
+  {t:"The air smelled of old books and mothballs.",g:"senses"}," ",
+  {t:"My knees trembled as I reached inside.",g:"show"},"\n\n",
+  {t:"There, wrapped in silk, was a key that glowed as bright as the moon.",g:"simile",x:["senses"]},"\n\n",
+  {t:"As I held the warm key, I knew my adventure had only just begun.",g:"ending"}]},
+ {t:"Lost in the Mist",seg:[
+  {t:"Nobody knew where the path had gone.",g:"hook"}," ",
+  {t:"The mist was a thick grey blanket over the mountain.",g:"metaphor"},"\n\n",
+  {t:"Somewhere nearby, an owl went hoo, hoo.",g:"onomatopoeia",x:["senses"]}," ",
+  {t:"The cold rocks felt slippery under my boots.",g:"senses"}," ",
+  {t:"The tall trees whispered secrets to each other.",g:"personification",x:["senses"]}," ",
+  {t:"I was so hungry I could have eaten a whole elephant.",g:"hyperbole"},"\n\n",
+  {t:"When the sun finally broke through, I laughed with relief and ran all the way home.",g:"ending",x:["show"]}]},
+ {t:"The Secret Door",seg:[
+  {t:"BANG! The cupboard door at the back of the classroom flew open.",g:"onomatopoeia",x:["hook"]}," ",
+  {t:"\"Did you see that?\" whispered Lerato.",g:"speech"},"\n\n",
+  {t:"My stomach did a somersault and my palms went sweaty.",g:"show"}," ",
+  {t:"Inside, the dark tunnel was as quiet as a library at midnight.",g:"simile"}," ",
+  {t:"I could hear water dripping and feel a cold breeze on my face.",g:"senses"},"\n\n",
+  {t:"The old school bell seemed to sigh as we crept past it.",g:"personification"}," ",
+  {t:"Now, every time I walk past that cupboard, I smile and keep our secret safe.",g:"ending"}]}
+];
+const HUNTS=[
+ "One day we went to the beach. It was nice and the waves were big. We got some ice cream and it was good. Then we went home.",
+ "The dog was very big. It went into the garden and did a bad thing. Mom said it was naughty. Then it went to sleep.",
+ "The party was really good. We had nice cake and lots of stuff to do. My friend said it was the best. Then I got a big present.",
+ "I went to the shop. It was a big shop with nice things. I got a good book and then I went home.",
+ "The movie was really bad. It was very long and the seats were not nice. Dad said we should go. Then we went for a big pizza."
+];
+const SWAPS={said:"whispered, shouted, gasped",went:"raced, crept, dashed",nice:"amazing, delicious, lovely",good:"brilliant, amazing, delicious",bad:"terrible, awful, dreadful",big:"huge, enormous, gigantic",got:"grabbed, bought, received",very:"extremely, incredibly",thing:"(be specific!)",things:"(be specific!)",stuff:"(be specific!)",then:"suddenly, after that, finally",really:"incredibly, truly"};
+const BORING=new Set(Object.keys(SWAPS));
+const POWER=new Set("whispered shouted giggled muttered gasped yelled screamed shrieked raced crept dashed stumbled wandered zoomed sprinted bolted tiptoed huge enormous gigantic towering massive tiny miniature amazing brilliant delicious terrible awful horrible dreadful delighted thrilled overjoyed miserable heartbroken terrified petrified suddenly meanwhile finally exploded thundered sparkled glistened shimmered trembled scorching freezing gleaming gloomy glowing furious ancient mysterious magnificent grabbed snatched peered glanced howled plunged soared zoomed whirled".split(" "));
+const SENSE={
+ sight:"saw see seen glimpsed spotted bright glowing glowed glow sparkled sparkling shiny shining colourful colorful dark darkness shadow shadows gleamed flashed flashing shimmered shimmering golden purple red blue green yellow orange pink grey gray black white silver misty foggy".split(" "),
+ sound:"heard hear hearing listen listened sound sounds noise noisy loud quiet whisper whispered roar roared crash crashed bang buzz buzzing howl howled howling rumble rumbled creak creaked crunch crunched squeak squeaked sang singing hum hummed boom silence silent splash splashed thunder screech echo echoed".split(" "),
+ smell:"smell smelled smelt smells scent stink stank smoky fresh perfume sniffed whiff stinky fragrant".split(" "),
+ taste:"taste tasted tastes sweet salty sour bitter yummy spicy juicy tasty".split(" "),
+ touch:"felt feel touch touched rough smooth soft sticky icy cold warm hot freezing slippery wet fluffy prickly sharp damp silky bumpy".split(" ")};
+const BODY=new Set("heart knees hands legs stomach tummy shook shaking trembled trembling sweat sweating sweaty gasped grinned smiled tears cried shivered shivering breath breathing frowned blushed cheeks jaw eyes fists clenched gulped butterflies palms pounding thumped thumping".split(" "));
+const ONO=new Set("bang boom crash pop buzz hiss splash thud creak sizzle whoosh zoom crack clang ding beep honk woof meow tick tock drip rustle splat wham zap boing slurp crunch munch squeak screech growl hoot ring knock thump vroom splosh swish kaboom".split(" "));
+const PERS_SUBJ="wind sun trees tree clouds cloud waves wave sea moon stars star leaves house door car storm rain thunder sky mountain river fire shadows flowers".split(" ");
+const PERS_VERB=new Set("whispered howled danced smiled grumbled cried screamed sang groaned laughed crept moaned winked hugged waved roared sighed wept shouted giggled kissed tickled marched yawned slept".split(" "));
+const TIMEW=["suddenly","later","meanwhile","finally","after that","the next morning","the next day","eventually","moments later","a moment later","before long","at last","soon","first","next","that night","in the end"];
+const ENDGOOD=["never forget","from then on","from that day","learnt","learned","realised","realized","i knew","lesson","relieved","glad","smiled","safe","home","ever again","always","best day","proud","laughed"];
+const TELLRE=/\b(i|he|she|we|they|it)\s+(was|were|felt|am|is)\s+(so\s+|very\s+|really\s+)?(scared|happy|sad|angry|excited|nervous|tired|hot|cold|afraid|frightened|worried|bored|cross|upset)\b/gi;
+const STUDIO_PROMPTS=["The day my mountain bike started to fly","A wizard moves in next door","Lost on a hike in the Drakensberg","The monkey that stole my lunch box","A storm on the beach","The mysterious box in Grandpa's garage","The best (or worst) day of the holidays","I found a secret door at school","The magic paintbrush","When my pet could suddenly talk","The night the lights went out","My first time on a roller coaster"];
+
+/* ---------- rewrite challenges ---------- */
+const RW=[
+ {k:"show",title:"Show, don't tell",ask:"Rewrite this sentence so it SHOWS the feeling through the body. Don't use the word in pink!",given:"I was scared.",tell:"scared",model:"My knees shook and my heart thumped like a drum.",hint:"Start with: My knees... or My heart..."},
+ {k:"show",title:"Show, don't tell",ask:"Rewrite this sentence so it SHOWS the feeling. Don't use the word in pink!",given:"She was happy.",tell:"happy",model:"She grinned from ear to ear and jumped up and down.",hint:"Start with: She grinned..."},
+ {k:"show",title:"Show, don't tell",ask:"Rewrite this sentence so it SHOWS the feeling. Don't use the word in pink!",given:"He was angry.",tell:"angry",model:"His face turned red and he clenched his fists.",hint:"Start with: His face..."},
+ {k:"show",title:"Show, don't tell",ask:"Rewrite this sentence so it SHOWS how cold it was. Don't use the word in pink!",given:"It was cold.",tell:"cold",model:"I shivered and my fingers turned numb.",hint:"Start with: I shivered..."},
+ {k:"show",title:"Show, don't tell",ask:"Rewrite this sentence so it SHOWS the feeling. Don't use the word in pink!",given:"I was nervous.",tell:"nervous",model:"I had butterflies in my stomach and my palms were sweaty.",hint:"Start with: My palms..."},
+ {k:"show",title:"Show, don't tell",ask:"Rewrite this sentence so it SHOWS the feeling. Don't use the word in pink!",given:"The boy was sad.",tell:"sad",model:"Tears rolled down the boy's cheeks and he stared at the floor.",hint:"Start with: Tears..."},
+ {k:"simile",title:"Add a simile",ask:"Make this sentence more exciting by adding a SIMILE (use like or as ... as).",given:"The car was fast.",model:"The car was as fast as a rocket.",hint:"Try: as fast as a..."},
+ {k:"simile",title:"Add a simile",ask:"Add a SIMILE to this sentence (use like or as ... as).",given:"The night was dark.",model:"The night was as dark as a bat's cave.",hint:"Try: as dark as..."},
+ {k:"simile",title:"Add a simile",ask:"Add a SIMILE to this sentence (use like or as ... as).",given:"The puppy's fur was soft.",model:"The puppy's fur was as soft as a cloud.",hint:"Try: as soft as..."},
+ {k:"simile",title:"Add a simile",ask:"Add a SIMILE to this sentence (use like or as ... as).",given:"The lion roared.",model:"The lion roared like thunder.",hint:"Try: roared like..."},
+ {k:"boring",title:"Swap the boring words",ask:"Rewrite the sentence and swap EVERY word in pink for a power word.",given:"We went to a nice party and it was big.",model:"We raced to an amazing party and it was enormous."},
+ {k:"boring",title:"Swap the boring words",ask:"Rewrite the sentence and swap EVERY word in pink for a power word.",given:"He said the movie was good.",model:"He shouted that the movie was brilliant."},
+ {k:"boring",title:"Swap the boring words",ask:"Rewrite the sentence and swap EVERY word in pink for a power word.",given:"I got a big pizza and it was nice.",model:"I grabbed a gigantic pizza and it was delicious."},
+ {k:"boring",title:"Swap the boring words",ask:"Rewrite the sentence and swap EVERY word in pink for a power word.",given:"The storm was very bad.",model:"The storm was extremely dreadful."},
+ {k:"hook",title:"Write a hook",ask:"Write the FIRST sentence of a story with this title. Make it a hook! (sound, speech, question, action or mystery)",given:"A storm on the beach",model:"BOOM! Thunder shook the sand beneath my towel."},
+ {k:"hook",title:"Write a hook",ask:"Write the FIRST sentence of a story with this title. Make it a hook!",given:"The lost puppy",model:"\"Where are you, Biscuit?\" I called into the dark garden."},
+ {k:"hook",title:"Write a hook",ask:"Write the FIRST sentence of a story with this title. Make it a hook!",given:"The day my bike could fly",model:"Have you ever looked down and seen the clouds below your wheels?"},
+ {k:"hook",title:"Write a hook",ask:"Write the FIRST sentence of a story with this title. Make it a hook!",given:"A secret door at school",model:"Nobody knew where the little green door behind the library led."},
+ {k:"senses",title:"Add the senses",ask:"Rewrite this so the reader can SEE, HEAR, SMELL, TASTE or FEEL it. Use at least TWO senses.",given:"The market was busy.",model:"I heard traders shouting and smelled sizzling boerewors on the braai."},
+ {k:"senses",title:"Add the senses",ask:"Rewrite this using at least TWO senses.",given:"We were at the beach.",model:"I felt the hot sand between my toes and tasted the salty sea spray."},
+ {k:"senses",title:"Add the senses",ask:"Rewrite this using at least TWO senses.",given:"The kitchen had food in it.",model:"The kitchen smelled of fresh bread and I heard the kettle whistling."},
+ {k:"speech",title:"Fix the speech",ask:"Type this correctly with inverted commas, capital letters and punctuation.",given:"help shouted sam",answers:["\"Help!\" shouted Sam.","\"Help,\" shouted Sam."],model:"\"Help!\" shouted Sam."},
+ {k:"speech",title:"Fix the speech",ask:"Type this correctly with inverted commas, capital letters and punctuation.",given:"where are you going asked mom",answers:["\"Where are you going?\" asked Mom."],model:"\"Where are you going?\" asked Mom."},
+ {k:"speech",title:"Fix the speech",ask:"Type this correctly with inverted commas, capital letters and punctuation.",given:"i am hungry said lily",answers:["\"I am hungry,\" said Lily.","\"I am hungry!\" said Lily.","\"I'm hungry,\" said Lily."],model:"\"I am hungry,\" said Lily."},
+ {k:"ending",title:"Write a strong ending",ask:"Write the LAST sentence for a story with this title. End with a feeling, a lesson or a twist. No dreams!",given:"Lost on a hike",model:"From then on, I never went hiking without a map."},
+ {k:"ending",title:"Write a strong ending",ask:"Write the LAST sentence for a story with this title. End with a feeling, a lesson or a twist.",given:"The monkey that stole my lunch",model:"As I ate my squashed banana, I laughed and promised to always zip my bag."},
+ {k:"ending",title:"Write a strong ending",ask:"Write the LAST sentence for a story with this title. End with a feeling, a lesson or a twist.",given:"My first football match",model:"As the final whistle blew, I knew it was the best day of my life."}
+];
+
+/* ---------- text helpers ---------- */
+const normQ=s=>s.replace(/[“”„«»]/g,'"').replace(/[‘’]/g,"'");
+const wordsOf=s=>(normQ(s).toLowerCase().match(/[a-z']+/g)||[]);
+const sentencesOf=s=>normQ(s).replace(/\s+/g," ").trim().split(/(?<=[.!?]["']?)\s+(?=["A-Za-z])/).filter(x=>/[a-z]/i.test(x));
+function senseCats(s){const w=new Set(wordsOf(s));return Object.keys(SENSE).filter(k=>SENSE[k].some(x=>w.has(x)))}
+function hasSimile(s){const t=" "+wordsOf(s).join(" ")+" ";return /\blike (a|an|the|my|his|her|thunder|lightning|ice|fire|glass|silk|gold)\b/.test(t)||/\bas \w+ as\b/.test(t)}
+function onoCount(s){const raw=normQ(s);let n=0;wordsOf(raw).forEach(w=>{if(ONO.has(w))n++});(raw.match(/\b[A-Z]{3,}!/g)||[]).forEach(()=>n++);return n}
+function persCount(s){const w=wordsOf(s);let n=0;for(let i=0;i<w.length;i++)if(PERS_SUBJ.includes(w[i]))for(let j=i+1;j<=i+3&&j<w.length;j++)if(PERS_VERB.has(w[j])){n++;break}return n}
+function hookScore(first){
+  const f=normQ(first).trim(),lw=f.toLowerCase();
+  if(/^(one day|once upon|this is a story|my story|i am going to|i'm going to|hi |hello|today i)/.test(lw))return [0,"Your story starts with \"One day\" or \"This is a story\". Grab the reader with a hook instead!"];
+  const w0=wordsOf(f)[0]||"";
+  if(f.startsWith('"'))return [2,"Great hook! Starting with speech pulls the reader straight in."];
+  if(/\?/.test(f))return [2,"Great hook! A question makes the reader want to know more."];
+  if(ONO.has(w0)||/^[A-Z]{3,}!/.test(f))return [2,"Great hook! A sound word grabs attention."];
+  if(/!/.test(f))return [2,"Great hook! That exciting first sentence grabs attention."];
+  if(/^(nobody|no one|suddenly|without warning|everyone|the moment)/.test(lw)||/ing\b/.test(w0))return [2,"Great hook! That opening makes the reader curious."];
+  return [1,"Good start. Make it even stronger with a sound, speech, a question, action or a mystery."];
+}
+function endScore(last){
+  const lw=normQ(last).toLowerCase();
+  if(/dream|the end\.?$|that'?s all|and that was it/.test(lw.trim()))return [0,"Avoid \"it was all a dream\" or \"The end\". Finish with a feeling, a lesson or a twist."];
+  if(ENDGOOD.some(k=>lw.includes(k))||/\.\.\.$/.test(lw.trim()))return [2,"Strong ending! You finished with a feeling, lesson or twist."];
+  return [1,"Okay ending. Try finishing with how the character felt or what they learnt."];
+}
+
+/* ---------- full story marker ---------- */
+function markStory(text,plan){
+  const t=normQ(text).trim(),words=wordsOf(t),wc=words.length,sents=sentencesOf(t);
+  const paras=t.split(/\n+/).map(x=>x.trim()).filter(x=>x.split(/\s+/).length>=4);
+  const C=[];const add=(k,name,score,msg)=>C.push({k,name,score,max:2,msg});
+  const h=hookScore(sents[0]||"");add("hook","Hook",h[0],h[1]);
+  add("paras","Paragraphs",paras.length>=3?2:paras.length===2?1:0,paras.length>=3?`${paras.length} paragraphs. Nicely organised!`:paras.length===2?"Two paragraphs. Try one paragraph for each part of the story mountain (aim for 3 or more).":"It's all in one big block. Press return to start a new paragraph when the time, place or speaker changes.");
+  add("length","Length",wc>=120?2:wc>=60?1:0,wc>=120?`${wc} words. A good, full story!`:wc>=60?`${wc} words. Good! Add a bit more to the middle of your story (aim for 120+).`:`Only ${wc} words. Build up the middle and the problem part of your story.`);
+  const sc=senseCats(t);add("senses","Five senses",sc.length>=3?2:sc.length>=1?1:0,sc.length>=3?`You used ${sc.length} senses (${sc.join(", ")}). The reader is right there with you!`:sc.length?`You used ${sc.join(" and ")}. Add another sense, like what the character could ${["smell","hear","taste","touch"].filter(x=>!sc.includes(x==="touch"?"touch":x))[0]||"feel"}.`:"Add what the character could see, hear, smell, taste or feel.");
+  const fig=(hasSimile(t)?1:0)+(onoCount(t)?1:0)+(persCount(t)?1:0);const figs=[hasSimile(t)&&"simile",onoCount(t)&&"onomatopoeia",persCount(t)&&"personification"].filter(Boolean);
+  add("figures","Figures of speech",fig>=2?2:fig,fig>=2?`Great use of ${figs.join(" and ")}!`:fig===1?`Nice ${figs[0]}! Add one more, like a simile (as fast as a cheetah) or personification (the wind howled).`:"Try a simile (as fast as a cheetah), a sound word (BOOM!) or personification (the wind howled).");
+  const bor=words.filter(w=>BORING.has(w)),pow=new Set(words.filter(w=>POWER.has(w)));const rate=wc?bor.length/wc*100:0;
+  add("words","Power words",rate<=2.5&&pow.size>=3?2:rate<=5||pow.size>=2?1:0,(rate<=2.5&&pow.size>=3?`Excellent word choice: ${[...pow].slice(0,4).join(", ")}.`:"")+(bor.length?` Watch out for boring words: ${[...new Set(bor)].slice(0,5).join(", ")}. Swap them for power words.`:pow.size<3?" Add more power words like whispered, raced, enormous, terrified.":""));
+  const tell=(t.match(TELLRE)||[]).length,body=words.filter(w=>BODY.has(w)).length;
+  add("show","Show, don't tell",body>=1&&tell===0?2:body>=1||tell===0?1:0,body>=1&&tell===0?"Brilliant! You showed feelings through the body.":tell?`You told a feeling (${(t.match(TELLRE)||[])[0]}). Show it instead: knees shaking, heart thumping, a big grin.`:"Show a feeling through the body: knees shaking, heart thumping, a big grin.");
+  const e=endScore(sents[sents.length-1]||"");add("ending","Strong ending",e[0],e[1]);
+  const caps=sents.filter(x=>/^["']?[A-Z]/.test(x.trim())).length,lowi=(t.match(/(^|[\s"])i(\s|'m|'ve|'ll|'d)/g)||[]).length,endp=/[.!?]["']?$/.test(t);
+  const capPct=sents.length?caps/sents.length:0;
+  add("punct","Capitals & full stops",capPct>=.9&&!lowi&&endp?2:capPct>=.7?1:0,capPct>=.9&&!lowi&&endp?"Capital letters and full stops are spot on!":(lowi?"Remember: \"I\" is always a capital letter. ":"")+(capPct<.9?"Start every sentence with a capital letter. ":"")+(endp?"":"Finish your last sentence with a full stop."));
+  const lt=" "+words.join(" ")+" ";const tw=TIMEW.filter(x=>lt.includes(" "+x+" "));const thens=sents.filter(x=>/^(then|and then|and)\b/i.test(x.trim())).length;
+  add("time","Time words",tw.length>=2&&thens<=1?2:tw.length>=1?1:0,tw.length>=2&&thens<=1?`Good time words: ${tw.slice(0,3).join(", ")}.`:thens>1?"Lots of sentences start with \"Then\" or \"And\". Try Suddenly, Later, Meanwhile, Finally.":"Use time words to move the story along: Suddenly, Later that day, Finally.");
+  const planN=plan?Object.values(plan).filter(v=>v&&v.trim()).length:0;
+  const quotes=(t.match(/"[^"]+"/g)||[]),goodQ=quotes.filter(q=>/[.,!?]"$/.test(q)).length;
+  const bonus=[];if(planN>=3)bonus.push({name:"Planned first",pts:2,msg:"You filled in your plan. Planning makes better stories!"});
+  if(quotes.length)bonus.push({name:"Speech",pts:goodQ===quotes.length?2:1,msg:goodQ===quotes.length?"Speech written correctly, with punctuation inside the inverted commas.":"Nice speech! Remember the punctuation goes inside the inverted commas: \"Help!\" shouted Sam."});
+  const total=C.reduce((a,c)=>a+c.score,0),bon=bonus.reduce((a,b)=>a+b.pts,0);
+  const stars=total>=16?3:total>=11?2:total>=6?1:0;
+  const tips=C.filter(c=>c.score<2).sort((a,b)=>a.score-b.score).slice(0,2);
+  return {C,total,max:20,bonus,bon,stars,wc,tips};
+}
+function highlightStory(text){
+  const toks=normQ(text).split(/(\s+)/),cls=toks.map(()=>"");
+  const wi=[];toks.forEach((tk,i)=>{if(/\S/.test(tk))wi.push(i)});
+  const clean=i=>toks[i].toLowerCase().replace(/[^a-z']/g,"");
+  wi.forEach((i,n)=>{const w=clean(i);
+    if(BORING.has(w))cls[i]="hb";else if(POWER.has(w))cls[i]="hp";else if(ONO.has(w)||/^[A-Z]{3,}!/.test(toks[i]))cls[i]="ho";
+    else if(Object.values(SENSE).some(a=>a.includes(w)))cls[i]="hs";else if(BODY.has(w))cls[i]="hw";
+    if(w==="like"&&n+1<wi.length){cls[i]="hm";cls[wi[n+1]]="hm";if(n+2<wi.length)cls[wi[n+2]]="hm"}
+    if(w==="as"&&n+2<wi.length&&clean(wi[n+2])==="as"){[0,1,2,3].forEach(k=>{if(n+k<wi.length)cls[wi[n+k]]="hm"})}
+  });
+  return toks.map((tk,i)=>/\n/.test(tk)?tk.replace(/\n/g,"<br>"):cls[i]?`<span class="${cls[i]}">${esc(tk)}</span>`:esc(tk)).join("");
+}
+function checkRewrite(c,ans){
+  const a=normQ(ans).trim(),w=wordsOf(a),wc=w.length;
+  if(wc<2)return [0,"Type your answer in the box first."];
+  if(c.k==="show"){const used=w.includes(c.tell),body=w.some(x=>BODY.has(x));
+    if(used)return [0,`You still used the word "${c.tell}". Show it with the body instead!`];
+    if(body&&wc>=5)return [2,"Brilliant! You showed the feeling instead of telling it."];
+    return [1,"Good, you didn't use the tell word! Now add what the body does: heart, knees, hands, cheeks, eyes."]}
+  if(c.k==="simile"){return hasSimile(a)&&wc>=4?[2,"Great simile!"]:[0,"I can't find a simile. Use like (like thunder) or as ... as (as fast as a rocket)."]}
+  if(c.k==="boring"){const b=wordsOf(c.given).filter(x=>BORING.has(x)),left=b.filter(x=>w.includes(x));
+    if(wc<wordsOf(c.given).length-2)return [0,"Rewrite the whole sentence, swapping the pink words."];
+    return left.length===0?[2,"All the boring words are gone. Powerful!"]:left.length<b.length?[1,`Nearly! You still used: ${left.join(", ")}.`]:[0,`Swap these for power words: ${left.join(", ")}.`]}
+  if(c.k==="hook"){const h=hookScore(a);return wc<4?[0,"Write a whole first sentence."]:[h[0],h[1]]}
+  if(c.k==="senses"){const s=senseCats(a);return s.length>=2?[2,`Great! You used ${s.join(" and ")}.`]:s.length?[1,`You used ${s[0]}. Add one more sense!`]:[0,"Add what you can see, hear, smell, taste or feel."]}
+  if(c.k==="speech"){const n=a.replace(/\s+/g," ");if(c.answers.some(x=>x===n))return [2,"Perfect speech punctuation!"];
+    const hasQ=/^".+[.,!?]"\s+\w+/.test(n),cap=/^"[A-Z]/.test(n)&&/[A-Z][a-z]+\.?$/.test(n.replace(/\.$/,""));
+    return hasQ&&cap?[2,"Perfect speech punctuation!"]:/"/.test(n)?[1,"Close! Check: capital letters, punctuation INSIDE the inverted commas, and a full stop at the end."]:[0,"Put inverted commas around the words that are spoken."]}
+  if(c.k==="ending"){if(wc<4)return [0,"Write a whole last sentence."];const e=endScore(a);return [e[0],e[1]]}
+  return [1,""];
+}
+
+/* ---------- WORKSHOP VIEWS ---------- */
+let W=null;
+function wBody(h){$("#w-body").innerHTML=h}
+function recordResult(stars,score){
+  const sp=SP(SUB.id),prev=sp.stars[T.id]||0,pb=sp.best[T.id]||0;
+  sp.stars[T.id]=Math.max(prev,stars);sp.best[T.id]=Math.max(pb,score);sp.points+=score;sp.games++;S.coins+=stars;save();stats();
+  return {newStar:stars>prev,newBest:score>pb&&pb>0};
+}
+function storyHtml(st,cur,done){
+  let k=0;return st.seg.map(sg=>{if(typeof sg==="string")return esc(sg).replace(/\n/g,"<br>");const i=k++;
+    if(i===cur)return `<mark class="seg cur">${esc(sg.t)}</mark>`;
+    if(done[i])return `<span class="seg done ${done[i]==="ok"?"ok":"no"}">${esc(sg.t)}<span class="segtag">${TAGL[sg.g]}</span></span>`;
+    return esc(sg.t)}).join("");
+}
+/* Story Detective */
+function startDetective(){
+  const st=ch(DSTORIES),tg=st.seg.filter(x=>typeof x!=="string");
+  W={kind:"det",st,tg,i:0,ok:0,done:{},hunt:ch(HUNTS),found:new Set(),wrong:0,lock:false};
+  $("#w-title").textContent="Story Detective";show("v-workshop");drawDet();
+}
+function drawDet(){
+  if(W.i>=W.tg.length)return drawHunt();
+  const sg=W.tg[W.i],ex=new Set([sg.g,...(sg.x||[])]);
+  W.opts=shuffle([sg.g,...pick(Object.keys(TAGL).filter(k=>!ex.has(k)),3)]);W.lock=false;
+  wBody(`<div class="row" style="justify-content:space-between;margin-bottom:10px"><div class="scoreline">Part 1: Spot the power-up &nbsp;<span class="pill">${W.i+1} / ${W.tg.length}</span></div><div class="scoreline">Correct: ${W.ok}</div></div>
+   <div class="box storybox"><h3>${esc(W.st.t)}</h3><div class="storytext">${storyHtml(W.st,W.i,W.done)}</div></div>
+   <div class="box qbox"><div class="ask">Which power-up is used in the <span class="hl">highlighted</span> sentence?</div>
+   <div class="opts" id="w-opts">${W.opts.map((o,i)=>`<button class="opt" data-i="${i}">${TAGL[o]}</button>`).join("")}</div>
+   <div class="explain" id="w-explain"></div><div class="next-row"><button class="btn blue" id="w-next" hidden>Next</button></div></div>`);
+  $("#w-opts").onclick=e=>{const b=e.target.closest(".opt");if(!b||W.lock)return;W.lock=true;const pickd=W.opts[+b.dataset.i],ok=pickd===sg.g;
+    $$("#w-opts .opt").forEach(o=>{o.disabled=true;if(W.opts[+o.dataset.i]===sg.g)o.classList.add("good")});
+    if(ok){W.ok++;burst("#w-arena","SPOTTED!",true)}else{b.classList.add("bad");burst("#w-arena","HMM!")}
+    W.done[W.i]=ok?"ok":"no";
+    $("#w-explain").innerHTML=`<b class="${ok?"right":"wrong"}">${ok?"Correct!":"It's: "+TAGL[sg.g]+"."}</b> ${TAGWHY[sg.g]}`;
+    $("#w-next").hidden=false;$("#w-next").focus();};
+  $("#w-next").onclick=()=>{W.i++;drawDet()};
+}
+function drawHunt(){
+  const toks=W.hunt.split(/(\s+)/);W.targets=new Set();
+  toks.forEach((t,i)=>{if(BORING.has(t.toLowerCase().replace(/[^a-z]/g,"")))W.targets.add(i)});
+  wBody(`<div class="row" style="justify-content:space-between;margin-bottom:10px"><div class="scoreline">Part 2: Boring word hunt</div><div class="scoreline">Found <span id="h-found">0</span> / ${W.targets.size} &nbsp; Wrong taps <span id="h-wrong">0</span></div></div>
+   <div class="box qbox"><div class="ask">This paragraph is BORING! Tap every boring word (like said, went, nice, big).</div>
+   <div class="hunt" id="hunt">${toks.map((t,i)=>/\S/.test(t)?`<button class="hw-word" data-i="${i}">${esc(t)}</button>`:" ").join("")}</div>
+   <div class="explain" id="h-explain">Tap a word to catch it.</div><div class="next-row"><button class="btn blue" id="h-done">I've found them all!</button></div></div>`);
+  $("#hunt").onclick=e=>{const b=e.target.closest(".hw-word");if(!b||b.disabled)return;const i=+b.dataset.i;
+    if(W.targets.has(i)){b.classList.add("caught");b.disabled=true;W.found.add(i);const w=b.textContent.toLowerCase().replace(/[^a-z]/g,"");
+      $("#h-explain").innerHTML=`<b class="right">Caught "${esc(w)}"!</b> Try: ${SWAPS[w]}`;$("#h-found").textContent=W.found.size;if(W.found.size===W.targets.size)setTimeout(endDet,700)}
+    else{W.wrong++;$("#h-wrong").textContent=W.wrong;b.classList.remove("nope");void b.offsetWidth;b.classList.add("nope");$("#h-explain").innerHTML=`"${esc(b.textContent)}" is fine. Look for a dull, overused word.`}};
+  $("#h-done").onclick=endDet;
+}
+function endDet(){
+  if($("#v-workshop").hidden||W.kind!=="det"||W.ended)return;W.ended=true;
+  const q=W.tg.length,h=W.targets.size,pct=(W.ok+3*W.found.size/h-0.25*W.wrong)/(q+3);
+  const st=pct>=.85?3:pct>=.6?2:pct>=.35?1:0,score=Math.max(0,W.ok*100+W.found.size*50-W.wrong*20);
+  finish(st,st>=2?"Super sleuth!":"Good detective work!",`Power-ups spotted: ${W.ok} of ${q}.<br>Boring words caught: ${W.found.size} of ${h}${W.wrong?` (${W.wrong} wrong taps)`:""}.`,score);
+}
+/* Power-Up Rewrites */
+function startRewrite(){
+  const kinds=shuffle(["show","simile","boring","hook","senses","speech","ending"]).slice(0,5);
+  W={kind:"rw",list:kinds.map(k=>ch(RW.filter(c=>c.k===k))),i:0,pts:[],lock:false};
+  $("#w-title").textContent="Power-Up Rewrites";show("v-workshop");drawRw();
+}
+function givenHtml(c){
+  if(c.k==="show")return esc(c.given).replace(new RegExp("\\b"+c.tell+"\\b"),`<span class="tellw">${c.tell}</span>`);
+  if(c.k==="boring")return c.given.split(" ").map(w=>BORING.has(w.toLowerCase().replace(/[^a-z]/g,""))?`<span class="tellw">${esc(w)}</span>`:esc(w)).join(" ");
+  if(c.k==="hook"||c.k==="ending")return `Title: <b>${esc(c.given)}</b>`;
+  return esc(c.given);
+}
+function drawRw(){
+  if(W.i>=W.list.length)return endRw();
+  const c=W.list[W.i];W.lock=false;
+  wBody(`<div class="row" style="justify-content:space-between;margin-bottom:10px"><div class="scoreline">Challenge <span class="pill">${W.i+1} / ${W.list.length}</span> &nbsp;${esc(c.title)}</div><div class="dots">${W.list.map((x,i)=>`<i class="${W.pts[i]===2?"g":W.pts[i]===1?"y":W.pts[i]===0?"r":""}"></i>`).join("")}</div></div>
+   <div class="box qbox"><div class="ask">${esc(c.ask)}</div><div class="say">${givenHtml(c)}</div>
+   <label class="sr" for="rw-in">Your answer</label><textarea id="rw-in" class="wtext" rows="3" placeholder="Type your power-up sentence here..." autocapitalize="sentences" spellcheck="true"></textarea>
+   <div class="row" style="justify-content:center;margin-top:10px"><button class="btn blue" id="rw-check">Check it!</button>${c.hint?`<button class="power" id="rw-hint" style="min-width:150px">Hint<small>sentence starter &middot; 1<svg class="ico" style="width:15px;height:15px"><use href="#coin"/></svg></small></button>`:""}</div>
+   <div class="explain" id="rw-explain"></div><div class="next-row"><button class="btn blue" id="rw-next" hidden>Next challenge</button></div></div>`);
+  const hb=$("#rw-hint");if(hb){hb.disabled=S.coins<1;hb.onclick=()=>{if(S.coins<1)return;S.coins--;save();stats();hb.disabled=true;$("#rw-explain").innerHTML=`<b>Hint:</b> ${esc(c.hint)}`}}
+  $("#rw-check").onclick=()=>{if(W.lock)return;const [sc,msg]=checkRewrite(c,$("#rw-in").value);
+    if(sc===0&&wordsOf($("#rw-in").value).length<2){$("#rw-explain").innerHTML=esc(msg);return}
+    W.lock=true;W.pts[W.i]=sc;$("#rw-in").readOnly=true;$("#rw-check").disabled=true;if(hb)hb.disabled=true;
+    burst("#w-arena",sc===2?"POWER-UP!":sc===1?"NEARLY!":"TRY AGAIN!",sc>0);
+    $("#rw-explain").innerHTML=`<b class="${sc===2?"right":sc===1?"":"wrong"}">${sc===2?"2 points!":sc===1?"1 point.":"0 points."}</b> ${esc(msg)}<div class="model"><b>Example answer:</b> ${esc(c.model)}</div>`;
+    $("#rw-next").hidden=false;$("#rw-next").focus();};
+  $("#rw-next").onclick=()=>{W.i++;drawRw()};
+}
+function endRw(){
+  const tot=W.pts.reduce((a,b)=>a+b,0),mx=W.list.length*2,st=tot>=9?3:tot>=6?2:tot>=3?1:0;
+  finish(st,st>=2?"Word wizard!":"Good writing practice!",`You scored ${tot} out of ${mx} points.`,tot*100);
+}
+/* Story Studio */
+function startStudio(){
+  W={kind:"studio",prompt:ch(STUDIO_PROMPTS)};$("#w-title").textContent="Story Studio";show("v-workshop");drawStudio();
+}
+function drawStudio(){
+  const saved=(S.stories||[]).slice().reverse();
+  wBody(`<div class="box studio-top"><div><div class="ask">Your story title</div><div class="say" id="st-prompt">${esc(W.prompt)}</div></div><button class="btn white" id="st-new">New title</button></div>
+   <div class="box"><h3 style="font-size:22px;margin-bottom:6px">1. Plan it (5 minutes)</h3>
+    <div class="planrow">${["Who?","Where?","Problem?","Solution?","Hook?"].map((p,i)=>`<label class="pl"><span>${p}</span><input id="pl${i}" autocomplete="off" placeholder="a word or two"></label>`).join("")}</div></div>
+   <div class="box"><h3 style="font-size:22px;margin-bottom:6px">2. Write it</h3>
+    <div class="tipstrip"><span>Hook</span><span>Show, don't tell</span><span>3 senses</span><span>Simile</span><span>Power words</span><span>Paragraphs</span><span>Strong ending</span></div>
+    <label class="sr" for="st-text">Your story</label><textarea id="st-text" class="wtext big" placeholder="Start with a hook! Press return to start a new paragraph." autocapitalize="sentences" spellcheck="true"></textarea>
+    <div class="row" style="justify-content:space-between;margin-top:8px"><span class="scoreline">Words: <span id="st-wc">0</span> <span style="color:var(--muted);font-weight:400">(aim for 120 to 250)</span></span><button class="btn blue" id="st-mark" disabled>Mark my story</button></div>
+    <div class="robot">The story checker is a helper, not a teacher. It looks for the tips from your Creative Writing sheet. Ask a grown-up to read your story too!</div></div>
+   ${saved.length?`<div class="box"><h3 style="font-size:22px;margin-bottom:6px">My saved stories</h3><div class="saved">${saved.map((s,i)=>`<button class="savedrow" data-i="${saved.length-1-i}"><b>${esc(s.prompt)}</b><span>${new Date(s.d).toLocaleDateString("en-ZA",{day:"numeric",month:"short"})} &middot; ${s.total}/20 &middot; ${"&#9733;".repeat(s.stars)||"no stars yet"}</span></button>`).join("")}</div></div>`:""}`);
+  $("#st-new").onclick=()=>{W.prompt=ch(STUDIO_PROMPTS.filter(p=>p!==W.prompt));$("#st-prompt").textContent=W.prompt};
+  const ta=$("#st-text");ta.oninput=()=>{const n=wordsOf(ta.value).length;$("#st-wc").textContent=n;$("#st-mark").disabled=n<30};
+  $("#st-mark").onclick=()=>{const plan={};[0,1,2,3,4].forEach(i=>plan["p"+i]=$("#pl"+i).value);const text=ta.value;const r=markStory(text,plan);
+    S.stories=(S.stories||[]);S.stories.push({d:Date.now(),prompt:W.prompt,text,plan,total:r.total,stars:r.stars});if(S.stories.length>30)S.stories.shift();
+    const rec=recordResult(r.stars,r.total*50+r.bon*25);drawReport(W.prompt,text,r,rec);};
+  $$(".savedrow").forEach(b=>b.onclick=()=>{const s=S.stories[+b.dataset.i];drawReport(s.prompt,s.text,markStory(s.text,s.plan),null,true)});
+}
+function drawReport(prompt,text,r,rec,old){
+  window.scrollTo(0,0);
+  wBody(`<div class="box report-top"><div class="bigstars">${[1,2,3].map(k=>starSvg(k<=r.stars)).join("")}</div>
+    <div><div class="ask">${old?"Saved story":"Story checked!"}</div><h3 style="font-size:28px">${esc(prompt)}</h3>
+    <div class="scoreline" style="font-size:22px">${r.total} / 20 points${r.bon?` <span class="pill">+${r.bon} bonus</span>`:""} &middot; ${r.wc} words</div>
+    ${rec&&rec.newStar?`<b>New star record!</b>`:""}</div></div>
+   <div class="box"><h3 style="font-size:22px;margin-bottom:6px">Next time, try this</h3>${r.tips.length?r.tips.map(t=>`<div class="tipnext"><b>${t.name}:</b> ${esc(t.msg)}</div>`).join(""):"<div class='tipnext'><b>Amazing!</b> You used every power-up. Try a new title and keep it up!</div>"}</div>
+   <div class="report-grid">
+    <div class="box"><h3 style="font-size:22px;margin-bottom:6px">Your story, highlighted</h3>
+     <div class="legend"><span class="hm">simile</span><span class="hs">senses</span><span class="hp">power word</span><span class="ho">sound word</span><span class="hw">body (show)</span><span class="hb">boring word</span></div>
+     <div class="storytext">${highlightStory(text)}</div></div>
+    <div class="box"><h3 style="font-size:22px;margin-bottom:6px">Score card</h3>
+     ${r.C.map(c=>`<div class="rub"><span class="rdots">${[0,1].map(k=>`<i class="${k<c.score?"g":""}"></i>`).join("")}</span><div><b>${c.name}</b> ${esc(c.msg)}</div></div>`).join("")}
+     ${r.bonus.map(b=>`<div class="rub"><span class="pill">+${b.pts}</span><div><b>${b.name}</b> ${esc(b.msg)}</div></div>`).join("")}</div>
+   </div>
+   <div class="next-row" style="gap:12px"><button class="btn white" id="rp-back">Back to Story Studio</button><button class="btn blue" id="rp-new">Write another story</button></div>`);
+  $("#rp-back").onclick=()=>drawStudio();
+  $("#rp-new").onclick=()=>{W.prompt=ch(STUDIO_PROMPTS);drawStudio()};
+}
 
 /* Hidden guard: a game screen needs a player and subject */
 show("v-start");
