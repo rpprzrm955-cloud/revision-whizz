@@ -217,6 +217,10 @@ html{overscroll-behavior:none}
 .top-r{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 .fsbtn{cursor:pointer;background:var(--blue-soft);border-color:var(--blue)}
 .mode-chip{font-size:14px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:1fr;gap:4px;margin:8px 0}
+.step{border:2px solid var(--ink);border-radius:8px;padding:3px 8px;background:var(--blue-soft);font-size:16px;line-height:1.2}
+.step b{font-family:var(--display);font-size:16px;margin-right:6px}
+.step.peak{background:var(--hi)}
 /* app shell for iPad */
 html{-webkit-text-size-adjust:100%}
 body{-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none;overscroll-behavior-y:none}
@@ -943,6 +947,50 @@ const TOPICS=[
   {ask:"Quick question",q:"Which one compares two things WITHOUT using like or as?",a:"Metaphor",hint:"Simile uses like or as. The other one doesn't."},
   {ask:"Quick question",q:"Which one is a deliberate exaggeration?",a:"Hyperbole"},
   {ask:"Quick question",q:"To turn a metaphor into a simile, which word do you add?",a:"like",opts:["like","very","the","and"],why:"Add <b>like</b> (or as) and a metaphor becomes a simile."}]},
+
+/* 12 CREATIVE WRITING */
+{id:"writing",t:"Creative Writing",d:"Tips sheet: plan, hook, show don't tell, strong endings",mode:"battle",monster:{n:"Writer's Block",line:"freezes your pencil mid-sentence",c:"#a9bcd8"},
+ learn:{intro:'Your <span class="hl">story writing power-ups</span>! Plan first, grab the reader with a hook, and finish strong.',
+  boxes:[
+   {h:"Plan first (5 minutes)",b:'Read the topic <b>twice</b> and underline key words. Answer the <b>5 W\'s</b>: Who? Where? When? What goes wrong? How is it fixed?<div class="steps"><div class="step"><b>1. Beginning</b>Hook! Who and where.</div><div class="step"><b>2. Build-up</b>Something starts to happen.</div><div class="step peak"><b>3. Problem</b>The big moment.</div><div class="step"><b>4. Solution</b>How it gets fixed.</div><div class="step"><b>5. Ending</b>How they feel.</div></div>One paragraph for each step.'},
+   {h:"Start with a hook",b:'Never start with "One day...".<br><span class="burst-mini">CRASH!</span> The vase hit the floor.<br>"Don\'t open that box!" Gran shouted.<br>Have you ever seen a monkey steal a sandwich?<br>I pedalled faster as the storm chased me home.'},
+   {h:"Show, don\'t tell",b:'<span class="wrong">Tell: I was scared.</span><br><span class="right">Show: My knees shook and my heart thumped like a drum.</span><br><span class="wrong">Tell: It was hot.</span><br><span class="right">Show: Sweat trickled down my back.</span>'},
+   {h:"Use your 5 senses",b:'<b>See</b> the purple sky &middot; <b>hear</b> waves crashing &middot; <b>smell</b> boerewors on the braai &middot; <b>taste</b> salty sea spray &middot; <b>touch</b> rough bark. Try to use at least three.'},
+   {h:"Figures of speech",b:'Simile: <i>as fast as a cheetah</i><br>Metaphor: <i>the classroom was a zoo</i><br>Personification: <i>the wind howled</i><br>Onomatopoeia: <i>BOOM!</i><br>Two or three good ones is plenty.'},
+   {h:"Swap boring words",b:'<b>said</b> &rarr; whispered, shouted, gasped<br><b>went</b> &rarr; raced, crept, dashed<br><b>big</b> &rarr; enormous, gigantic<br><b>nice</b> &rarr; brilliant, delicious<br><b>then</b> &rarr; suddenly, a moment later, finally'},
+   {h:"Writing speech",b:'Inverted commas go around the spoken words, with punctuation <b>inside</b>.<br><span class="ex">"Watch out!" shouted Sam.</span><br><span class="ex">"I\'m hungry," said Lily.</span><br>New speaker = new line.'},
+   {h:"New paragraph when...",b:'the <b>time</b> changes, the <b>place</b> changes, a new <b>person</b> speaks, or something new <b>happens</b>. Start with time words: <i>Later that day</i>, <i>Suddenly</i>.'},
+   {h:"Strong endings",b:'<span class="wrong">&#10007; "...and then I woke up. It was all a dream."</span><br><span class="right">&#10003; A feeling, a lesson learnt, a twist, or circle back to how you started.</span>'},
+   {h:"\"Describe...\" topics",b:'A <b>descriptive</b> piece paints a picture, with no big plot. Zoom in like a camera, use all 5 senses, similes and adjectives, and keep one tense.'},
+   {h:"Example opening",b:'<span class="burst-mini">SPLASH!</span> My mountain bike skidded through the muddy puddle. The trail was <u>as slippery as a bar of soap</u>, and the dark clouds <u>grumbled angrily</u> above me. I could <u>smell the wet pine trees</u>. Somewhere behind me, <u>something was crashing through the bushes</u>...'},
+   {h:"Final checklist",b:'&#9744; Title &nbsp;&#9744; Beginning, middle, end &nbsp;&#9744; Paragraphs &nbsp;&#9744; Capital letters &nbsp;&#9744; Full stops &nbsp;&#9744; Past tense &nbsp;&#9744; Spelling &nbsp;&#9744; Power words'}],
+  warn:"Plan → Hook → Show, don't tell → Senses → Strong ending → Check!"},
+ bank:[
+  {ask:"Which is the best HOOK to start a story?",q:"Pick one:",a:"\"Don't open that box!\" Gran shouted.",opts:["\"Don't open that box!\" Gran shouted.","One day I went to the shop.","This is a story about my day.","Once there was a boy."]},
+  {ask:"Which is the best HOOK to start a story?",q:"Pick one:",a:"CRASH! The vase hit the floor.",opts:["CRASH! The vase hit the floor.","One day a vase broke.","I am going to tell you about a vase.","There was a vase."]},
+  {ask:"Which is the best HOOK to start a story?",q:"Pick one:",a:"Have you ever seen a monkey steal a sandwich?",opts:["Have you ever seen a monkey steal a sandwich?","One day there was a monkey.","Monkeys are animals.","My story is about a monkey."]},
+  {ask:"Show, don't tell. Which one SHOWS?",q:"Pick one:",a:"My knees shook and my heart thumped like a drum.",opts:["My knees shook and my heart thumped like a drum.","I was scared.","I felt very scared.","I was so so scared."]},
+  {ask:"Show, don't tell. Which one SHOWS?",q:"Pick one:",a:"She grinned from ear to ear and jumped up and down.",opts:["She grinned from ear to ear and jumped up and down.","She was happy.","She was very happy.","She felt happy."]},
+  {ask:"Show, don't tell. Which one SHOWS?",q:"Pick one:",a:"Sweat trickled down my back and the road shimmered.",opts:["Sweat trickled down my back and the road shimmered.","It was hot.","It was a hot day.","The weather was hot."]},
+  {ask:"Which sense is used?",q:"\"I could smell smoky boerewors on the braai.\"",a:"Smell",opts:["Smell","Sight","Touch","Hearing"]},
+  {ask:"Which sense is used?",q:"\"Waves crashed against the rocks.\"",a:"Hearing",opts:["Hearing","Taste","Smell","Touch"]},
+  {ask:"Which sense is used?",q:"\"The bark felt rough under my fingers.\"",a:"Touch",opts:["Touch","Sight","Taste","Hearing"]},
+  {ask:"Which is speech written correctly?",q:"Pick one:",a:"\"Watch out!\" shouted Sam.",opts:["\"Watch out!\" shouted Sam.","\"Watch out\"! shouted Sam.","Watch out! \"shouted Sam.\"","\"Watch out! shouted Sam.\""]},
+  {ask:"Which is speech written correctly?",q:"Pick one:",a:"\"Where are you going?\" asked Mom.",opts:["\"Where are you going?\" asked Mom.","\"Where are you going\"? asked Mom.","Where are you going? \"asked Mom\".","\"Where are you going asked Mom?\""]},
+  {ask:"Quick question",q:"When a new person speaks, you should...",a:"start a new line",opts:["start a new line","keep writing on the same line","draw a picture","stop the story"]},
+  {ask:"When do you start a NEW PARAGRAPH?",q:"Pick the best answer:",a:"When the time or place changes",opts:["When the time or place changes","After every sentence","Only at the very end","Never"]},
+  {ask:"Which is the strongest ENDING?",q:"Pick one:",a:"From then on, I always checked the weather before a ride.",opts:["From then on, I always checked the weather before a ride.","And then I woke up. It was all a dream.","The end.","That's all."]},
+  {ask:"Which is the strongest ENDING?",q:"Pick one:",a:"As I hugged my dog, I knew I'd never forget that day.",opts:["As I hugged my dog, I knew I'd never forget that day.","Then I went home. The end.","It was all a dream.","And that was it."]},
+  {ask:"Swap the boring word:",q:"\"Help!\" she <u>said</u> loudly.",a:"shouted",opts:["shouted","said","went","told"]},
+  {ask:"Swap the boring word:",q:"The cat <u>went</u> quietly towards the bird.",a:"crept",opts:["crept","went","goed","moved"]},
+  {ask:"Swap the boring word:",q:"The cake was <u>nice</u>.",a:"delicious",opts:["delicious","nice","good","okay"]},
+  {ask:"Swap the boring word:",q:"A <u>big</u> wave rolled in.",a:"gigantic",opts:["gigantic","big","large-ish","biggish"]},
+  {ask:"Quick question",q:"What should you do FIRST in a writing exam?",a:"Read the topic twice and make a quick plan",opts:["Read the topic twice and make a quick plan","Start writing straight away","Draw a picture","Write the ending first"]},
+  {ask:"Story mountain: what comes at the TOP?",q:"Beginning → Build-up → ??? → Solution → Ending",a:"The problem (the big, exciting moment)",opts:["The problem (the big, exciting moment)","The title","The ending","The checklist"]},
+  {ask:"Which figure of speech is this?",q:"\"The trail was as slippery as a bar of soap.\"",a:"Simile",opts:["Simile","Metaphor","Personification","Hyperbole"]},
+  {ask:"Which figure of speech is this?",q:"\"The dark clouds grumbled angrily above me.\"",a:"Personification",opts:["Personification","Simile","Alliteration","Onomatopoeia"]},
+  {ask:"The topic says \"Describe your favourite place\". You should...",q:"Pick the best answer:",a:"Paint a picture using your senses, no big plot needed",opts:["Paint a picture using your senses, no big plot needed","Write a story about a robbery","Write a list of facts","Write one sentence"]},
+  {ask:"Quick question",q:"Which tense should most stories stay in?",a:"Past tense (ran, said, saw)",opts:["Past tense (ran, said, saw)","Future tense (will run)","A mix of all tenses","No tense"]}]},
 
 /* 12 FINAL BOSS */
 {id:"final",t:"Final Exam Boss",d:"Random questions from every topic. The real test!",mode:"battle",final:true,monster:{n:"The Exam-inator",line:"knows every topic in the book",c:"#ff8a7a"}}
