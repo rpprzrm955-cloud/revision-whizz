@@ -1964,15 +1964,18 @@ const E4=[
   {ask:"Synonyms or antonyms?",q:"pretty &ndash; ugly",a:"Antonyms",opts:["Synonyms","Antonyms"]},
   {ask:"Quick question",q:"Antonyms are words that have...",a:"the opposite meaning",opts:["the opposite meaning","the same meaning","the same sound","no meaning"]}]},
 
-{id:"e4-sounds",t:"Onomatopoeia",d:"Sound words: BANG! POP! HISS!",mode:"rush",time:12000,ask:"Pick the best sound word:",
+{id:"e4-sounds",t:"Onomatopoeia & Hyperbole",d:"Sound words and BIG exaggerations",mode:"rush",time:12000,ask:"Onomatopoeia & hyperbole:",
  learn:{intro:'<span class="hl">Onomatopoeia</span> are words that sound like the noise they are describing. Say them out loud and you can hear them!',
   boxes:[
    {h:"Loud sounds",b:'<div class="row" style="gap:8px"><span class="burst-mini">BANG!</span><span class="burst-mini">BOOM!</span><span class="burst-mini">CRACK!</span><span class="burst-mini">WHAM!</span></div>'},
    {h:"Small sounds",b:'<div class="row" style="gap:8px"><span class="burst-mini">POP!</span><span class="burst-mini">TING!</span><span class="burst-mini">CLINK!</span><span class="burst-mini">BEEP!</span></div>'},
    {h:"Squishy & bouncy",b:'<div class="row" style="gap:8px"><span class="burst-mini">SPLAT!</span><span class="burst-mini">THUD!</span><span class="burst-mini">BOING!</span><span class="burst-mini">ZAP!</span></div>'},
    {h:"Long sounds",b:'<div class="row" style="gap:8px"><span class="burst-mini">HISS!</span><span class="burst-mini">CREAK!</span><span class="burst-mini">HONK!</span><span class="burst-mini">CLANG!</span></div>'},
-   {h:"Spelling check",b:'<span class="wrong">&#10007; onapatapoeia</span><br><span class="right">&#10003; o-no-ma-to-<b>poe</b>-ia</span><br>Say it in bits: on-o-mat-o-pee-ah.'}],
-  warn:"Onomatopoeia = sound words. If you can HEAR the word, it's onomatopoeia!"},
+   {h:"Spelling check",b:'<span class="wrong">&#10007; onapatapoeia</span><br><span class="right">&#10003; o-no-ma-to-<b>poe</b>-ia</span><br>Say it in bits: on-o-mat-o-pee-ah.'},
+   {h:"Hyperbole",b:'A <b>huge exaggeration</b> to make a point. Nobody means it for real!<br>Say it: <b>hy-PER-bo-lee</b>.'},
+   {h:"Hyperbole examples",b:'<span class="ex">I\'m so hungry I could eat a horse!</span><br><span class="ex">My bag weighs a ton.</span><br><span class="ex">I\'ve told you a million times!</span><br><span class="ex">This homework will take forever.</span>'},
+   {h:"Which one is it?",b:'Can you <b>hear</b> it? &rarr; <b>onomatopoeia</b> (BOOM!)<br>Is it <b>way too big to be true</b>? &rarr; <b>hyperbole</b> (a million times)'}],
+  warn:"Onomatopoeia = a sound you can HEAR. Hyperbole = an exaggeration too big to be true."},
  items:[
   {s:"The balloon went ___!",o:["POP","HISS","CREAK"],a:"POP"},
   {s:"The snake went ___.",o:["HISS","BOING","CLINK"],a:"HISS"},
@@ -1993,7 +1996,20 @@ const E4=[
   {q:"Which word is onomatopoeia?",o:["BUZZ","happy","table"],a:"BUZZ"},
   {q:"Which word is onomatopoeia?",o:["CRASH","quickly","green"],a:"CRASH"},
   {q:"Onomatopoeia are words that...",o:["sound like the noise they describe","describe a noun","join sentences"],a:"sound like the noise they describe"},
-  {q:"Which is spelt correctly?",o:["onomatopoeia","onapatapoeia","onomatopia"],a:"onomatopoeia"}]},
+  {q:"Which is spelt correctly?",o:["onomatopoeia","onapatapoeia","onomatopia"],a:"onomatopoeia"},
+  {q:"Which sentence is a HYPERBOLE?",o:["I'm so hungry I could eat a horse!","I am hungry.","I ate a sandwich."],a:"I'm so hungry I could eat a horse!"},
+  {q:"Which sentence is a HYPERBOLE?",o:["My bag weighs a ton!","My bag is heavy.","My bag is blue."],a:"My bag weighs a ton!"},
+  {q:"Which sentence is a HYPERBOLE?",o:["I've told you a million times!","I told you twice.","I told you yesterday."],a:"I've told you a million times!"},
+  {q:"Which sentence is a HYPERBOLE?",o:["This homework will take forever!","This homework is long.","I did my homework."],a:"This homework will take forever!"},
+  {q:"Which sentence is a HYPERBOLE?",o:["I've got a mountain of washing to do!","I have some washing to do.","The washing is wet."],a:"I've got a mountain of washing to do!"},
+  {q:"What does it REALLY mean? \"I'm so tired I could sleep for a year.\"",o:["I am very tired","I will sleep for a year","I am not tired"],a:"I am very tired"},
+  {q:"What does it REALLY mean? \"It's so hot, I'm melting!\"",o:["It is very hot","I am turning into water","It is cold"],a:"It is very hot"},
+  {q:"What does it REALLY mean? \"This bag weighs a ton!\"",o:["The bag is very heavy","The bag weighs 1 000 kg","The bag is empty"],a:"The bag is very heavy"},
+  {q:"Onomatopoeia or hyperbole? \"BOOM! went the fireworks.\"",o:["Onomatopoeia","Hyperbole"],a:"Onomatopoeia",tip:"BOOM is a sound you can hear."},
+  {q:"Onomatopoeia or hyperbole? \"I've waited a hundred years for this bus!\"",o:["Hyperbole","Onomatopoeia"],a:"Hyperbole",tip:"Nobody really waits a hundred years. It's an exaggeration."},
+  {q:"Onomatopoeia or hyperbole? \"The bee went BUZZ past my ear.\"",o:["Onomatopoeia","Hyperbole"],a:"Onomatopoeia"},
+  {q:"Onomatopoeia or hyperbole? \"My little brother is as tall as a giraffe!\"",o:["Hyperbole","Onomatopoeia"],a:"Hyperbole"},
+  {q:"Hyperbole is...",o:["a huge exaggeration","a sound word","a naming word"],a:"a huge exaggeration"}]},
 
 {id:"e4-apos",t:"Apostrophes",d:"Contractions and showing who owns it",mode:"battle",monster:{n:"Squiggle the Comma Kid",line:"puts apostrophes in all the wrong places",c:"#c5a3f5"},
  learn:{intro:'An <span class="hl">apostrophe</span> ( \' ) has two jobs: joining words in <b>contractions</b> and showing <b>possession</b>.',
@@ -2026,6 +2042,123 @@ const E4=[
   {ask:"Contraction or possession?",q:"<b>That's</b> my bag.",a:"Contraction",opts:["Contraction","Possession"],why:"That's = that is."},
   {ask:"Choose correctly:",q:"The dog wagged ___ tail.",a:"its",opts:["its","it's"],why:"Its = belonging to it."},
   {ask:"Choose correctly:",q:"___ going to rain today.",a:"It's",opts:["It's","Its"],why:"It's = it is."}]},
+
+{id:"e4-punct",t:"Capitals, Full Stops & Commas",d:"Punctuation that makes sentences make sense",mode:"battle",monster:{n:"Scribble Gremlin",line:"rubs out every full stop",c:"#ffb3c7"},
+ learn:{intro:'Punctuation helps the reader know where sentences <span class="hl">start</span>, <span class="hl">stop</span> and <span class="hl">pause</span>.',
+  boxes:[
+   {h:"Capital letters",b:'Use a capital letter for:<br>&bull; the <b>first word</b> of a sentence<br>&bull; the word <b>I</b><br>&bull; <b>names</b> of people and pets: <i>Tayla, Brooklyn</i><br>&bull; <b>places</b>: <i>Durban, South Africa</i><br>&bull; <b>days and months</b>: <i>Monday, October</i>'},
+   {h:"Full stops",b:'A full stop ( <b>.</b> ) goes at the <b>end</b> of a sentence that tells something.<br><span class="ex">We went to the beach.</span><br>Questions end with <b>?</b> and strong feelings with <b>!</b>'},
+   {h:"Commas in lists",b:'Commas separate items in a list. Use <b>and</b> (no comma) before the last item.<br><span class="ex">I packed a pen, a ruler, a rubber and a book.</span>'},
+   {h:"Commas after starters",b:'Put a comma after words like <i>Yes</i>, <i>No</i>, <i>First</i>, <i>Later</i>, <i>Yesterday</i>.<br><span class="ex">Yes, I would love to come.</span><br><span class="ex">First, wash your hands.</span>'},
+   {h:"Commas when talking to someone",b:'<span class="ex">Sam, come here please.</span><br><span class="ex">Thank you, Mom.</span>'},
+   {h:"Common mistake",b:'<span class="wrong">&#10007; me and my friend went to durban on saturday</span><br><span class="right">&#10003; My friend and I went to Durban on Saturday.</span>'}],
+  warn:"Capital at the start, full stop at the end, commas for lists and pauses."},
+ gen(){
+  const type=rnd(0,2);
+  if(type<=1){
+   const T=[["We went to the beach on {X}.","days"],["My birthday is in {X}.","months"],["{Y} and I played soccer.","names"],["Last year we visited {X}.","places"],["My best friend is called {X}.","names"],["School starts again on {X}.","days"],["We drove to {X} for the holidays.","places"],["It always rains in {X}.","months"]];
+   const P={days:["monday","tuesday","wednesday","friday","saturday"],months:["january","march","july","october","december"],names:["lerato","brooklyn","sipho","rebecca","max"],places:["durban","cape town","ballito","johannesburg","pretoria"]};
+   const [tpl,kind]=ch(T),x=ch(P[kind]);
+   const sent=tpl.replace("{X}",x).replace("{Y}",x);
+   const words=sent.replace(/[.]/g,"").split(" ").filter(w=>!x.split(" ").includes(w)&&w!==w.toUpperCase()&&w.length>2).map(w=>w.toLowerCase());
+   const cap=x.split(" ").map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");
+   if(type===0)return mc("Which word needs a CAPITAL letter?",sent.charAt(0).toUpperCase()+sent.slice(1),x,shuffle([...new Set(words)]).slice(0,3),`${cap} is a ${kind==="days"?"day of the week":kind==="months"?"month":kind==="names"?"name":"place"}, so it needs a capital letter.`);
+   const good=(tpl.replace("{X}",cap).replace("{Y}",cap));
+   return mc("Which sentence is written correctly?","Pick one:",good,[good.replace(cap,x),good.toLowerCase(),good.replace(/\.$/,"")],"Capital letter at the start and for names, places, days and months. Full stop at the end.");
+  }
+  const pool=["a pen","a ruler","a rubber","a book","an apple","a hat","a torch","a towel","some sweets","a ball"];
+  const it=pick(pool,4),head=ch(["I packed ","In my bag I have ","For the trip I need "]);
+  const good=`${head}${it[0]}, ${it[1]}, ${it[2]} and ${it[3]}.`;
+  return mc("Which list uses commas correctly?","Pick one:",good,[`${head}${it[0]} ${it[1]} ${it[2]} and ${it[3]}.`,`${head}${it[0]}, ${it[1]}, ${it[2]}, and, ${it[3]}.`,`${head.trim()}, ${it[0]} ${it[1]}, ${it[2]} and ${it[3]}.`],"Put a comma between items, and use 'and' before the last one.");
+ },
+ bank:[
+  {ask:"Which sentence is written correctly?",q:"Pick one:",a:"My friend and I went to Durban on Saturday.",opts:["My friend and I went to Durban on Saturday.","my friend and i went to durban on saturday","My friend and i went to Durban on saturday.","My friend and I went to durban on Saturday"]},
+  {ask:"Which sentence is written correctly?",q:"Pick one:",a:"Tayla and Blake are twins.",opts:["Tayla and Blake are twins.","tayla and blake are twins.","Tayla and blake are twins","tayla and Blake are twins."]},
+  {ask:"Which sentence is written correctly?",q:"Pick one:",a:"Yes, I can come to your party.",opts:["Yes, I can come to your party.","Yes I can come to your party","yes, i can come to your party.","Yes, I can come, to your party."]},
+  {ask:"Which sentence is written correctly?",q:"Pick one:",a:"First, put on your shoes.",opts:["First, put on your shoes.","First put on, your shoes.","first, put on your shoes","First put on your shoes,"]},
+  {ask:"Which sentence is written correctly?",q:"Pick one:",a:"Sam, please close the door.",opts:["Sam, please close the door.","Sam please, close the door.","sam please close the door","Sam please close, the door."]},
+  {ask:"Quick question",q:"Which word ALWAYS needs a capital letter, even in the middle of a sentence?",a:"I",opts:["I","the","and","we"]},
+  {ask:"Quick question",q:"What goes at the end of a sentence that tells something?",a:"A full stop",opts:["A full stop","A comma","A capital letter","Nothing"]},
+  {ask:"Quick question",q:"What goes at the end of a question?",a:"A question mark (?)",opts:["A question mark (?)","A full stop","A comma","An apostrophe"]},
+  {ask:"Pick the right ending:",q:"Where are you going___",a:"?",opts:["?",".",",","!"]},
+  {ask:"Pick the right ending:",q:"We had pizza for supper___",a:".",opts:[".","?",","]},
+  {ask:"Pick the right ending:",q:"Watch out, there's a snake___",a:"!",opts:["!",",","?"]},
+  {ask:"Why do we use commas in a list?",q:"Pick the best answer:",a:"To separate the items",opts:["To separate the items","To end the sentence","To ask a question","To show who owns something"]},
+  {ask:"How many capital letters should this have?",q:"on friday lerato and i went to ballito.",a:"5",opts:["5","2","3","1"],why:"On, Friday, Lerato, I, Ballito."},
+  {ask:"How many capital letters should this have?",q:"my dog max loves the beach.",a:"2",opts:["2","1","3","4"],why:"My and Max."},
+  {ask:"Which needs a capital letter?",q:"Pick one:",a:"december",opts:["december","summer","holiday","birthday"],why:"Months are proper nouns. Seasons like summer are not."}]},
+
+{id:"e4-sentences",t:"Simple & Compound Sentences",d:"One idea or two ideas joined together",mode:"battle",monster:{n:"Chopper",line:"chops every sentence in half",c:"#9fd6b0"},
+ learn:{intro:'A <span class="hl">sentence</span> is a complete thought. It starts with a capital letter and ends with a full stop, question mark or exclamation mark.',
+  boxes:[
+   {h:"Simple sentence",b:'Has <b>one</b> complete idea, with a subject (who) and a verb (what they do).<br><span class="ex">The dog barked.</span><br><span class="ex">Tayla rides her bike.</span>'},
+   {h:"Compound sentence",b:'<b>Two</b> simple sentences joined with a <b>conjunction</b>. Each part could stand alone.<br><span class="ex">The dog barked, <b>and</b> the cat ran away.</span>'},
+   {h:"Joining words",b:'<b>and</b>: adds another idea<br><b>but</b>: shows a difference<br><b>or</b>: gives a choice<br><b>so</b>: shows what happened because of it'},
+   {h:"Build one!",b:'<span class="ex">It was raining.</span> + <span class="ex">We stayed inside.</span><br>&rarr; <span class="ex">It was raining, <b>so</b> we stayed inside.</span>'},
+   {h:"Comma tip",b:'Put a <b>comma</b> before the joining word in a compound sentence.'},
+   {h:"Tricky one!",b:'<span class="ex">Tom and Sam played soccer.</span> is still <b>simple</b>. The "and" only joins two names, not two complete sentences.'}],
+  warn:"Can you cut it into TWO sentences that both make sense? Then it's compound."},
+ bank:[
+  {ask:"Simple or compound?",q:"The dog barked.",a:"Simple",opts:["Simple","Compound"]},
+  {ask:"Simple or compound?",q:"The dog barked, and the cat ran away.",a:"Compound",opts:["Simple","Compound"]},
+  {ask:"Simple or compound?",q:"Tayla rides her bike to school.",a:"Simple",opts:["Simple","Compound"]},
+  {ask:"Simple or compound?",q:"I wanted to swim, but the pool was closed.",a:"Compound",opts:["Simple","Compound"]},
+  {ask:"Simple or compound?",q:"It was raining, so we stayed inside.",a:"Compound",opts:["Simple","Compound"]},
+  {ask:"Simple or compound?",q:"Tom and Sam played soccer.",a:"Simple",opts:["Simple","Compound"],why:"The 'and' only joins two names. There's still just one idea."},
+  {ask:"Simple or compound?",q:"Do you want juice, or would you like milk?",a:"Compound",opts:["Simple","Compound"]},
+  {ask:"Simple or compound?",q:"The monkey stole my sandwich.",a:"Simple",opts:["Simple","Compound"]},
+  {ask:"Simple or compound?",q:"Blake likes maths, and Tayla likes art.",a:"Compound",opts:["Simple","Compound"]},
+  {ask:"Simple or compound?",q:"My mom baked a chocolate cake.",a:"Simple",opts:["Simple","Compound"]},
+  {ask:"Simple or compound?",q:"I was tired, but I finished my homework.",a:"Compound",opts:["Simple","Compound"]},
+  {ask:"Simple or compound?",q:"Apples and bananas are my favourite fruits.",a:"Simple",opts:["Simple","Compound"]},
+  {ask:"Pick the best joining word:",q:"I was hungry, ___ I made a sandwich.",a:"so",opts:["so","but","or","and"]},
+  {ask:"Pick the best joining word:",q:"I like cats, ___ my sister likes dogs.",a:"but",opts:["but","so","or","because"]},
+  {ask:"Pick the best joining word:",q:"We can play outside, ___ we can watch a movie.",a:"or",opts:["or","so","but","because"]},
+  {ask:"Pick the best joining word:",q:"Sipho kicked the ball, ___ it flew into the net.",a:"and",opts:["and","or","but","so"]},
+  {ask:"Pick the best joining word:",q:"The test was hard, ___ I did my best.",a:"but",opts:["but","so","or","and"]},
+  {ask:"Join the two sentences:",q:"It was cold. We wore jackets.",a:"It was cold, so we wore jackets.",opts:["It was cold, so we wore jackets.","It was cold but we wore jackets","It was cold, or we wore jackets.","It was cold we wore jackets."]},
+  {ask:"Join the two sentences:",q:"I called Lily. She didn't answer.",a:"I called Lily, but she didn't answer.",opts:["I called Lily, but she didn't answer.","I called Lily, so she didn't answer.","I called Lily or she didn't answer.","I called Lily she didn't answer."]},
+  {ask:"Which is a COMPOUND sentence?",q:"Pick one:",a:"The sun came out, and we went to the beach.",opts:["The sun came out, and we went to the beach.","The sun came out.","We went to the beach.","The hot sun shone brightly."]},
+  {ask:"Which is a SIMPLE sentence?",q:"Pick one:",a:"The bird sang in the tree.",opts:["The bird sang in the tree.","The bird sang, and the bees buzzed.","I sang, but nobody listened.","It rained, so I stayed home."]},
+  {ask:"Quick question",q:"A compound sentence is made of...",a:"two simple sentences joined by a conjunction",opts:["two simple sentences joined by a conjunction","one word","only a verb","two full stops"]},
+  {ask:"Quick question",q:"Where does the comma go in a compound sentence?",a:"Before the joining word",opts:["Before the joining word","After the full stop","At the very start","There is never a comma"]}]},
+
+{id:"e4-idioms",t:"Proverbs & Idioms",d:"Sayings that don't mean what they say",mode:"battle",monster:{n:"Muddlehead",line:"takes every saying literally",c:"#f39ab9"},
+ learn:{intro:'An <span class="hl">idiom</span> is a saying that doesn\'t mean exactly what the words say. A <span class="hl">proverb</span> is a short saying that teaches a lesson.',
+  boxes:[
+   {h:"Idioms",b:'<b>It\'s raining cats and dogs</b> = raining very hard<br><b>A piece of cake</b> = very easy<br><b>Break a leg!</b> = good luck<br><b>Hold your horses</b> = wait, slow down'},
+   {h:"More idioms",b:'<b>Spill the beans</b> = tell a secret<br><b>Under the weather</b> = feeling sick<br><b>Over the moon</b> = very happy<br><b>Butterflies in my stomach</b> = nervous'},
+   {h:"Even more idioms",b:'<b>In hot water</b> = in trouble<br><b>When pigs fly</b> = never<br><b>Cost an arm and a leg</b> = very expensive<br><b>Hit the sack</b> = go to bed'},
+   {h:"Proverbs",b:'<b>Practice makes perfect.</b> Keep trying and you\'ll get better.<br><b>Don\'t judge a book by its cover.</b> Don\'t judge people by how they look.<br><b>Look before you leap.</b> Think before you act.'},
+   {h:"More proverbs",b:'<b>Two heads are better than one.</b> Working together helps.<br><b>The early bird catches the worm.</b> Start early to succeed.<br><b>Don\'t count your chickens before they hatch.</b> Don\'t be sure until it happens.'},
+   {h:"Idiom or proverb?",b:'Idiom = paints a <b>funny picture</b>.<br>Proverb = teaches a <b>life lesson</b>.'}],
+  warn:"If it sounds silly when you picture it, it's probably an idiom!"},
+ bank:[
+  {ask:"What does this idiom mean?",q:"\"It's raining cats and dogs!\"",a:"It's raining very hard",opts:["It's raining very hard","Pets are falling from the sky","It's sunny","The animals are wet"]},
+  {ask:"What does this idiom mean?",q:"\"That test was a piece of cake.\"",a:"It was very easy",opts:["It was very easy","It was delicious","It was very hard","It was about baking"]},
+  {ask:"What does this idiom mean?",q:"\"Break a leg in the concert!\"",a:"Good luck!",opts:["Good luck!","Be careful!","Dance fast!","Fall over!"]},
+  {ask:"What does this idiom mean?",q:"\"Hold your horses!\"",a:"Wait, slow down",opts:["Wait, slow down","Ride a horse","Hurry up","Feed the horses"]},
+  {ask:"What does this idiom mean?",q:"\"Don't spill the beans!\"",a:"Don't tell the secret",opts:["Don't tell the secret","Don't make a mess","Don't eat beans","Don't cook"]},
+  {ask:"What does this idiom mean?",q:"\"I'm feeling under the weather.\"",a:"I feel sick",opts:["I feel sick","I'm standing in the rain","I'm very happy","I'm too hot"]},
+  {ask:"What does this idiom mean?",q:"\"I was over the moon when I won!\"",a:"Very happy",opts:["Very happy","Very sad","Flying in space","Very tired"]},
+  {ask:"What does this idiom mean?",q:"\"I had butterflies in my stomach before the race.\"",a:"I was nervous",opts:["I was nervous","I ate butterflies","I was hungry","I was sleepy"]},
+  {ask:"What does this idiom mean?",q:"\"You'll be in hot water if you break that!\"",a:"You'll be in trouble",opts:["You'll be in trouble","You'll go swimming","You'll have a bath","You'll get a prize"]},
+  {ask:"What does this idiom mean?",q:"\"I'll eat broccoli when pigs fly!\"",a:"Never",opts:["Never","Tomorrow","Every day","On the farm"]},
+  {ask:"What does this idiom mean?",q:"\"Those sneakers cost an arm and a leg.\"",a:"They were very expensive",opts:["They were very expensive","They were cheap","They hurt my legs","They were broken"]},
+  {ask:"What does this idiom mean?",q:"\"It's late. Time to hit the sack.\"",a:"Time to go to bed",opts:["Time to go to bed","Time to punch a bag","Time to go shopping","Time to play"]},
+  {ask:"What lesson does this proverb teach?",q:"\"Practice makes perfect.\"",a:"If you keep practising, you'll get better",opts:["If you keep practising, you'll get better","Perfect people never practise","Practice is boring","Only practise once"]},
+  {ask:"What lesson does this proverb teach?",q:"\"Don't judge a book by its cover.\"",a:"Don't judge people by how they look",opts:["Don't judge people by how they look","Only read nice-looking books","Books are boring","Always cover your books"]},
+  {ask:"What lesson does this proverb teach?",q:"\"Look before you leap.\"",a:"Think before you do something",opts:["Think before you do something","Jump as high as you can","Always look down","Never jump"]},
+  {ask:"What lesson does this proverb teach?",q:"\"Two heads are better than one.\"",a:"Working together helps",opts:["Working together helps","Monsters are clever","Two hats are warmer","Always work alone"]},
+  {ask:"What lesson does this proverb teach?",q:"\"The early bird catches the worm.\"",a:"Starting early helps you succeed",opts:["Starting early helps you succeed","Birds love worms","Sleep in late","Worms wake up early"]},
+  {ask:"What lesson does this proverb teach?",q:"\"Don't count your chickens before they hatch.\"",a:"Don't be sure of something until it happens",opts:["Don't be sure of something until it happens","Chickens can't count","Eggs are fragile","Count your chickens every day"]},
+  {ask:"Idiom or proverb?",q:"\"A piece of cake.\"",a:"Idiom",opts:["Idiom","Proverb"],why:"It paints a picture. It doesn't teach a lesson."},
+  {ask:"Idiom or proverb?",q:"\"Practice makes perfect.\"",a:"Proverb",opts:["Idiom","Proverb"],why:"It teaches a lesson."},
+  {ask:"Idiom or proverb?",q:"\"Over the moon.\"",a:"Idiom",opts:["Idiom","Proverb"]},
+  {ask:"Idiom or proverb?",q:"\"Look before you leap.\"",a:"Proverb",opts:["Idiom","Proverb"]},
+  {ask:"Finish the saying:",q:"It's raining cats and ___!",a:"dogs",opts:["dogs","mice","frogs","birds"]},
+  {ask:"Finish the saying:",q:"Don't judge a book by its ___.",a:"cover",opts:["cover","pages","title","price"]},
+  {ask:"Finish the saying:",q:"The early bird catches the ___.",a:"worm",opts:["worm","bus","ball","fish"]}]},
 
 {id:"e4-final",t:"Final Exam Boss",d:"Random questions from every English topic",mode:"battle",final:true,monster:{n:"The Grammar Gremlin",line:"eats full stops for breakfast",c:"#8bb8ff"}}
 ];
