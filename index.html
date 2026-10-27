@@ -326,6 +326,22 @@ table.att tr.best td{background:#fff6cf}
   .mcard.term{font-size:17px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.bins.pyr{display:flex;flex-direction:column;align-items:center;gap:6px}
+.bins.pyr .bin{align-items:center;text-align:center;min-height:58px;padding:6px 10px;border-radius:10px;width:94%}
+.bins.pyr .bin:nth-child(1){width:34%;background:#ff8fa3;border-radius:40px 40px 10px 10px}
+.bins.pyr .bin:nth-child(2){width:49%;background:#f5b83d}
+.bins.pyr .bin:nth-child(3){width:64%;background:#9fd3ff}
+.bins.pyr .bin:nth-child(4){width:79%;background:#e8c38a}
+.bins.pyr .bin:nth-child(5){width:94%;background:#8fd694}
+.bins.pyr .bin span{font-size:.85em}
+.bins.pyr .pile{font-style:normal;font-size:1.15em;letter-spacing:2px;min-height:0}
+@media (max-width:600px){.bins.pyr .bin:nth-child(1){width:52%}.bins.pyr .bin:nth-child(2){width:64%}.bins.pyr .bin:nth-child(3){width:76%}.bins.pyr .bin:nth-child(4){width:88%}.bins.pyr .bin:nth-child(5){width:100%}}
+table.iot{border-collapse:collapse;margin:8px auto;font-family:var(--body);font-size:1.05em}
+table.iot th,table.iot td{border:2px solid var(--ink);padding:4px 10px;text-align:center;background:#fff}
+table.iot th{background:var(--blue-soft)}
+table.iot.wx td:first-child{text-align:left}
+.l-hero{background:#fff;border:2.5px solid var(--ink);border-radius:14px;box-shadow:4px 4px 0 var(--ink);padding:10px;margin:14px auto 4px;max-width:620px}
+.l-hero svg{width:100%!important;max-width:600px!important}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -482,6 +498,7 @@ table.att tr.best td{background:#fff6cf}
   <h2 class="sheet-title" id="l-title"></h2>
   <svg class="swoosh" style="margin:0 auto" viewBox="0 0 380 16" preserveAspectRatio="none"><path d="M4 8 C120 14 260 2 376 9" fill="none" stroke="#2457d6" stroke-width="6" stroke-linecap="round"/></svg>
   <div class="intro sheet-intro" id="l-intro"></div>
+  <div id="l-hero" class="l-hero" hidden></div>
   <div class="mind" id="l-mind"></div>
   <div class="next-row" style="margin-top:28px;gap:12px"><button class="btn white" data-home>Back to map</button><button class="btn blue" style="font-size:23px" id="l-play">I'm ready. Play!</button></div>
 </section>
@@ -794,6 +811,166 @@ const TOPICS=[
   {ask:"What type of articles are \"a\" and \"an\"?",q:"Pick one:",o:["Indefinite","Definite"],a:"Indefinite",tip:"A and an mean any one thing."}]},
 
 /* 7 SYNONYMS & ANTONYMS */
+{id:"e-adjart",t:"Adjectives & Articles",d:"Describing words, degrees of comparison, a / an / the",mode:"battle",monster:{n:"Captain Bland",line:"wants every word to be boring",c:"#9fd3ff"},
+ learn:{intro:'<span class="hl">Adjectives</span> describe nouns. <span class="hl">Articles</span> (a, an, the) are tiny words that come before nouns.',
+  boxes:[
+   {h:"Adjectives",b:'Tell us <b>what kind, which one, how many</b> or <b>how much</b>.<br><span class="ex">a <u>gigantic</u> wave, <u>five</u> fish, <u>that</u> book, <u>some</u> sugar</span>'},
+   {h:"Degrees of comparison",b:'<b>Positive</b>: tall &middot; <b>Comparative</b> (two): taller &middot; <b>Superlative</b> (three or more): tallest<br>Long words: beautiful, more beautiful, most beautiful'},
+   {h:"Rule breakers",b:'good, better, best<br>bad, worse, worst<br>many, more, most<br>little, less, least'},
+   {h:"Articles: a or an?",b:'<b>a</b> before a consonant <b>sound</b>: a dog, a <b>u</b>niform (sounds like "you")<br><b>an</b> before a vowel <b>sound</b>: an apple, an <b>h</b>our (h is silent)'},
+   {h:"Definite & indefinite",b:'<b>the</b> = definite article: a <b>specific</b> thing. <span class="ex">the dog next door</span><br><b>a / an</b> = indefinite articles: <b>any</b> one. <span class="ex">a dog</span>'},
+   {h:"Common mistake",b:'<span class="wrong">&#10007; more taller &nbsp; &#10007; an university</span><br><span class="right">&#10003; taller &nbsp; &#10003; a university</span>'}],
+  warn:"a/an depends on the SOUND, not the letter: an hour, a unicorn."},
+ bank:[
+  {ask:"a or an?",q:"___ elephant",a:"an",opts:["an","a","the"].slice(0,2)},
+  {ask:"a or an?",q:"___ hour",a:"an",opts:["an","a"],why:"The h is silent, so hour starts with a vowel sound."},
+  {ask:"a or an?",q:"___ unicorn",a:"a",opts:["a","an"],why:"Unicorn starts with a 'you' sound, a consonant sound."},
+  {ask:"a or an?",q:"___ honest man",a:"an",opts:["an","a"],why:"Silent h: 'onest'."},
+  {ask:"a or an?",q:"___ banana",a:"a",opts:["a","an"]},
+  {ask:"a or an?",q:"___ umbrella",a:"an",opts:["an","a"]},
+  {ask:"a or an?",q:"___ European country",a:"a",opts:["a","an"],why:"European starts with a 'you' sound."},
+  {ask:"a or an?",q:"___ igloo",a:"an",opts:["an","a"]},
+  {ask:"Definite or indefinite?",q:"Pass me <b>the</b> salt.",a:"Definite article",opts:["Definite article","Indefinite article","Adjective","Pronoun"]},
+  {ask:"Definite or indefinite?",q:"I saw <b>a</b> bird.",a:"Indefinite article",opts:["Indefinite article","Definite article","Conjunction","Preposition"]},
+  {ask:"Find the adjective",q:"The <b>sleepy</b> cat curled up.",a:"sleepy",opts:["sleepy","cat","curled","up"]},
+  {ask:"Find the adjective",q:"We heard a terrifying roar.",a:"terrifying",opts:["terrifying","heard","roar","We"]},
+  {ask:"Find the adjective",q:"Several children were absent.",a:"Several",opts:["Several","children","were","absent"]},
+  {ask:"Find the adjective",q:"The milk tasted sour.",a:"sour",opts:["sour","milk","tasted","The"]},
+  {ask:"Which degree?",q:"<b>happiest</b>",a:"Superlative",opts:["Superlative","Comparative","Positive"]},
+  {ask:"Which degree?",q:"<b>more exciting</b>",a:"Comparative",opts:["Comparative","Superlative","Positive"]},
+  {ask:"Which degree?",q:"<b>clever</b>",a:"Positive",opts:["Positive","Comparative","Superlative"]},
+  {ask:"Pick the correct sentence",q:"Which is correct?",a:"Thandi is the tallest girl in our class.",opts:["Thandi is the tallest girl in our class.","Thandi is the most tallest girl in our class.","Thandi is the taller girl in our class.","Thandi is the more tall girl in our class."]},
+  {ask:"Pick the correct sentence",q:"Which is correct?",a:"My cold is worse today.",opts:["My cold is worse today.","My cold is badder today.","My cold is worst today.","My cold is more bad today."]}],
+ gen(){
+  const A=[["big","bigger","biggest"],["happy","happier","happiest"],["thin","thinner","thinnest"],["large","larger","largest"],["good","better","best"],["bad","worse","worst"],["little","less","least"],["many","more","most"],["careful","more careful","most careful"],["delicious","more delicious","most delicious"],["noisy","noisier","noisiest"],["brave","braver","bravest"],["hot","hotter","hottest"],["wet","wetter","wettest"]];
+  const [p,c,s]=ch(A),comp=Math.random()<.5,ans=comp?c:s;
+  const wrong=[p+"er",p+"est","more "+c,"most "+s,comp?s:c].filter(x=>x!==ans);
+  return mc(comp?"Comparative (comparing TWO):":"Superlative (the most of THREE or more):",comp?`Today is ___ than yesterday. (${p})`:`It was the ___ day of the year. (${p})`,ans,wrong,`${p}, ${c}, ${s}`);
+ }},
+{id:"e-sentences",t:"Sentence Types & Conjunctions",d:"Statements, questions, commands, exclamations; simple, compound, complex",mode:"battle",monster:{n:"Run-On Ron",line:"never stops talking, never uses a full stop",c:"#9fb7ff"},
+ learn:{intro:'A <span class="hl">sentence</span> is a group of words that makes complete sense. It starts with a capital letter and ends with . ? or !',
+  boxes:[
+   {h:"4 sentence TYPES",b:'<b>Statement</b>: tells something. <span class="ex">The sun is hot.</span><br><b>Question</b>: asks something. <span class="ex">Is it hot?</span><br><b>Command</b>: tells someone to do something. <span class="ex">Close the door.</span><br><b>Exclamation</b>: shows strong feeling. <span class="ex">What a hot day!</span>'},
+   {h:"Simple sentence",b:'<b>One</b> main idea (one subject + one verb).<br><span class="ex">The dog barked.</span>'},
+   {h:"Compound sentence",b:'<b>Two</b> simple sentences joined with a FANBOYS conjunction.<br><span class="ex">The dog barked, <b>and</b> the cat ran away.</span>'},
+   {h:"Complex sentence",b:'A main idea plus an idea that <b>can\'t stand alone</b>, joined with because, when, although, if, while, after, until.<br><span class="ex">The cat ran away <b>because</b> the dog barked.</span>'},
+   {h:"Conjunctions",b:'Joining words.<br><b>FANBOYS</b>: <b>F</b>or, <b>A</b>nd, <b>N</b>or, <b>B</b>ut, <b>O</b>r, <b>Y</b>et, <b>S</b>o<br>Others: because, when, although, if, while, until, since'},
+   {h:"Which conjunction?",b:'<b>and</b> adds &middot; <b>but</b> contrasts &middot; <b>or</b> gives a choice &middot; <b>so</b> shows a result &middot; <b>because</b> gives a reason'}],
+  warn:"Command sentences often start with a verb: Sit. Stop! Please pass the salt."},
+ bank:[
+  {ask:"What type of sentence?",q:"Please close the window.",a:"Command",opts:["Command","Statement","Question","Exclamation"]},
+  {ask:"What type of sentence?",q:"Lions live in Africa.",a:"Statement",opts:["Statement","Command","Question","Exclamation"]},
+  {ask:"What type of sentence?",q:"Where did you put my book?",a:"Question",opts:["Question","Statement","Command","Exclamation"]},
+  {ask:"What type of sentence?",q:"Wow, what an amazing goal!",a:"Exclamation",opts:["Exclamation","Statement","Command","Question"]},
+  {ask:"What type of sentence?",q:"Turn left at the robot.",a:"Command",opts:["Command","Statement","Question","Exclamation"]},
+  {ask:"What type of sentence?",q:"My brother is twelve years old.",a:"Statement",opts:["Statement","Command","Question","Exclamation"]},
+  {ask:"What type of sentence?",q:"How fast can a cheetah run?",a:"Question",opts:["Question","Statement","Command","Exclamation"]},
+  {ask:"What type of sentence?",q:"Help, the house is on fire!",a:"Exclamation",opts:["Exclamation","Command","Statement","Question"]},
+  {ask:"Simple, compound or complex?",q:"The bell rang.",a:"Simple",opts:["Simple","Compound","Complex"]},
+  {ask:"Simple, compound or complex?",q:"I wanted to swim, but the pool was closed.",a:"Compound",opts:["Compound","Simple","Complex"]},
+  {ask:"Simple, compound or complex?",q:"We stayed inside because it was raining.",a:"Complex",opts:["Complex","Simple","Compound"]},
+  {ask:"Simple, compound or complex?",q:"Mom cooked supper, and Dad washed the dishes.",a:"Compound",opts:["Compound","Simple","Complex"]},
+  {ask:"Simple, compound or complex?",q:"When the movie ended, everyone clapped.",a:"Complex",opts:["Complex","Simple","Compound"]},
+  {ask:"Simple, compound or complex?",q:"The excited children ran onto the field.",a:"Simple",opts:["Simple","Compound","Complex"]},
+  {ask:"Simple, compound or complex?",q:"Although he was tired, Sipho finished his homework.",a:"Complex",opts:["Complex","Simple","Compound"]},
+  {ask:"Simple, compound or complex?",q:"You can have tea, or you can have juice.",a:"Compound",opts:["Compound","Simple","Complex"]},
+  {ask:"Choose the conjunction",q:"I was hungry, ___ I made a sandwich.",a:"so",opts:["so","but","or","nor"],why:"So shows a result."},
+  {ask:"Choose the conjunction",q:"She is small, ___ she is very strong.",a:"but",opts:["but","so","or","because"],why:"But shows a contrast."},
+  {ask:"Choose the conjunction",q:"Do you want rice ___ pap?",a:"or",opts:["or","but","so","because"],why:"Or gives a choice."},
+  {ask:"Choose the conjunction",q:"We cancelled the picnic ___ it was raining.",a:"because",opts:["because","but","or","and"],why:"Because gives a reason."},
+  {ask:"Choose the conjunction",q:"I brushed my teeth ___ went to bed.",a:"and",opts:["and","but","or","although"]},
+  {ask:"Choose the conjunction",q:"Wait here ___ I come back.",a:"until",opts:["until","but","or","so"]},
+  {ask:"Which word is the conjunction?",q:"Thabo likes soccer but Lerato likes netball.",a:"but",opts:["but","likes","soccer","netball"]},
+  {ask:"Quick question",q:"What do the letters FANBOYS help you remember?",a:"Conjunctions",opts:["Conjunctions","Prepositions","Pronouns","Articles"]},
+  {ask:"Quick question",q:"A compound sentence is made of...",a:"two simple sentences joined by a conjunction",opts:["two simple sentences joined by a conjunction","one word","only a question","a list of nouns"]}]},
+{id:"e-subjpred",t:"Subject & Predicate",d:"Who or what the sentence is about, and what they do",mode:"battle",monster:{n:"Split-Snake",line:"chops every sentence in half",c:"#a6e3a1"},
+ learn:{intro:'Every sentence has two parts: the <span class="hl">subject</span> and the <span class="hl">predicate</span>.',
+  boxes:[
+   {h:"Subject",b:'<b>Who</b> or <b>what</b> the sentence is about. It usually comes first.<br><span class="ex"><u>The tall giraffe</u> ate the leaves.</span>'},
+   {h:"Predicate",b:'Tells us what the subject <b>does</b> or <b>is</b>. It always has the <b>verb</b>.<br><span class="ex">The tall giraffe <u>ate the leaves</u>.</span>'},
+   {h:"How to find them",b:'1. Find the <b>verb</b>.<br>2. Ask <b>"Who or what</b> + verb?" The answer is the subject.<br>3. Everything else (with the verb) is the predicate.'},
+   {h:"Simple subject",b:'The main noun or pronoun in the subject.<br><span class="ex">The tall <b>giraffe</b> ate...</span>'},
+   {h:"Tricky ones",b:'<span class="ex">Under the bed slept <u>the cat</u>.</span> The subject can come later!<br><span class="ex">(<u>You</u>) Sit down.</span> In commands the subject "you" is hidden.'}],
+  warn:"Subject = WHO or WHAT. Predicate = what they DO (has the verb)."},
+ bank:[
+  {ask:"What is the SUBJECT?",q:"My little sister sings every morning.",a:"My little sister",opts:["My little sister","sings every morning","every morning","sings"]},
+  {ask:"What is the SUBJECT?",q:"The old bus broke down on the highway.",a:"The old bus",opts:["The old bus","broke down","on the highway","broke down on the highway"]},
+  {ask:"What is the SUBJECT?",q:"Twenty learners went on the school trip.",a:"Twenty learners",opts:["Twenty learners","went on the school trip","the school trip","went"]},
+  {ask:"What is the SUBJECT?",q:"Our teacher read us an exciting story.",a:"Our teacher",opts:["Our teacher","read us an exciting story","an exciting story","read"]},
+  {ask:"What is the SUBJECT?",q:"The monkeys in the tree screeched loudly.",a:"The monkeys in the tree",opts:["The monkeys in the tree","screeched loudly","in the tree","loudly"]},
+  {ask:"What is the SUBJECT?",q:"She won the race.",a:"She",opts:["She","won the race","the race","won"]},
+  {ask:"What is the PREDICATE?",q:"The dog chased the ball across the garden.",a:"chased the ball across the garden",opts:["chased the ball across the garden","The dog","the ball","across the garden"]},
+  {ask:"What is the PREDICATE?",q:"Grandpa planted tomatoes in spring.",a:"planted tomatoes in spring",opts:["planted tomatoes in spring","Grandpa","tomatoes","in spring"]},
+  {ask:"What is the PREDICATE?",q:"The hungry lions waited in the long grass.",a:"waited in the long grass",opts:["waited in the long grass","The hungry lions","the long grass","The hungry"]},
+  {ask:"What is the PREDICATE?",q:"My friends and I built a sandcastle.",a:"built a sandcastle",opts:["built a sandcastle","My friends and I","a sandcastle","My friends"]},
+  {ask:"What is the PREDICATE?",q:"Ballito is a town on the coast.",a:"is a town on the coast",opts:["is a town on the coast","Ballito","a town","on the coast"]},
+  {ask:"Simple subject",q:"The <b>noisy</b> red <b>car</b> raced past. What is the simple subject (the main noun)?",a:"car",opts:["car","noisy","red","raced"]},
+  {ask:"Hidden subject",q:"Close the door, please. What is the subject?",a:"You (hidden)",opts:["You (hidden)","the door","Close","please"]},
+  {ask:"Tricky one",q:"Under the bridge lived a grumpy troll. What is the subject?",a:"a grumpy troll",opts:["a grumpy troll","Under the bridge","lived","the bridge"],why:"Who lived? A grumpy troll. The subject came last!"},
+  {ask:"Quick question",q:"The predicate always contains the...",a:"verb",opts:["verb","subject","full stop","adjective"]},
+  {ask:"Quick question",q:"To find the subject, ask...",a:"Who or what is doing the action?",opts:["Who or what is doing the action?","When did it happen?","How was it done?","Where did it happen?"]}]},
+{id:"e-phrases",t:"Phrases",d:"Noun, adjectival and adverbial phrases",mode:"sort",ask:"What kind of phrase is underlined?",
+ learn:{intro:'A <span class="hl">phrase</span> is a small group of words that works together. It does <b>not</b> have a subject and verb working together, so it is not a full sentence.',
+  boxes:[
+   {h:"Noun phrase",b:'A noun with the words that describe it. Works like a <b>noun</b>.<br><span class="ex"><u>the huge, hairy spider</u></span><br><span class="ex"><u>my best friend</u> came over.</span>'},
+   {h:"Adjectival phrase",b:'Describes a <b>noun</b>. Tells us which one or what kind.<br><span class="ex">The girl <u>with the red hat</u> waved.</span><br><span class="ex">The house <u>on the hill</u> is old.</span>'},
+   {h:"Adverbial phrase",b:'Describes a <b>verb</b>. Tells us <b>how, when, where</b> or <b>why</b>.<br><span class="ex">He ran <u>as fast as lightning</u>.</span> (how)<br><span class="ex"><u>After lunch</u>, we swam.</span> (when)<br><span class="ex">She hid <u>under the table</u>.</span> (where)'},
+   {h:"Phrase or sentence?",b:'<b>in the morning</b> = phrase (no subject + verb)<br><b>I woke up in the morning.</b> = sentence'},
+   {h:"Quick test",b:'Is it a <b>naming group</b>? Noun phrase.<br>Does it describe a <b>thing</b>? Adjectival.<br>Does it describe an <b>action</b>? Adverbial.'}],
+  warn:"Same words can do different jobs! 'on the hill' describes the house (adjectival) but in 'We ran on the hill' it tells where we ran (adverbial)."},
+ bins:[{c:"noun",l:"Noun phrase",s:"a naming group"},{c:"adj",l:"Adjectival phrase",s:"describes a noun"},{c:"adv",l:"Adverbial phrase",s:"how, when, where"}],
+ tips:{noun:"A noun phrase is a noun with its describing words, doing the job of a noun.",adj:"An adjectival phrase describes a noun: which one or what kind.",adv:"An adverbial phrase describes the verb: how, when, where or why."},
+ items:[
+  {w:"the enormous grey elephant",x:"<u>The enormous grey elephant</u> drank from the river.",c:"noun"},
+  {w:"my favourite red jersey",x:"I lost <u>my favourite red jersey</u>.",c:"noun"},
+  {w:"a box of chocolates",x:"Gran gave me <u>a box of chocolates</u>.",c:"noun"},
+  {w:"the brave little puppy",x:"<u>The brave little puppy</u> barked at the cow.",c:"noun"},
+  {w:"three hungry boys",x:"<u>Three hungry boys</u> ate all the pizza.",c:"noun"},
+  {w:"the tallest tree in the forest",x:"We climbed <u>the tallest tree in the forest</u>.",c:"noun"},
+  {w:"with the curly hair",x:"The boy <u>with the curly hair</u> is my cousin.",c:"adj"},
+  {w:"on the top shelf",x:"The book <u>on the top shelf</u> is mine.",c:"adj"},
+  {w:"full of sweets",x:"She carried a bag <u>full of sweets</u>.",c:"adj"},
+  {w:"with a broken wing",x:"We found a bird <u>with a broken wing</u>.",c:"adj"},
+  {w:"next door",x:"The lady <u>next door</u> has five cats.",c:"adj"},
+  {w:"in the blue dress",x:"The girl <u>in the blue dress</u> won the prize.",c:"adj"},
+  {w:"very carefully",x:"He carried the eggs <u>very carefully</u>.",c:"adv"},
+  {w:"after school",x:"We play soccer <u>after school</u>.",c:"adv"},
+  {w:"behind the couch",x:"The cat hid <u>behind the couch</u>.",c:"adv"},
+  {w:"in the morning",x:"<u>In the morning</u>, we went fishing.",c:"adv"},
+  {w:"as quickly as possible",x:"She ran <u>as quickly as possible</u>.",c:"adv"},
+  {w:"because of the rain",x:"The match was stopped <u>because of the rain</u>.",c:"adv"},
+  {w:"across the field",x:"The horse galloped <u>across the field</u>.",c:"adv"}]},
+{id:"e-punct",t:"Punctuation",d:"Capitals, full stops, commas, ? ! apostrophes and speech marks",mode:"battle",monster:{n:"Comma Chameleon",line:"hides commas where they don't belong",c:"#ffd36b"},
+ learn:{intro:'<span class="hl">Punctuation</span> marks are like road signs for readers. They tell us when to stop, pause, ask or shout.',
+  boxes:[
+   {h:"Capital letters",b:'Start of a sentence &middot; the word <b>I</b> &middot; names of people, places, days, months, languages, titles<br><span class="ex">On Monday, Ayanda and I visited Durban.</span>'},
+   {h:"End marks",b:'<b>.</b> full stop: statements and commands<br><b>?</b> question mark: questions<br><b>!</b> exclamation mark: strong feeling'},
+   {h:"Commas",b:'In a <b>list</b>: <span class="ex">eggs, milk, bread and butter</span><br>After an <b>opening phrase</b>: <span class="ex">After school, we swam.</span><br>Before a name being spoken to: <span class="ex">Come here, Sipho.</span><br>Before speech: <span class="ex">Mom said, "Hurry up."</span>'},
+   {h:"Apostrophes",b:'<b>Contraction</b> (letters left out): do not &rarr; don\'t, it is &rarr; it\'s<br><b>Possession</b>: one owner: the dog\'s bone &middot; many owners: the dogs\' bones &middot; plural without s: the children\'s toys'},
+   {h:"Speech marks",b:'" " go around the <b>exact words</b> spoken. Punctuation goes <b>inside</b>.<br><span class="ex">"Where are you going?" asked Dad.</span><br>New speaker = new line.'},
+   {h:"Other marks",b:'<b>:</b> colon introduces a list &middot; <b>( )</b> brackets add extra info &middot; <b>-</b> hyphen joins words (well-known)'}],
+  warn:"its = belonging to it. it's = it is. No apostrophe in plurals: two apples, not two apple's!"},
+ bank:[
+  {ask:"Which is punctuated correctly?",q:"Pick one:",a:"On Friday, Lerato and I went to Cape Town.",opts:["On Friday, Lerato and I went to Cape Town.","on friday, lerato and i went to cape town.","On Friday Lerato and i went to Cape town","On friday, Lerato and I went to cape Town."]},
+  {ask:"Which is punctuated correctly?",q:"Pick one:",a:"We need apples, bananas, grapes and pears.",opts:["We need apples, bananas, grapes and pears.","We need apples bananas grapes and pears.","We need, apples, bananas, grapes, and, pears.","We need apple's, banana's, grape's and pear's."]},
+  {ask:"Which is punctuated correctly?",q:"Pick one:",a:"\"Can I come too?\" asked Tom.",opts:["\"Can I come too?\" asked Tom.","\"Can I come too\" asked Tom?","Can I come too? \"asked Tom.\"","\"Can I come too.\" asked Tom?"]},
+  {ask:"Which is punctuated correctly?",q:"Pick one:",a:"Mom said, \"Brush your teeth.\"",opts:["Mom said, \"Brush your teeth.\"","Mom said \"brush your teeth\".","\"Mom said, Brush your teeth.\"","Mom said, Brush your teeth."]},
+  {ask:"Which end mark?",q:"What a fantastic surprise___",a:"!",opts:["!",".","?",","]},
+  {ask:"Which end mark?",q:"Do you know the way to the beach___",a:"?",opts:["?",".","!",","]},
+  {ask:"Which end mark?",q:"Please put your bags under your desks___",a:".",opts:[".","?","!",","]},
+  {ask:"Apostrophes",q:"The tail belonging to the dog:",a:"the dog's tail",opts:["the dog's tail","the dogs tail","the dogs' tail","the dog's' tail"]},
+  {ask:"Apostrophes",q:"The bags belonging to the girls:",a:"the girls' bags",opts:["the girls' bags","the girl's bags","the girls bags","the girls's bags"]},
+  {ask:"Apostrophes",q:"The toys belonging to the children:",a:"the children's toys",opts:["the children's toys","the childrens' toys","the childrens toys","the children' toys"]},
+  {ask:"Contractions",q:"they are &rarr;",a:"they're",opts:["they're","their","there","theyre'"]},
+  {ask:"Contractions",q:"will not &rarr;",a:"won't",opts:["won't","willn't","wont'","wo'nt"]},
+  {ask:"Contractions",q:"I have &rarr;",a:"I've",opts:["I've","Iv'e","I'hve","Ive"]},
+  {ask:"its or it's?",q:"___ going to rain today.",a:"It's",opts:["It's","Its"],why:"It's = it is."},
+  {ask:"its or it's?",q:"The bird flapped ___ wings.",a:"its",opts:["its","it's"],why:"Its = belonging to it."},
+  {ask:"Capital letters",q:"Which word needs a capital letter? <i>we visited the drakensberg in july.</i>",a:"all of: we, drakensberg, july",opts:["all of: we, drakensberg, july","only we","only july","none"]},
+  {ask:"Commas",q:"Where does the comma go? <i>After the storm the river flooded.</i>",a:"After the storm, the river flooded.",opts:["After the storm, the river flooded.","After, the storm the river flooded.","After the storm the river, flooded.","After the, storm the river flooded."]},
+  {ask:"Commas",q:"Where does the comma go? <i>Thank you Mrs Naidoo.</i>",a:"Thank you, Mrs Naidoo.",opts:["Thank you, Mrs Naidoo.","Thank, you Mrs Naidoo.","Thank you Mrs, Naidoo.","Thank you Mrs Naidoo,"]},
+  {ask:"Quick question",q:"What do speech marks go around?",a:"the exact words someone says",opts:["the exact words someone says","every name","the title of a story","a list"]},
+  {ask:"Quick question",q:"A colon ( : ) is often used to...",a:"introduce a list",opts:["introduce a list","end a question","join two names","show a contraction"]}]},
 {id:"synant",t:"Synonyms & Antonyms",d:"Same meaning, opposite meaning",mode:"battle",monster:{n:"Oppo",line:"says the opposite of everything",c:"#f7ad6a"},
  learn:{intro:'<span class="hl">Synonyms</span> mean the same (or nearly the same). <span class="hl">Antonyms</span> mean the opposite.',
   boxes:[
@@ -1070,6 +1247,96 @@ const TOPICS=[
    {h:"Saved stories",b:'Every story is saved under <b>My saved stories</b>, so a grown-up can read them later.'}],
   warn:"16+ points = 3 stars. 11+ = 2 stars. 6+ = 1 star."}},
 
+{id:"e-comp",t:"Reading Comprehension",d:"Connect, question, visualise, infer, summarise",mode:"battle",monster:{n:"The Page-Muncher",line:"eats the answers right out of the story",c:"#b8e0a0"},
+ learn:{intro:'Good readers <span class="hl">think</span> while they read. These five strategies help you understand and answer comprehension questions.',
+  boxes:[
+   {h:"Making connections",b:'Link the text to <b>yourself</b> (text-to-self), <b>another book</b> (text-to-text) or <b>the world</b> (text-to-world).<br><span class="ex">"This reminds me of when I..."</span>'},
+   {h:"Asking questions",b:'Ask questions before, during and after reading.<br><span class="ex">"Why did she do that? What will happen next?"</span>'},
+   {h:"Visualising",b:'Make a <b>picture in your mind</b> using the describing words and the senses.<br><span class="ex">"I can picture the dark, dusty attic..."</span>'},
+   {h:"Making inferences",b:'Read <b>between the lines</b>. Use clues + what you know.<br><span class="ex">Clue: he slammed the door. Inference: he was angry.</span>'},
+   {h:"Summarising",b:'Retell only the <b>main ideas</b> in a few sentences, in your own words. Leave out small details.'},
+   {h:"Literary vs non-literary",b:'<b>Literary</b>: stories, poems, plays (imagination).<br><b>Non-literary</b>: facts and information: news reports, recipes, instructions, adverts, letters.'},
+   {h:"Answer like a pro",b:'Read the question twice &middot; find the answer in the text &middot; answer in a full sentence &middot; "Why" questions need a reason (because...) &middot; "Quote" means copy exact words.'},
+   {h:"Fact or opinion?",b:'<b>Fact</b>: can be proved. <span class="ex">Durban is in KZN.</span><br><b>Opinion</b>: what someone thinks. <span class="ex">Durban is the best city.</span>'}],
+  warn:"Inference = the text doesn't say it straight; you work it out from clues."},
+ bank:(()=>{
+  const P1=`<div class="storytext" style="text-align:left;font-size:.95em;margin-bottom:8px"><b>The Last Bus</b><br>Neo checked his watch for the third time and tapped his foot. The bus stop was empty, and the sky was turning orange. He pulled his jacket tighter as the wind picked up. Far down the road, two bright lights appeared. Neo grabbed his school bag and stood right at the edge of the pavement, waving both arms.</div>`;
+  const P2=`<div class="storytext" style="text-align:left;font-size:.95em;margin-bottom:8px"><b>Penguins of Boulders Beach</b><br>Boulders Beach near Simon's Town is home to a colony of African penguins. These birds cannot fly, but they are excellent swimmers and can reach speeds of about 20 km/h underwater. They eat small fish such as sardines and anchovies. Sadly, African penguins are endangered because of overfishing and oil spills. Visitors can watch them from wooden walkways, but they must not touch or feed the birds.</div>`;
+  return [
+  {ask:"Read and answer",q:P1+"How does Neo feel at the start?",a:"Impatient and worried",opts:["Impatient and worried","Bored and sleepy","Happy and relaxed","Angry at his friend"],why:"Clues: he keeps checking his watch and tapping his foot."},
+  {ask:"Read and answer (inference)",q:P1+"What time of day is it most likely?",a:"Late afternoon / sunset",opts:["Late afternoon / sunset","Early morning","Midnight","Lunchtime"],why:"The sky is turning orange: the sun is setting."},
+  {ask:"Read and answer (inference)",q:P1+"What are the two bright lights?",a:"The headlights of the bus",opts:["The headlights of the bus","Stars","A torch","Street lamps"],why:"He is waiting for a bus and waves his arms to stop it."},
+  {ask:"Which strategy?",q:P1+"\"I can picture the empty bus stop and the orange sky.\" This reader is...",a:"Visualising",opts:["Visualising","Summarising","Asking questions","Making connections"]},
+  {ask:"Which strategy?",q:P1+"\"This reminds me of when I nearly missed the school bus.\" This reader is...",a:"Making connections",opts:["Making connections","Visualising","Making inferences","Summarising"]},
+  {ask:"Which strategy?",q:P1+"\"Will Neo get home safely? Why is he so late?\" This reader is...",a:"Asking questions",opts:["Asking questions","Summarising","Visualising","Making inferences"]},
+  {ask:"Read and answer",q:P2+"Is this text literary or non-literary?",a:"Non-literary (it gives facts)",opts:["Non-literary (it gives facts)","Literary (it is a made-up story)","A poem","A play"]},
+  {ask:"Read and answer",q:P2+"Why are African penguins endangered?",a:"Because of overfishing and oil spills",opts:["Because of overfishing and oil spills","Because they cannot fly","Because visitors feed them","Because they swim too fast"]},
+  {ask:"Read and answer",q:P2+"How fast can they swim underwater?",a:"About 20 km/h",opts:["About 20 km/h","About 2 km/h","About 200 km/h","They cannot swim"]},
+  {ask:"Summarising",q:P2+"Which is the BEST summary?",a:"African penguins live at Boulders Beach; they swim well, eat small fish and are endangered, so visitors must not touch them.",opts:["African penguins live at Boulders Beach; they swim well, eat small fish and are endangered, so visitors must not touch them.","Penguins eat sardines.","There are wooden walkways at the beach.","Simon's Town is a town near the sea with many shops."],why:"A summary gives the MAIN ideas, not one small detail."},
+  {ask:"Fact or opinion?",q:P2+"\"Penguins are the cutest birds in the world.\"",a:"Opinion",opts:["Opinion","Fact"]},
+  {ask:"Fact or opinion?",q:P2+"\"African penguins cannot fly.\"",a:"Fact",opts:["Fact","Opinion"]},
+  {ask:"Making inferences",q:"Thandi's eyes filled with tears as she read the letter. She dropped it on the floor. What can you infer?",a:"The letter had sad news",opts:["The letter had sad news","The letter was a joke","Thandi was very hungry","The letter was too heavy"]},
+  {ask:"Making inferences",q:"Ben came inside dripping wet, holding a closed umbrella that was broken. What can you infer?",a:"It was raining and his umbrella broke",opts:["It was raining and his umbrella broke","He went swimming in the sea","It was a hot sunny day","He washed the car"]},
+  {ask:"Literary or non-literary?",q:"A recipe for chocolate cake",a:"Non-literary",opts:["Non-literary","Literary"]},
+  {ask:"Literary or non-literary?",q:"A fairy tale about a talking lion",a:"Literary",opts:["Literary","Non-literary"]},
+  {ask:"Literary or non-literary?",q:"A newspaper report about a flood",a:"Non-literary",opts:["Non-literary","Literary"]},
+  {ask:"Literary or non-literary?",q:"A poem about the ocean",a:"Literary",opts:["Literary","Non-literary"]}]})()},
+{id:"e-visual",t:"Visual Texts & Adverts",d:"Colour, font, pictures, slogans and the target market",mode:"battle",monster:{n:"Sly Salesman",line:"will sell you anything",c:"#ff9f9f"},
+ learn:{intro:'A <span class="hl">visual text</span> uses pictures, colours and words together to send a message: adverts, posters, cartoons, comics, menus and signs.',
+  boxes:[
+   {h:"Target market",b:'The <b>group of people</b> the advert is aimed at. Ask: who would buy this? Children? Teenagers? Parents? Sports fans?'},
+   {h:"Colour",b:'<b>Bright colours</b> grab attention (often for children).<br>Red = excitement, danger, sale &middot; green = nature, healthy &middot; blue = calm, trust, cool &middot; gold/black = luxury'},
+   {h:"Font (lettering)",b:'<b>BIG BOLD</b> letters = the most important words.<br>Fun, bubbly fonts = for children. Neat, simple fonts = serious or grown-up products.'},
+   {h:"Pictures",b:'Show the product, happy people using it, or something the target market likes (cartoon characters, sports stars).'},
+   {h:"Slogan",b:'A short, catchy phrase that is easy to remember.<br><span class="ex">"Just do it." &middot; "Snap, crackle, pop!"</span> Often uses alliteration or rhyme.'},
+   {h:"Persuasive tricks",b:'Exaggeration: "the BEST ever!"<br>Special offers: "Buy 1 get 1 FREE"<br>Emotive words: "amazing, delicious"<br>Urgency: "Hurry, while stocks last!"'},
+   {h:"Answering questions",b:'Name the technique <b>and</b> say <b>why</b> it was used. <span class="ex">The bright yellow background catches children\'s attention.</span>'}],
+  warn:"Who is it for? (target market) What is it selling? How does it persuade? (colour, font, picture, slogan)"},
+ bank:(()=>{
+  const ad1=`<div style="background:#ffe066;border:3px solid #1c2230;border-radius:14px;padding:12px;margin:6px auto 10px;max-width:360px;text-align:center;font-family:var(--display)"><div style="font-size:1.7em;color:#e3427a;font-weight:700;letter-spacing:1px">CRUNCHY MUNCHIES!</div><div style="font-size:3em">&#129379;&#11088;&#129412;</div><div style="font-size:1.1em">With a <b>FREE</b> toy in every box!</div><div style="font-size:1.25em;color:#2457d6;margin-top:4px">"Munch, crunch, have fun for lunch!"</div></div>`;
+  const ad2=`<div style="background:#1c2230;color:#fff;border-radius:14px;padding:14px;margin:6px auto 10px;max-width:360px;text-align:center;font-family:Georgia,serif"><div style="font-size:1.4em;letter-spacing:3px;color:#e6c56a">AURUM</div><div style="font-size:2.2em">&#8986;</div><div style="font-size:1em">Elegance for the modern professional.</div><div style="font-size:.85em;color:#c9ced8;margin-top:4px">Available at select jewellers.</div></div>`;
+  const ad3=`<div style="background:#d8f3e4;border:3px solid #1f8f5b;border-radius:14px;padding:12px;margin:6px auto 10px;max-width:360px;text-align:center;font-family:var(--body)"><div style="font-size:1.5em;color:#1f8f5b;font-weight:700">FARM FRESH JUICE</div><div style="font-size:2.4em">&#127818;&#127807;&#127822;</div><div style="font-size:1.05em">100% fruit &middot; no added sugar</div><div style="font-size:1.1em;color:#d43a3a;font-weight:700">HURRY! 2 for R30 this week only!</div></div>`;
+  return [
+  {ask:"Look at the advert",q:ad1+"Who is the target market?",a:"Children",opts:["Children","Business people","Grandparents","Farmers"],why:"Bright colours, a free toy and a fun rhyme are aimed at kids."},
+  {ask:"Look at the advert",q:ad1+"Why is the background bright yellow?",a:"To grab children's attention",opts:["To grab children's attention","To look serious","Because yellow is cheap","To make it hard to read"]},
+  {ask:"Look at the advert",q:ad1+"Which words are the slogan?",a:"Munch, crunch, have fun for lunch!",opts:["Munch, crunch, have fun for lunch!","CRUNCHY MUNCHIES!","in every box","FREE toy"]},
+  {ask:"Look at the advert",q:ad1+"Why is FREE written in capitals?",a:"To make the special offer stand out",opts:["To make the special offer stand out","It is a name","It starts a sentence","By mistake"]},
+  {ask:"Look at the advert",q:ad1+"What sound technique does the slogan use?",a:"Rhyme",opts:["Rhyme","Alliteration","Onomatopoeia only","Personification"]},
+  {ask:"Look at the advert",q:ad2+"Who is the target market?",a:"Wealthy working adults",opts:["Wealthy working adults","Young children","Teenage gamers","Pet owners"],why:"'The modern professional' and a luxury look."},
+  {ask:"Look at the advert",q:ad2+"Why are black and gold used?",a:"They make the watch look expensive and luxurious",opts:["They make the watch look expensive and luxurious","They are fun for children","They show the watch is healthy","They save ink"]},
+  {ask:"Look at the advert",q:ad2+"How is the font different from a children's advert?",a:"It is neat and elegant, not bubbly",opts:["It is neat and elegant, not bubbly","It is big and cartoony","It is hand-drawn","There are no words"]},
+  {ask:"Look at the advert",q:ad3+"Why is green used so much?",a:"Green makes us think of nature and being healthy",opts:["Green makes us think of nature and being healthy","Green means danger","Green is for luxury","Green means stop"]},
+  {ask:"Look at the advert",q:ad3+"Which persuasive trick is 'HURRY! this week only'?",a:"Creating urgency",opts:["Creating urgency","Using a slogan","Rhyme","A celebrity"]},
+  {ask:"Look at the advert",q:ad3+"Who is the target market?",a:"Health-conscious families and parents",opts:["Health-conscious families and parents","Babies","Car owners","Sports teams only"]},
+  {ask:"Look at the advert",q:ad3+"Why is 'HURRY! 2 for R30' in red?",a:"Red grabs attention for a sale",opts:["Red grabs attention for a sale","Red means healthy","Red is calming","Red is the juice colour"]},
+  {ask:"Quick question",q:"A 'target market' is...",a:"the group of people an advert is aimed at",opts:["the group of people an advert is aimed at","a shop that sells targets","the price of the product","the company's logo"]},
+  {ask:"Quick question",q:"A slogan is...",a:"a short, catchy phrase that is easy to remember",opts:["a short, catchy phrase that is easy to remember","the price tag","a long paragraph of facts","the company's address"]},
+  {ask:"Quick question",q:"Which is an example of exaggeration in an advert?",a:"The BEST burger in the universe!",opts:["The BEST burger in the universe!","Burger: R45","Open 9am to 5pm","Made with beef"]}]})()},
+{id:"e-diary",t:"Diary Entry",d:"Writing a personal diary entry the right way",mode:"battle",monster:{n:"Nosy Norris",line:"tries to read your diary",c:"#e6b8ff"},
+ learn:{intro:'A <span class="hl">diary entry</span> is a private record of what happened to you and how you <b>felt</b> about it.',
+  boxes:[
+   {h:"Format",b:'<b>Date</b> at the top (e.g. Tuesday, 14 October 2026)<br><b>Dear Diary,</b> (greeting with a comma)<br>Paragraphs<br>Sign off with your <b>name</b> (e.g. Kayden)'},
+   {h:"First person",b:'Write as <b>yourself</b>: <b>I, me, my, we</b>.<br><span class="ex">I couldn\'t believe my eyes!</span>'},
+   {h:"Past tense",b:'Describe what <b>happened</b> today: went, saw, laughed, felt.<br>(You can use future tense at the end for hopes and plans.)'},
+   {h:"Feelings!",b:'A diary is <b>personal</b>. Share your thoughts and emotions: nervous, thrilled, embarrassed, proud.'},
+   {h:"Informal tone",b:'Chatty and natural, like talking to a friend. Contractions are fine: I\'m, didn\'t, can\'t.'},
+   {h:"Structure",b:'<b>Intro</b>: what the day was about<br><b>Body</b>: events in <b>order</b> (time words: first, then, later)<br><b>Ending</b>: how you feel now / what you hope tomorrow brings'},
+   {h:"Example",b:'<span class="ex">Saturday, 18 October 2026<br>Dear Diary,<br>Today was the most nerve-racking day of my life! I had my first surfing lesson at Ballito...<br>...I can\'t wait to try again next week!<br>Kayden</span>'}],
+  warn:"Date, Dear Diary, first person (I), past tense, feelings, sign off with your name."},
+ bank:[
+  {ask:"Diary entry",q:"Where does the date go in a diary entry?",a:"At the top",opts:["At the top","At the very end","In the middle","Nowhere"]},
+  {ask:"Diary entry",q:"Which greeting is correct for a diary?",a:"Dear Diary,",opts:["Dear Diary,","Dear Sir/Madam","Yours faithfully","To whom it may concern"]},
+  {ask:"Diary entry",q:"A diary entry is written in the...",a:"first person (I, me, my)",opts:["first person (I, me, my)","third person (he, she, they)","second person only (you)","passive voice only"]},
+  {ask:"Diary entry",q:"Which tense is mostly used?",a:"Past tense",opts:["Past tense","Future tense only","No verbs","Command form"]},
+  {ask:"Diary entry",q:"The tone of a diary is usually...",a:"informal and personal",opts:["informal and personal","formal and serious","like a news report","like a recipe"]},
+  {ask:"Diary entry",q:"How do you end a diary entry?",a:"With your name",opts:["With your name","Yours faithfully","The End","With a question"]},
+  {ask:"Which sentence fits a diary?",q:"Pick the BEST diary sentence:",a:"I was so nervous that my hands were shaking!",opts:["I was so nervous that my hands were shaking!","The learner was nervous.","Mix the flour and the eggs.","Dear Sir, I wish to complain."],why:"First person and it shares feelings."},
+  {ask:"Which sentence fits a diary?",q:"Pick the BEST diary sentence:",a:"Today I scored my first goal and I felt like a superstar.",opts:["Today I scored my first goal and I felt like a superstar.","Goals are scored with feet.","Click here to buy tickets.","He will score tomorrow."]},
+  {ask:"Fix the mistake",q:"\"Yesterday I go to the beach.\" What is wrong?",a:"Wrong tense: it should be 'went'",opts:["Wrong tense: it should be 'went'","No mistake","'I' should be 'he'","Beach needs a capital"]},
+  {ask:"Fix the mistake",q:"\"Dear Diary, Kayden went to school and he was happy.\" What is wrong?",a:"It should be first person: 'I went'",opts:["It should be first person: 'I went'","It should be future tense","Remove Dear Diary","Nothing is wrong"]},
+  {ask:"Diary entry",q:"Which is a good way to show the ORDER of events?",a:"Time words like first, then, later, finally",opts:["Time words like first, then, later, finally","Writing it all in one sentence","Using lots of exclamation marks","Leaving out the date"]},
+  {ask:"Diary entry",q:"Which is the best ENDING for a diary entry?",a:"I'm exhausted but proud. I can't wait for tomorrow!",opts:["I'm exhausted but proud. I can't wait for tomorrow!","The end.","Yours sincerely.","And then I went."]},
+  {ask:"Diary entry",q:"What makes a diary different from a story?",a:"It is about your own real day and feelings",opts:["It is about your own real day and feelings","It always has dragons","It is written for a newspaper","It has no paragraphs"]}]},
 /* 12 FINAL BOSS */
 {id:"final",t:"Final Exam Boss",d:"Random questions from every topic. The real test!",mode:"battle",final:true,monster:{n:"The Exam-inator",line:"knows every topic in the book",c:"#ff8a7a"}}
 ];
@@ -1263,6 +1530,31 @@ const MATHS=[
  }},
 
 /* 7 NUMBER PATTERNS */
+{id:"m-word",t:"Multi-Step Word Problems",d:"CUBES with two or more steps: + − × ÷",mode:"battle",monster:{n:"The Riddle Rhino",line:"charges at you with two sums at once",c:"#c9b6ff"},
+ learn:{intro:'A <span class="hl">multi-step</span> word problem needs <b>more than one</b> sum to find the answer. CUBES keeps you on track!',
+  boxes:[
+   {h:"CUBES",b:'<b>C</b>ircle the numbers &middot; <b>U</b>nderline the question &middot; <b>B</b>ox the key words &middot; <b>E</b>valuate and eliminate extra info &middot; <b>S</b>olve and check'},
+   {h:"Plan the steps",b:'Ask: <b>What do I need to know first?</b><br>Step 1 finds a hidden number. Step 2 uses it to answer the question.'},
+   {h:"Example",b:'Ayanda buys 3 books at R85 each. She pays with R300. How much change?<br>Step 1: 3 &times; R85 = R255<br>Step 2: R300 &minus; R255 = <b>R45</b>'},
+   {h:"Key words",b:'<b>+</b> altogether, total, sum, more than<br><b>&minus;</b> change, left, difference, fewer<br><b>&times;</b> each, per, times, groups of<br><b>&divide;</b> share equally, split, per group, half'},
+   {h:"Check it!",b:'Does the answer make sense? Change can\'t be more than you paid! Use estimation to check: 3 &times; R85 is about 3 &times; R90 = R270.'}],
+  warn:"Underline the QUESTION first. Often the first sum gives you a number you need for the second."},
+ gen(){
+  const N=ch(["Kayden","Ayanda","Lerato","Sipho","Mia","Liam","Zanele","Thabo"]),t=rnd(0,5);
+  const M=(q,a,why,w)=>mc("Multi-step word problem",q,typeof a==="number"?nn(a):a,(w||[a+10,a-10,a+100,a*2]).filter(x=>x!==a&&x>0).map(x=>typeof x==="number"?nn(x):x),why,"Work out the hidden number first.");
+  if(t===0){const n=rnd(2,6),p=rnd(25,95),cost=n*p,pay=Math.ceil((cost+1)/100)*100+ch([0,100]);
+   return M(`${N} buys ${n} books at R${p} each and pays with R${pay}. How much change does ${N} get?`,pay-cost,`${n} &times; R${p} = R${cost}, then R${pay} &minus; R${cost} = R${pay-cost}`,[cost,pay-cost+p,pay-p,pay-cost+10].map(Number))}
+  if(t===1){const b=rnd(4,9),e=rnd(12,48),g=rnd(10,60),tot=b*e-g;
+   return M(`A farmer packs ${b} crates with ${e} mangoes each. He gives away ${g} mangoes. How many mangoes are left?`,tot,`${b} &times; ${e} = ${b*e}, then ${b*e} &minus; ${g} = ${tot}`,[b*e,b*e+g,tot+e,tot-b])}
+  if(t===2){const a=rnd(1200,4800),b=rnd(800,3500),k=ch([2,3,4,5]),tot=a+b;const s=tot-tot%k;
+   return M(`A school collected ${nn(a)} cans in May and ${nn(b)} cans in June. They share ${nn(s)} of them equally between ${k} recycling bins. How many cans go in each bin?`,s/k,`${nn(s)} &divide; ${k} = ${nn(s/k)} (the May and June numbers just tell you where the cans came from)`,[tot,s,s/k+k,Math.floor(tot/k)+1])}
+  if(t===3){const r=rnd(12,30),s=rnd(15,40),days=rnd(3,7),tot=(r+s)*days;
+   return M(`${N} reads ${r} pages in the morning and ${s} pages at night. How many pages does ${N} read in ${days} days?`,tot,`${r} + ${s} = ${r+s} pages a day, then ${r+s} &times; ${days} = ${tot}`,[r+s,r*days,tot+days,(r+s)+days])}
+  if(t===4){const sm=rnd(6,15),ad=rnd(25,60),kids=rnd(3,8),adults=rnd(1,3),tot=sm*kids+ad*adults;
+   return M(`Movie tickets cost R${sm} for children and R${ad} for adults. How much do ${kids} children and ${adults} adult${adults>1?"s":""} pay altogether?`,tot,`${kids} &times; R${sm} = R${sm*kids}, ${adults} &times; R${ad} = R${ad*adults}, total R${tot}`,[sm+ad,sm*kids,(sm+ad)*(kids+adults),tot+sm])}
+  const per=rnd(4,8),bus=rnd(40,65),l=rnd(120,380),buses=Math.ceil(l/bus);
+  return M(`${l} learners are going on a trip. Each bus holds ${bus} learners. How many buses are needed?`,buses,`${l} &divide; ${bus} = ${Math.floor(l/bus)} remainder ${l%bus}. The leftover learners need one more bus: ${buses}.`,[Math.floor(l/bus)||1,buses+1,buses+2,per]);
+ }},
 {id:"m-patterns",t:"Number Patterns",d:"Find the rule and continue the pattern",mode:"battle",monster:{n:"Loop-de-Loop",line:"repeats itself forever",c:"#7fd8c9"},
  learn:{intro:'A <span class="hl">pattern</span> repeats the same process over and over. The <span class="hl">rule</span> tells you what comes next.',
   boxes:[
@@ -1461,6 +1753,33 @@ const MATHS=[
   {t:"Full turn",d:"A turn of 360&deg;, back to the start"},
   {t:"Mirror image",d:"What a shape looks like after it is reflected"}]},
 
+{id:"m-data",t:"Data Handling",d:"Tally tables, pictographs and bar graphs",mode:"battle",monster:{n:"Graph Gremlin",line:"mixes up every bar",c:"#c6a0ff"},
+ learn:{intro:'<span class="hl">Data handling</span> is collecting information, organising it and showing it so we can answer questions.',
+  boxes:[
+   {h:"The data cycle",b:'1. Pose a <b>question</b><br>2. <b>Collect</b> data (survey, count, observe)<br>3. <b>Organise</b> it (tally table)<br>4. <b>Represent</b> it (pictograph, bar graph)<br>5. <b>Interpret</b> and report'},
+   {h:"Tally tables",b:'Draw one stroke per count. Every <b>5th</b> stroke crosses the group of four.<br>'+tallyHtml(13)+' = 13<br><b>Frequency</b> = the total for each item.'},
+   {h:"Pictographs",b:'Pictures stand for numbers. <b>Always read the key!</b><br>Key: &#9917; = 4 learners<br>&#9917;&#9917;&#9917; = 12 learners<br>Half a picture = half the key value (2).'},
+   {h:"Bar graphs",b:'Title &middot; labelled axes &middot; equal gaps between bars &middot; a scale that goes up evenly.'+barSvg([["Mon",6],["Tue",9],["Wed",4]],"Books read")},
+   {h:"Interpreting",b:'<b>most / least</b>: tallest / shortest &middot; <b>how many more</b>: subtract &middot; <b>altogether</b>: add all &middot; <b>mode</b>: the most common answer'}],
+  warn:"Half a picture in a pictograph = HALF the key value."},
+ gen(){
+  const sets=[["Favourite sport",["Soccer","Rugby","Netball","Cricket"],"⚽"],["Fruit sold at tuck shop",["Apples","Bananas","Oranges","Pears"],"🍎"],["How we get to school",["Car","Bus","Walk","Taxi"],"🚌"],["Books read this term",["Gr 5A","Gr 5B","Gr 5C","Gr 5D"],"📘"]];
+  const [title,cats,sym]=ch(sets),t=rnd(0,5),key=ch([2,4,5,10]);
+  const vals=pick([2,3,4,5,6,7,8,9,10,11,12],4);
+  if(t<=2){const data=cats.map((c,i)=>[c,vals[i]*key]);const v=data.map(d=>d[1]);
+   const pic=`<div style="text-align:left;max-width:340px;margin:6px auto;font-size:.95em"><b>${title}</b>${data.map(([c,n])=>`<div style="display:flex;gap:8px;align-items:center;border-bottom:1px dashed #c9ced8;padding:3px 0"><span style="width:72px">${c}</span><span style="font-size:1.25em;letter-spacing:2px">${sym.repeat(n/key)}</span></div>`).join("")}<div style="margin-top:4px"><b>Key:</b> ${sym} = ${key}</div></div>`;
+   const i=rnd(0,3),j=(i+rnd(1,3))%4;
+   if(t===0)return mc("Read the pictograph:",pic+`How many for <b>${cats[i]}</b>?`,v[i],[v[i]/key,v[i]+key,v[i]-key,v[j]].filter(x=>x>0),`${v[i]/key} pictures &times; ${key} = ${v[i]}`);
+   if(t===1){const d=Math.abs(v[i]-v[j]);return mc("Read the pictograph:",pic+`How many more for <b>${v[i]>v[j]?cats[i]:cats[j]}</b> than <b>${v[i]>v[j]?cats[j]:cats[i]}</b>?`,d,[d/key,d+key,v[i]+v[j],Math.max(v[i],v[j])].filter(x=>x>0&&x!==d),"Find both totals with the key, then subtract.")}
+   const s=v.reduce((a,b)=>a+b,0);return mc("Read the pictograph:",pic+"What is the total altogether?",s,[s/key,s+key,s-key,Math.max(...v)],"Count all the pictures and multiply by the key.")}
+  if(t===3){const n=rnd(7,29);return mc("Tally table:",`<div style="font-size:1.6em;margin:8px 0">${tallyHtml(n)}</div>What is the frequency?`,n,[n+1,n-1,n+5,Math.floor(n/5)],"Count the groups of 5, then the extra strokes.")}
+  if(t===4){const n=rnd(6,24),g=Math.floor(n/5),r=n%5;return mc("Organise data:",`${n} learners chose pizza. How would you show this with tallies?`,`${g} groups of 5 and ${r} single strokes`,[`${n} single strokes in a row`,`${g+1} groups of 5 and ${r} single strokes`,`${r} groups of 5 and ${g} single strokes`,`${n} groups of 5`].filter(x=>x!==`${g} groups of 5 and ${r} single strokes`),"Bundle the strokes into groups of 5.")}
+  return ch([mc("Data cycle","What comes straight AFTER collecting data?","Organising it (e.g. tally table)","Posing the question,Drawing the bar graph,Going home".split(",")),
+   mc("Quick question","In a pictograph the key is...","what each picture stands for","the title,the biggest bar,the answer".split(",")),
+   mc("Quick question","If 🍎 = 4, what does half an apple stand for?","2","4,1,8".split(",")),
+   mc("Quick question","The 'mode' is...","the answer that appears most often","the smallest value,the total,the middle bar".split(",")),
+   mc("Quick question","Which is a good way to COLLECT data?","a survey (asking people questions)","guessing,copying a friend,making it up".split(","))]);
+ }},
 {id:"m-final",t:"Final Exam Boss",d:"Random questions from every maths topic. The real test!",mode:"battle",final:true,monster:{n:"Count Crunchula",line:"crunches numbers for breakfast",c:"#ff7a7a"}}
 ];
 
@@ -1893,6 +2212,23 @@ function earthSvg(layer){
 }
 function n4(n){return nn(n)}
 
+function fbar(n,d){const w=Math.min(36,220/d);let r="";for(let i=0;i<d;i++)r+=`<rect x="${4+i*w}" y="4" width="${w}" height="30" fill="${i<n?'#ffb36b':'#fff'}" stroke="#1c2230" stroke-width="2.5"/>`;return `<svg viewBox="0 0 ${d*w+8} 38" width="${d*w+8}" style="max-width:100%;display:block;margin:6px auto">${r}</svg>`}
+function jugSvg(lev,max,step){const H=180,top=20,bot=200,y=v=>bot-(v/max)*H;let t="";for(let v=0;v<=max;v+=step){const yy=y(v),major=v%(step*2)===0||v===max;t+=`<line x1="70" y1="${yy}" x2="${major?92:84}" y2="${yy}" stroke="#1c2230" stroke-width="2"/>`;if(major)t+=`<text x="96" y="${yy+5}" font-family="Patrick Hand,cursive" font-size="14" fill="#1c2230">${nn(v)}</text>`}
+ return `<svg viewBox="0 0 200 215" width="170" style="max-width:100%;display:block;margin:6px auto"><path d="M70 ${top}V${bot}H170V${top}" fill="#fff" stroke="#1c2230" stroke-width="4"/><rect x="72" y="${y(lev)}" width="96" height="${bot-y(lev)-2}" fill="#7fd3e8" opacity=".8"/><line x1="72" y1="${y(lev)}" x2="168" y2="${y(lev)}" stroke="#2457d6" stroke-width="3"/>${t}<path d="M170 60q24 0 24 30t-24 30" fill="none" stroke="#1c2230" stroke-width="4"/><text x="120" y="${top-4}" text-anchor="middle" font-family="Patrick Hand,cursive" font-size="14" fill="#56607a">ml</text></svg>`}
+function tallyHtml(n){let o="";for(let i=0;i<Math.floor(n/5);i++)o+='<s style="letter-spacing:3px;text-decoration-thickness:3px;margin-right:12px">||||</s>';o+=n%5?`<span style="letter-spacing:3px">${"|".repeat(n%5)}</span>`:"";return `<b style="font-family:var(--display)">${o}</b>`}
+function barSvg(data,title){const mx=Math.max(...data.map(d=>d[1])),top=Math.ceil(mx/2)*2,W=60+data.length*70,H=200,y=v=>170-v/top*140;let g="";
+ for(let v=0;v<=top;v+=2)g+=`<line x1="40" y1="${y(v)}" x2="${W-10}" y2="${y(v)}" stroke="#dfe7f4" stroke-width="1.5"/><text x="34" y="${y(v)+5}" text-anchor="end" font-family="Patrick Hand,cursive" font-size="14" fill="#1c2230">${v}</text>`;
+ const C=["#2457d6","#e3427a","#1f8f5b","#f5b83d","#7b4fd6"];data.forEach(([l,v],i)=>{const x=56+i*70;g+=`<rect x="${x}" y="${y(v)}" width="42" height="${170-y(v)}" fill="${C[i%5]}" stroke="#1c2230" stroke-width="2"/><text x="${x+21}" y="188" text-anchor="middle" font-family="Patrick Hand,cursive" font-size="14" fill="#1c2230">${l}</text>`});
+ return `<svg viewBox="0 0 ${W} ${H+18}" width="${Math.min(W*1.1,360)}" style="max-width:100%;display:block;margin:6px auto"><text x="${W/2}" y="16" text-anchor="middle" font-family="Kalam,cursive" font-weight="700" font-size="16" fill="#1c2230">${title}</text><line x1="40" y1="30" x2="40" y2="170" stroke="#1c2230" stroke-width="2.5"/><line x1="40" y1="170" x2="${W-10}" y2="170" stroke="#1c2230" stroke-width="2.5"/>${g}</svg>`}
+const PYR=[["fat","Fats, oils & sugar","once or twice a week","#ff8fa3","🍭🍟"],["prot","Protein","2 a day","#f5b83d","🍗🥚🐟"],["dairy","Dairy","2–3 a day","#9fd3ff","🥛🧀"],["carb","Carbohydrates","3–5 a day","#e8c38a","🍞🍝🥔"],["fv","Fruit & vegetables","5–7 a day","#8fd694","🍎🥕🥦🍌"]];
+function pyramidSvg(hi){const cx=150,hw=y=>(y-8)/282*140;let o="";
+ PYR.forEach(([c,l,sv,col,em],i)=>{const y1=8+i*56.4,y2=y1+56.4,on=hi===c,dim=hi&&!on;
+  o+=`<polygon points="${cx-hw(y1)},${y1} ${cx+hw(y1)},${y1} ${cx+hw(y2)},${y2} ${cx-hw(y2)},${y2}" fill="${col}" stroke="#1c2230" stroke-width="${on?5:2.5}" stroke-linejoin="round" opacity="${dim?.35:1}"/>`;
+  o+=`<text x="${cx}" y="${y1+(i?36:44)}" text-anchor="middle" font-size="${i?22:15}">${i?em:"🍭"}</text>`;
+  o+=`<line x1="${cx+hw(y1+28)+4}" y1="${y1+28}" x2="296" y2="${y1+28}" stroke="#1c2230" stroke-width="1.5" stroke-dasharray="3 3" opacity="${dim?.3:.7}"/>`;
+  o+=`<text x="300" y="${y1+25}" font-family="Kalam,cursive" font-weight="700" font-size="15" fill="#1c2230" opacity="${dim?.35:1}">${l}</text><text x="300" y="${y1+43}" font-family="Patrick Hand,cursive" font-size="14" fill="#56607a" opacity="${dim?.35:1}">${sv}</text>`});
+ o+=`<text x="12" y="30" font-family="Kalam,cursive" font-size="13" fill="#e3427a">eat LEAST ↑</text><text x="12" y="282" font-family="Kalam,cursive" font-size="13" fill="#1f8f5b">eat MOST ↓</text>`;
+ return `<svg viewBox="0 0 450 296" width="440" style="max-width:100%;display:block;margin:8px auto">${o}</svg>`}
 /* =================== GRADE 4: ENGLISH =================== */
 const E4=[
 {id:"e4-speech",t:"Parts of Speech",d:"Noun, pronoun, adjective, verb, adverb, preposition, conjunction, interjection",mode:"sort",ask:"What part of speech is the underlined word?",
@@ -1955,26 +2291,27 @@ const E4=[
   {ask:"Fix the sentence:",q:"I have a sister ___ Brooklyn.",a:"called",opts:["called","could","cold","culled"]},
   {ask:"Quick question",q:"A proper noun names...",a:"a specific person, place or thing",opts:["a specific person, place or thing","any person, place or thing","an action","a feeling"]}]},
 
-{id:"e4-pronouns",t:"Pronouns",d:"Personal and possessive pronouns",mode:"rush",time:12000,ask:"Pronouns:",
+{id:"e4-pronouns",t:"Pronouns",d:"Personal, possessive and demonstrative pronouns",mode:"rush",time:12000,ask:"Pronouns:",
  learn:{intro:'<span class="hl">Pronouns</span> take the place of nouns, so we don\'t keep repeating names. Small words with a big job!',
   boxes:[
    {h:"Personal pronouns",b:'Replace people or things. Used as the subject or object.<br><span class="ex">I, you, he, she, it, we, they, me, him, them</span>'},
    {h:"Possessive pronouns",b:'Show <b>who something belongs to</b>.<br><span class="ex">mine, yours, his, hers, its, ours, theirs</span>'},
-   {h:"In sentences",b:'<span class="ex"><b>She</b> is my sister.</span> (personal)<br><span class="ex">That ball is <b>his</b>.</span> (possessive)'},
+   {h:"Demonstrative pronouns",b:'<b>Point</b> to something.<br><b>this</b> (one, near) &middot; <b>these</b> (many, near)<br><b>that</b> (one, far) &middot; <b>those</b> (many, far)<br><span class="ex"><b>This</b> is my bag. <b>Those</b> are your shoes.</span>'},
+   {h:"In sentences",b:'<span class="ex"><b>She</b> is my sister.</span> (personal)<br><span class="ex">That ball is <b>his</b>.</span> (possessive)<br><span class="ex"><b>These</b> are delicious!</span> (demonstrative)'},
    {h:"No apostrophes!",b:'Possessive pronouns never have apostrophes.<br><b>it\'s</b> = it is<br><b>its</b> = belonging to it'},
    {h:"Common mistake",b:'<span class="wrong">&#10007; "his" is a personal pronoun.</span><br><span class="right">&#10003; "his" shows ownership, so it is <b>possessive</b>.</span>'}],
-  warn:"Does it show who OWNS it? Possessive. Does it just replace a name? Personal."},
+  warn:"Replaces a name? Personal. Shows who OWNS it? Possessive. POINTS at something? Demonstrative."},
  items:[
-  {q:"Personal or possessive? <b>she</b>",o:["Personal","Possessive"],a:"Personal"},
-  {q:"Personal or possessive? <b>mine</b>",o:["Personal","Possessive"],a:"Possessive"},
-  {q:"Personal or possessive? <b>theirs</b>",o:["Personal","Possessive"],a:"Possessive"},
-  {q:"Personal or possessive? <b>we</b>",o:["Personal","Possessive"],a:"Personal"},
-  {q:"Personal or possessive? <b>hers</b>",o:["Personal","Possessive"],a:"Possessive"},
-  {q:"Personal or possessive? <b>they</b>",o:["Personal","Possessive"],a:"Personal"},
-  {q:"Personal or possessive? <b>ours</b>",o:["Personal","Possessive"],a:"Possessive"},
-  {q:"Personal or possessive? <b>him</b>",o:["Personal","Possessive"],a:"Personal"},
-  {q:"Personal or possessive? <b>yours</b>",o:["Personal","Possessive"],a:"Possessive"},
-  {q:"Personal or possessive? <b>his</b> (That ball is his.)",o:["Personal","Possessive"],a:"Possessive",tip:"His shows who the ball belongs to."},
+  {q:"Which kind of pronoun? <b>she</b>",o:["Personal","Possessive","Demonstrative"],a:"Personal"},
+  {q:"Which kind of pronoun? <b>mine</b>",o:["Personal","Possessive","Demonstrative"],a:"Possessive"},
+  {q:"Which kind of pronoun? <b>theirs</b>",o:["Personal","Possessive","Demonstrative"],a:"Possessive"},
+  {q:"Which kind of pronoun? <b>we</b>",o:["Personal","Possessive","Demonstrative"],a:"Personal"},
+  {q:"Which kind of pronoun? <b>hers</b>",o:["Personal","Possessive","Demonstrative"],a:"Possessive"},
+  {q:"Which kind of pronoun? <b>they</b>",o:["Personal","Possessive","Demonstrative"],a:"Personal"},
+  {q:"Which kind of pronoun? <b>ours</b>",o:["Personal","Possessive","Demonstrative"],a:"Possessive"},
+  {q:"Which kind of pronoun? <b>him</b>",o:["Personal","Possessive","Demonstrative"],a:"Personal"},
+  {q:"Which kind of pronoun? <b>yours</b>",o:["Personal","Possessive","Demonstrative"],a:"Possessive"},
+  {q:"Which kind of pronoun? <b>his</b> (That ball is his.)",o:["Personal","Possessive","Demonstrative"],a:"Possessive",tip:"His shows who the ball belongs to."},
   {s:"This book is ___. (It belongs to me.)",o:["mine","me","I"],a:"mine"},
   {s:"Is this pencil ___? (Does it belong to you?)",o:["yours","you","your's"],a:"yours",tip:"No apostrophe in yours!"},
   {s:"Those bikes are ___. (They belong to them.)",o:["theirs","they","their's"],a:"theirs"},
@@ -1986,9 +2323,50 @@ const E4=[
   {s:"___ raining outside.",o:["It's","Its"],a:"It's",tip:"It's = it is."},
   {s:"Meet ___ and my mom.",o:["me","I","mine"],a:"me"},
   {s:"I am talking about ___.",o:["him","he","his"],a:"him"},
+  {q:"Which kind of pronoun? <b>this</b>",o:["Personal","Possessive","Demonstrative"],a:"Demonstrative"},
+  {q:"Which kind of pronoun? <b>those</b>",o:["Personal","Possessive","Demonstrative"],a:"Demonstrative"},
+  {q:"Which kind of pronoun? <b>these</b>",o:["Personal","Possessive","Demonstrative"],a:"Demonstrative"},
+  {q:"Which kind of pronoun? <b>that</b> (That is my dog.)",o:["Personal","Possessive","Demonstrative"],a:"Demonstrative",tip:"That points at the dog."},
+  {s:"___ apples in my hand are ripe. (many, near)",o:["These","Those","This"],a:"These"},
+  {s:"Look at ___ bird far up in the sky! (one, far)",o:["that","this","these"],a:"that"},
+  {s:"___ is my pencil right here. (one, near)",o:["This","Those","These"],a:"This"},
+  {s:"Can you see ___ cows over on the hill? (many, far)",o:["those","these","this"],a:"those"},
+  {q:"Demonstrative pronouns...",o:["point to something","show who owns it","describe a verb"],a:"point to something"},
   {q:"Pronouns take the place of...",o:["nouns","verbs","adverbs"],a:"nouns"},
   {q:"Possessive pronouns show...",o:["who something belongs to","how something is done","where something is"],a:"who something belongs to"}]},
 
+{id:"e4-adjectives",t:"Adjectives",d:"Describing words, comparing and superlatives",mode:"battle",monster:{n:"Captain Bland",line:"wants every word to be boring",c:"#9fd3ff"},
+ learn:{intro:'<span class="hl">Adjectives</span> are describing words. They tell us more about a <b>noun</b>.',
+  boxes:[
+   {h:"What do they tell us?",b:'<b>What kind?</b> a <u>fluffy</u> cat<br><b>What colour?</b> a <u>red</u> bus<br><b>How big?</b> a <u>huge</u> elephant<br><b>How many?</b> <u>three</u> apples<br><b>How it feels?</b> a <u>happy</u> girl'},
+   {h:"Where do they go?",b:'Usually <b>before</b> the noun: <span class="ex">a <u>tall</u> tree</span><br>or after <b>is / was / are</b>: <span class="ex">The soup is <u>hot</u>.</span>'},
+   {h:"Comparing two (-er)",b:'Add <b>-er</b> or use <b>more</b>.<br><span class="ex">tall &rarr; taller</span><br><span class="ex">beautiful &rarr; more beautiful</span>'},
+   {h:"The most (-est)",b:'Add <b>-est</b> or use <b>most</b> when comparing three or more.<br><span class="ex">tall &rarr; tallest</span><br><span class="ex">beautiful &rarr; most beautiful</span>'},
+   {h:"Spelling tricks",b:'big &rarr; big<b>g</b>er (double the last letter)<br>happy &rarr; happ<b>i</b>er (y becomes i)<br>nice &rarr; nicer (just add r)'},
+   {h:"Rule breakers",b:'good &rarr; better &rarr; best<br>bad &rarr; worse &rarr; worst<br>many &rarr; more &rarr; most<br>little &rarr; less &rarr; least'},
+   {h:"Common mistake",b:'<span class="wrong">&#10007; more bigger</span> &nbsp; <span class="right">&#10003; bigger</span><br><span class="wrong">&#10007; gooder</span> &nbsp; <span class="right">&#10003; better</span>'}],
+  warn:"Adjectives describe NOUNS. Adverbs describe VERBS (how, when, where)."},
+ bank:[
+  {ask:"Find the adjective",q:"The <b>fluffy</b> puppy chased the ball. Which word is the adjective?",a:"fluffy",opts:["fluffy","puppy","chased","ball"]},
+  {ask:"Find the adjective",q:"We saw a huge elephant at the zoo.",a:"huge",opts:["huge","saw","elephant","zoo"]},
+  {ask:"Find the adjective",q:"My sister wore a yellow dress.",a:"yellow",opts:["yellow","sister","wore","dress"]},
+  {ask:"Find the adjective",q:"The soup was hot.",a:"hot",opts:["hot","soup","was","the"]},
+  {ask:"Find the adjective",q:"Three birds sat on the fence.",a:"Three",opts:["Three","birds","sat","fence"]},
+  {ask:"Find the adjective",q:"The brave firefighter climbed the ladder.",a:"brave",opts:["brave","firefighter","climbed","ladder"]},
+  {ask:"Find the adjective",q:"Dad bought a shiny new bike.",a:"shiny",opts:["shiny","Dad","bought","bike"]},
+  {ask:"Find the adjective",q:"The waves were enormous today.",a:"enormous",opts:["enormous","waves","were","today"]},
+  {ask:"Adjective or adverb?",q:"She ran <b>quickly</b>.",a:"Adverb",opts:["Adverb","Adjective","Noun","Pronoun"],why:"Quickly tells us HOW she ran, so it describes a verb."},
+  {ask:"Adjective or adverb?",q:"She is a <b>quick</b> runner.",a:"Adjective",opts:["Adjective","Adverb","Verb","Pronoun"],why:"Quick describes the noun runner."},
+  {ask:"Quick question",q:"An adjective describes a...",a:"noun",opts:["noun","verb","adverb","full stop"]},
+  {ask:"Pick the correct sentence",q:"Which is correct?",a:"My bag is bigger than yours.",opts:["My bag is bigger than yours.","My bag is more bigger than yours.","My bag is biggest than yours.","My bag is more big than yours."]},
+  {ask:"Pick the correct sentence",q:"Which is correct?",a:"This is the best day ever!",opts:["This is the best day ever!","This is the goodest day ever!","This is the most good day ever!","This is the better day ever!"]},
+  {ask:"Pick the correct sentence",q:"Which is correct?",a:"The cheetah is the fastest animal on land.",opts:["The cheetah is the fastest animal on land.","The cheetah is the faster animal on land.","The cheetah is the most fast animal on land.","The cheetah is the fastier animal on land."]}],
+ gen(){
+  const A=[["tall","taller","tallest"],["small","smaller","smallest"],["big","bigger","biggest"],["hot","hotter","hottest"],["happy","happier","happiest"],["funny","funnier","funniest"],["nice","nicer","nicest"],["large","larger","largest"],["fast","faster","fastest"],["strong","stronger","strongest"],["good","better","best"],["bad","worse","worst"],["beautiful","more beautiful","most beautiful"],["exciting","more exciting","most exciting"],["dangerous","more dangerous","most dangerous"],["busy","busier","busiest"],["thin","thinner","thinnest"]];
+  const [b,c,s]=ch(A),wrongC=[b+"er",b.endsWith("e")?b+"rer":"more "+c,"most "+b,s],wrongS=[b+"est","most "+s,c,b+"er"];
+  if(Math.random()<.5)return mc("Comparing TWO things:",`Lerato is ___ than Sipho. (${b})`,c,wrongC.filter(x=>x!==c),`Comparing two: <b>${c}</b>.`);
+  return mc("The MOST of three or more:",`This is the ___ one of all. (${b})`,s,wrongS.filter(x=>x!==s),`The most of all: <b>${s}</b>.`);
+ }},
 {id:"e4-adverbs",t:"Adverbs",d:"Adverbs of time, place and manner",mode:"sort",ask:"What kind of adverb is underlined?",
  learn:{intro:'<span class="hl">Adverbs</span> tell us more about a verb (an action word). They tell us <b>how</b>, <b>when</b> or <b>where</b> something happens.',
   boxes:[
@@ -2288,6 +2666,38 @@ const M4=[
   const most=Math.random()<.5;return mc(`Which number is the ${most?"BIGGEST":"SMALLEST"}?`,nums.map(n4).join(", "),n4(most?asc[3]:asc[0]),nums.map(n4),"Compare the thousands first.");
  }},
 
+{id:"m4-fractions",t:"Comparing Fractions",d:"Bigger, smaller and ordering fractions",mode:"battle",monster:{n:"Pizza Pirate",line:"always grabs the biggest slice",c:"#ffb36b"},
+ learn:{intro:'A <span class="hl">fraction</span> is part of a whole. The <b>bottom</b> number (denominator) says how many equal parts. The <b>top</b> number (numerator) says how many parts we have.',
+  boxes:[
+   {h:"Parts of a fraction",b:fr(3,4)+' &nbsp; 3 = numerator (parts we have)<br>4 = denominator (equal parts in the whole)'+fbar(3,4)},
+   {h:"Same bottom number",b:'Just compare the <b>top</b> numbers.<br>'+fr(5,8)+' &gt; '+fr(3,8)+' because 5 pieces &gt; 3 pieces'},
+   {h:"Top number is 1",b:'The <b>bigger</b> the bottom number, the <b>smaller</b> the piece!<br>'+fr(1,2)+' &gt; '+fr(1,4)+' &gt; '+fr(1,8)+fbar(1,2)+fbar(1,4)+fbar(1,8)},
+   {h:"Same top number",b:'Same number of pieces? Bigger pieces win, so the <b>smaller</b> bottom number is bigger.<br>'+fr(2,3)+' &gt; '+fr(2,5)},
+   {h:"Equal fractions",b:fr(1,2)+' = '+fr(2,4)+' = '+fr(4,8)+'<br>Same amount, cut into more pieces.'},
+   {h:"Ordering",b:'<b>Ascending</b> = smallest first: '+fr(1,8)+', '+fr(1,4)+', '+fr(1,2)+'<br><b>Descending</b> = biggest first: '+fr(1,2)+', '+fr(1,4)+', '+fr(1,8)}],
+  warn:"Unit fractions (top = 1): bigger bottom number = SMALLER piece. 1/8 is smaller than 1/2!"},
+ gen(){
+  const t=rnd(0,6);const sign=(a,b)=>a>b?"&gt;":a<b?"&lt;":"=";
+  if(t===0){const d=ch([3,4,5,6,8,10,12]);let a=rnd(1,d-1),b=rnd(1,d-1);if(Math.random()<.15)b=a;
+   return mc("Which sign goes in the circle?",`${fr(a,d)} ${circ} ${fr(b,d)}`,sign(a,b),["&gt;","&lt;","="],a===b?"They are exactly the same.":"Same bottom number, so compare the top numbers.")}
+  if(t===1){const[x,y]=pick([2,3,4,5,6,8,10,12],2);
+   return mc("Which sign goes in the circle?",`${fr(1,x)} ${circ} ${fr(1,y)}`,sign(y,x),["&gt;","&lt;","="],`The bigger the bottom number, the smaller the piece. ${fr(1,Math.min(x,y))} is bigger.`)}
+  if(t===2){const n=rnd(2,3),[x,y]=pick([4,5,6,7,8,10,12].filter(v=>v>n),2);
+   return mc("Which sign goes in the circle?",`${fr(n,x)} ${circ} ${fr(n,y)}`,sign(y,x),["&gt;","&lt;","="],"Same top number: the smaller bottom number means bigger pieces.")}
+  if(t===3){const ds=pick([2,3,4,5,6,8,10],4),up=Math.random()<.5,asc=ds.slice().sort((a,b)=>b-a),ord=up?asc:asc.slice().reverse(),f=a=>a.map(d=>fr(1,d)).join(", ");
+   return mc(`Put in ${up?"ASCENDING (smallest first)":"DESCENDING (biggest first)"} order:`,f(ds),f(ord),[f(up?asc.slice().reverse():asc),f(ds.slice().sort((a,b)=>a-b).slice(0,2).concat(asc.slice(0,2))),f([ord[1],ord[0],ord[2],ord[3]])],"Unit fractions: the bigger the bottom number, the smaller the fraction.")}
+  if(t===4){const d=ch([3,4,5,6,8]),n=rnd(1,d-1);
+   return mc("What fraction is shaded?",fbar(n,d),`${n}/${d}`,[`${d-n}/${d}`,`${n}/${d+1}`,`${d}/${n}`,`1/${d}`].filter(x=>x!==`${n}/${d}`),`${n} of the ${d} equal parts are shaded.`)}
+  if(t===5){const d=ch([5,6,8,10,12]),ns=pick(Array.from({length:d-1},(_,i)=>i+1),4),big=Math.random()<.5,s=ns.slice().sort((a,b)=>a-b),ans=big?s[3]:s[0];
+   return mc(`Which fraction is the ${big?"BIGGEST":"SMALLEST"}?`,ns.map(n=>fr(n,d)).join(" &nbsp; "),`${ans}/${d}`,ns.filter(n=>n!==ans).map(n=>`${n}/${d}`),"Same bottom number: compare the top numbers.")}
+  return ch([mc("Equal fractions","Which fraction is equal to "+fr(1,2)+"?","2/4","1/3,2/3,1/4,3/8".split(","),"Half of 4 pieces is 2 pieces."),
+   mc("Equal fractions","Which fraction is equal to "+fr(1,4)+"?","2/8","1/8,2/4,4/1,3/4".split(","),"Cut each quarter in half: 2 of 8 pieces."),
+   mc("Quick question","In "+fr(3,5)+", what does the 5 tell us?","the whole is cut into 5 equal parts","we have 5 parts,there are 3 wholes,it is bigger than 1".split(",")),
+   mc("Quick question","Which is the biggest?","1/2","1/3,1/5,1/10".split(","),"The smaller the bottom number, the bigger the piece."),
+   mc("Quick question","Which is the smallest?","1/12","1/2,1/4,1/6".split(","),"Twelve pieces are tiny pieces!"),
+   mc("Quick question","How many quarters make a whole?","4","2,3,8".split(",")),
+   mc("Quick question","Which is bigger: 4 quarters or 1 whole?","They are equal","4 quarters,1 whole,You can't tell".split(","),"4/4 = 1 whole.")]);
+ }},
 {id:"m4-round",t:"Rounding Off",d:"Nearest 10, 100 and 1 000 with the rounding rhyme",mode:"rush",time:15000,ask:"Round off:",
  learn:{intro:'Use the <span class="hl">rounding rhyme</span>!<br><b>0 to 4, slide to the floor. 5 to 9, climb the vine!</b>',
   boxes:[
@@ -2441,6 +2851,98 @@ const M4=[
    mc("Quick question","What does the small 2 in m&sup2; mean?","squared","two metres,double,second".split(","))]);
  }},
 
+{id:"m4-capvol",t:"Capacity & Volume",d:"Millilitres, litres and reading measuring jugs",mode:"battle",monster:{n:"The Leaky Bucket",line:"spills everything everywhere",c:"#7fd3e8"},
+ learn:{intro:'<span class="hl">Capacity</span> is how much a container <b>can hold</b> when it is full. <span class="hl">Volume</span> is how much space something takes up, like the amount of liquid that is <b>actually in</b> it.',
+  boxes:[
+   {h:"Units",b:'<b>millilitres (ml)</b>: small amounts<br><b>litres (l)</b>: big amounts<br><b>1 l = 1 000 ml</b>'},
+   {h:"Handy amounts",b:'&frac12; l = 500 ml<br>&frac14; l = 250 ml<br>&frac34; l = 750 ml'},
+   {h:"Converting",b:'litres &rarr; ml: <b>&times; 1 000</b><br><span class="ex">3 l = 3 000 ml</span><br>ml &rarr; litres: <b>&divide; 1 000</b><br><span class="ex">5 000 ml = 5 l</span>'},
+   {h:"Measuring tools",b:'measuring jug &middot; measuring cup &middot; measuring spoons &middot; measuring cylinder'},
+   {h:"Estimating",b:'teaspoon &asymp; 5 ml<br>cup &asymp; 250 ml<br>cooldrink can &asymp; 330 ml<br>milk bottle &asymp; 1 l or 2 l<br>bucket &asymp; 10 l'},
+   {h:"Reading a jug",b:'Look at the level <b>straight on</b> (eye level). Work out what each small line is worth first!'+jugSvg(600,1000,100)+'This jug holds <b>600 ml</b>.'},
+   {h:"Common mistake",b:'Don\'t mix units! Change them to the <b>same unit</b> before you add or compare.<br><span class="ex">1 l + 250 ml = 1 000 ml + 250 ml = 1 250 ml</span>'}],
+  warn:"1 litre = 1 000 millilitres. Small amounts in ml, big amounts in l."},
+ gen(){
+  const t=rnd(0,7);
+  if(t===0){const l=rnd(1,9);return mc("Convert:",`${l} l = ___ ml`,`${nn(l*1000)} ml`,[`${l*100} ml`,`${l*10} ml`,`${nn(l*10000)} ml`],`${l} &times; 1 000 = ${nn(l*1000)} ml`)}
+  if(t===1){const l=rnd(2,9);return mc("Convert:",`${nn(l*1000)} ml = ___ l`,`${l} l`,[`${l*10} l`,`${l*100} l`,`${l+1} l`],`${nn(l*1000)} &divide; 1 000 = ${l} l`)}
+  if(t===2){const w=rnd(1,4),p=ch([[250,"&frac14;"],[500,"&frac12;"],[750,"&frac34;"]]),ans=w*1000+p[0];
+   return mc("Convert:",`${w}${p[1]} l = ___ ml`,`${nn(ans)} ml`,[`${w}${p[0]} ml`,`${nn(ans+250)} ml`,`${nn(w*100+p[0])} ml`],`${w} l = ${nn(w*1000)} ml, ${p[1]} l = ${p[0]} ml`)}
+  if(t===3){const max=ch([500,1000,1000,2000]),step=max===500?50:max===2000?250:100,lev=step*rnd(1,max/step-1);
+   return mc("How much liquid is in the jug?",jugSvg(lev,max,step),`${nn(lev)} ml`,[`${nn(lev+step)} ml`,`${nn(Math.max(step,lev-step))} ml`,`${nn(lev/step)} ml`,`${nn(lev*2)} ml`].filter(x=>x!==`${nn(lev)} ml`),`Each line is ${step} ml.`)}
+  if(t===4){const a=ch([250,500,750,300,400,600]),b=ch([250,500,750,800,900]),s=a+b;
+   return mc("Add:",`${a} ml + ${b} ml = ?`,s>=1000?`${s===1000?"1 l":"1 l "+(s-1000)+" ml"}`:`${s} ml`,[`${s+100} ml`,`${a+b-100} ml`,s>=1000?`${s} l`:`${s} l`,`${a}${b} ml`],s>=1000?`${s} ml = 1 000 ml + ${s-1000} ml`:"")}
+  if(t===5){const it=ch([["a teaspoon of medicine","5 ml"],["a cup of tea","250 ml"],["a can of cooldrink","330 ml"],["a bucket of water","10 l"],["a bath full of water","150 l"],["a big bottle of milk","2 l"]]);
+   return mc("Best estimate:",`How much does ${it[0]} hold?`,it[1],["5 ml","250 ml","330 ml","10 l","150 l","2 l"].filter(x=>x!==it[1]),"Think about how big the container really is.")}
+  if(t===6){const c=ch([[1000,250],[2000,250],[1000,200],[2000,500],[1500,250],[3000,500]]),n=c[0]/c[1];
+   return mc("CUBES word problem",`A jug holds ${c[0]>=1000&&c[0]%1000===0?c[0]/1000+" l":nn(c[0])+" ml"}. How many ${c[1]} ml glasses can you fill?`,`${n}`,[`${n+1}`,`${n-1}`,`${n*2}`,`${c[1]/50}`],`${nn(c[0])} ml &divide; ${c[1]} ml = ${n}`)}
+  return ch([mc("ml or l?","What unit for a glass of juice?","millilitres (ml)","litres (l),centimetres (cm),kilograms (kg)".split(",")),
+   mc("ml or l?","What unit for a swimming pool?","litres (l)","millilitres (ml),grams (g),metres (m)".split(",")),
+   mc("Quick question","Capacity is...","how much a container can hold","how long something is,how heavy something is,how hot something is".split(",")),
+   mc("Quick question","Which tool measures capacity?","a measuring jug","a ruler,a scale,a thermometer".split(",")),
+   mc("Compare","Which is MORE: 1 l or 900 ml?","1 l","900 ml,They are equal".split(","),"1 l = 1 000 ml, which is more than 900 ml."),
+   mc("Compare","Which is MORE: 1 500 ml or 2 l?","2 l","1 500 ml,They are equal".split(","),"2 l = 2 000 ml."),
+   mc("Compare","Which is equal to 500 ml?","&frac12; l","&frac14; l,5 l,50 l".split(","))]);
+ }},
+{id:"m4-data",t:"Data Handling",d:"Tally marks, pictographs and bar graphs",mode:"battle",monster:{n:"Graph Gremlin",line:"mixes up every bar",c:"#c6a0ff"},
+ learn:{intro:'<span class="hl">Data</span> is information we collect, like how many learners like each sport. We sort it and show it so it is easy to read.',
+  boxes:[
+   {h:"The data cycle",b:'1. Ask a <b>question</b><br>2. <b>Collect</b> the data<br>3. <b>Organise</b> it (tally table)<br>4. <b>Represent</b> it (graph)<br>5. <b>Analyse</b> and answer the question'},
+   {h:"Tally marks",b:'One line for each count. The <b>5th</b> line crosses the other four.<br>'+tallyHtml(7)+' = 7'},
+   {h:"Frequency table",b:'Frequency means <b>how many times</b>. Count the tally marks and write the number.'},
+   {h:"Pictograph",b:'Uses pictures. Always read the <b>key</b>!<br><span class="ex">Key: &#9733; = 2 learners</span><br>&#9733;&#9733;&#9733; = 6 learners'},
+   {h:"Bar graph",b:'Has a <b>title</b>, labels on both <b>axes</b>, and bars with <b>equal gaps</b>. Read across from the top of each bar.'+barSvg([["Red",4],["Blue",7],["Green",3]],"Favourite colour")},
+   {h:"Reading data",b:'<b>Most popular</b> = tallest bar<br><b>Least popular</b> = shortest bar<br><b>How many more?</b> Subtract.<br><b>How many altogether?</b> Add all.'}],
+  warn:"Always check the KEY on a pictograph and the SCALE on a bar graph."},
+ gen(){
+  const sets=[["Favourite fruit",["Apples","Bananas","Grapes","Oranges"]],["Favourite sport",["Soccer","Netball","Cricket","Swimming"]],["Pets in our class",["Dogs","Cats","Fish","Birds"]],["Favourite colour",["Red","Blue","Green","Yellow"]],["Ice-cream flavour",["Vanilla","Chocolate","Strawberry","Mint"]]];
+  const [title,cats]=ch(sets);let vals=cats.map(()=>rnd(2,12));while(new Set(vals).size<4)vals=cats.map(()=>rnd(2,12));
+  const data=cats.map((c,i)=>[c,vals[i]]),t=rnd(0,5),mx=Math.max(...vals),mn=Math.min(...vals);
+  const g=barSvg(data,title),i=rnd(0,3),j=(i+rnd(1,3))%4;
+  if(t===0)return mc("Read the bar graph:",g+`How many chose <b>${cats[i]}</b>?`,vals[i],[vals[i]+1,vals[i]-1,vals[j],vals[i]+2],"Read across from the top of the bar.");
+  if(t===1){const most=Math.random()<.5;return mc("Read the bar graph:",g+`Which was the ${most?"MOST":"LEAST"} popular?`,cats[vals.indexOf(most?mx:mn)],cats,most?"The tallest bar.":"The shortest bar.")}
+  if(t===2){const d=Math.abs(vals[i]-vals[j]);return mc("Read the bar graph:",g+`How many more chose <b>${vals[i]>=vals[j]?cats[i]:cats[j]}</b> than <b>${vals[i]>=vals[j]?cats[j]:cats[i]}</b>?`,d,[vals[i]+vals[j],d+1,Math.max(vals[i],vals[j]),d+2],"How many more? Subtract the smaller from the bigger.")}
+  if(t===3){const s=vals.reduce((a,b)=>a+b,0);return mc("Read the bar graph:",g+"How many were asked altogether?",s,[s+1,s-2,mx,s+10],`${vals.join(" + ")} = ${s}`)}
+  if(t===4){const n=rnd(3,18);return mc("Count the tally marks:",`<div style="font-size:1.6em;margin:8px 0">${tallyHtml(n)}</div>`,n,[n+1,n-1,n+5,Math.floor(n/5)+n%5],"Each crossed group is 5.")}
+  const k=ch([2,5,10]),c=rnd(2,6),sy="&#9733;";
+  return mc("Pictograph:",`<div style="font-size:1.5em;margin:6px 0;letter-spacing:4px">${sy.repeat(c)}</div>Key: ${sy} = ${k} learners. How many learners?`,c*k,[c,c*k+k,c+k,c*k-k],`${c} stars &times; ${k} = ${c*k}`);
+ }},
+{id:"m4-cubes",t:"CUBES Word Problems",d:"Circle, Underline, Box, Evaluate, Solve",mode:"battle",monster:{n:"The Word-Problem Wizard",line:"hides sums inside stories",c:"#ffd36b"},
+ learn:{intro:'Word problems are maths hiding in a story. Use <span class="hl">CUBES</span> to find the sum every time!',
+  boxes:[
+   {h:"C = Circle",b:'<b>Circle</b> the numbers (and units).<br><span class="ex">Thabo has <span class="circ" style="width:auto;padding:0 6px">24</span> marbles.</span>'},
+   {h:"U = Underline",b:'<b>Underline</b> the question. What must you find?<br><span class="ex"><u>How many marbles altogether?</u></span>'},
+   {h:"B = Box",b:'<b>Box</b> the key words that tell you the operation.<br><span class="ex"><span style="border:2px solid #1c2230;padding:0 4px">altogether</span> &rarr; add</span>'},
+   {h:"E = Evaluate",b:'<b>Evaluate</b> (think!) and <b>Eliminate</b>: cross out information you don\'t need. Decide on + &minus; &times; or &divide;.'},
+   {h:"S = Solve",b:'<b>Solve</b> the sum, then <b>check</b> your answer. Does it make sense? Write the units!'},
+   {h:"Key words",b:'<b>+</b> altogether, total, sum, in all, plus<br><b>&minus;</b> left, difference, fewer, how many more, remain<br><b>&times;</b> each (to find the total), times, groups of, double<br><b>&divide;</b> share equally, split, each get, half'}],
+  warn:"C-U-B-E-S: Circle numbers, Underline question, Box key words, Evaluate, Solve and check."},
+ bank:[
+  {ask:"CUBES",q:"What does the <b>C</b> in CUBES stand for?",a:"Circle the numbers",opts:["Circle the numbers","Count the words","Cross out the question","Check the units"]},
+  {ask:"CUBES",q:"What does the <b>U</b> in CUBES stand for?",a:"Underline the question",opts:["Underline the question","Use a calculator","Underline every number","Undo the sum"]},
+  {ask:"CUBES",q:"What does the <b>B</b> in CUBES stand for?",a:"Box the key words",opts:["Box the key words","Bold the answer","Break the numbers","Box the numbers"]},
+  {ask:"CUBES",q:"What does the <b>E</b> in CUBES stand for?",a:"Evaluate and eliminate",opts:["Evaluate and eliminate","Estimate the answer","Erase everything","Explain the story"]},
+  {ask:"CUBES",q:"What does the <b>S</b> in CUBES stand for?",a:"Solve and check",opts:["Solve and check","Subtract","Skip it","Spell the numbers"]},
+  {ask:"Key words",q:"'How many are <b>left</b>?' tells you to...",a:"subtract",opts:["subtract","add","multiply","divide"]},
+  {ask:"Key words",q:"'How many <b>altogether</b>?' tells you to...",a:"add",opts:["add","subtract","divide","multiply"]},
+  {ask:"Key words",q:"'<b>Share equally</b> between 4 friends' tells you to...",a:"divide",opts:["divide","add","multiply","subtract"]},
+  {ask:"Key words",q:"'6 boxes with 8 pens <b>in each</b>. How many pens?' tells you to...",a:"multiply",opts:["multiply","add","subtract","divide"]},
+  {ask:"Key words",q:"'What is the <b>difference</b> between 50 and 32?' tells you to...",a:"subtract",opts:["subtract","add","multiply","divide"]},
+  {ask:"CUBES",q:"Why do we eliminate some information?",a:"Some numbers are not needed to answer the question",opts:["Some numbers are not needed to answer the question","To make the story shorter","Because it is spelt wrong","We never eliminate anything"]}],
+ gen(){
+  const N=ch(["Thabo","Lerato","Sipho","Amy","Zanele","Liam","Ayanda","Mia"]),t=rnd(0,3),ask=rnd(0,2);let story,ans,op,key,why;
+  if(t===0){const a=rnd(120,780),b=rnd(45,400),it=ch(["stickers","marbles","shells","cards"]);ans=a+b;op="add";key=ch(["altogether","in total","in all"]);
+   story=`${N} has ${a} ${it}. A friend gives ${N} ${b} more ${it}${Math.random()<.5?` on ${ch(["Monday","Friday","Saturday"])}`:""}. How many ${it} does ${N} have ${key}?`;why=`${a} + ${b} = ${ans} ${it}`}
+  else if(t===1){const a=rnd(300,950),b=rnd(60,a-50),it=ch(["sweets","tickets","apples","rands"]),x=rnd(3,9);ans=a-b;op="subtract";key="left";
+   story=`A shop had ${a} ${it}. ${x} learners came in and they bought ${b} ${it}. How many ${it} are ${key}?`;why=`${a} &minus; ${b} = ${ans}. The ${x} learners is extra information!`}
+  else if(t===2){const g=rnd(3,9),e=rnd(6,15),it=ch(["eggs","pencils","biscuits","seeds"]),box=ch(["boxes","packets","rows","trays"]);ans=g*e;op="multiply";key="each";
+   story=`There are ${g} ${box}. There are ${e} ${it} in ${key} one. How many ${it} are there?`;why=`${g} &times; ${e} = ${ans} ${it}`}
+  else{const p=rnd(2,8),e=rnd(5,12),tot=p*e,it=ch(["sweets","cards","stickers","crayons"]);ans=e;op="divide";key="share equally";
+   story=`${N} has ${tot} ${it} and wants to ${key} them between ${p} friends. How many ${it} does each friend get?`;why=`${tot} &divide; ${p} = ${ans}`}
+  if(ask===0)return mc("CUBES word problem",story,ans,[ans+10,ans-1,ans+1,ans*2,ans+100].filter(v=>v>0&&v!==ans),why,"Circle the numbers, box the key word, then decide + − × ÷.");
+  if(ask===1)return mc("Which operation do you need?",story,op,["add","subtract","multiply","divide"],`Box the key word: <b>${key}</b> means ${op}.`);
+  return mc("Box the key word:",story,key,["has","there","how","friend","bought","are","many","wants"].filter(w=>!key.includes(w)),`<b>${key}</b> tells you to ${op}.`);
+ }},
 {id:"m4-final",t:"Final Exam Boss",d:"Random questions from every maths topic",mode:"battle",final:true,monster:{n:"Professor Plus-Minus",line:"has a sum for everything",c:"#ff7a7a"}}
 ];
 
@@ -2681,7 +3183,7 @@ const NS4=[
 /* =================== GRADE 4: SOCIAL SCIENCES (GEOGRAPHY) =================== */
 const GEO4=[
 {id:"g4-groups",t:"Food Groups",d:"The food pyramid and healthy servings",mode:"sort",ask:"Which food group is this?",
- learn:{intro:'To stay healthy and strong, our bodies need <span class="hl">different kinds of food</span> that do different jobs. These are the <b>food groups</b>.',
+ learn:{hero:pyramidSvg(),intro:'To stay healthy and strong, our bodies need <span class="hl">different kinds of food</span> that do different jobs. These are the <b>food groups</b>.',
   boxes:[
    {h:"Fruit & vegetables",b:'fruit, vegetables and salad<br><b>5 to 7 servings a day</b>'},
    {h:"Carbohydrates",b:'wholemeal cereal, bread, pasta, rice, potatoes<br><b>3 to 5 servings a day</b>'},
@@ -2698,6 +3200,24 @@ const GEO4=[
   {w:"milk",c:"dairy"},{w:"cheese",c:"dairy"},{w:"yoghurt",c:"dairy"},
   {w:"chicken",c:"prot"},{w:"fish",c:"prot"},{w:"eggs",c:"prot"},{w:"beans",c:"prot"},{w:"nuts",c:"prot"},{w:"beef",c:"prot"},
   {w:"chips",c:"fat"},{w:"sweets",c:"fat"},{w:"fizzy drink",c:"fat"},{w:"chocolate",c:"fat"},{w:"cooking oil",c:"fat"},{w:"doughnut",c:"fat"}]},
+
+{id:"g4-pyramid",t:"Build the Pyramid",d:"Drop each food onto the right level of the food pyramid",mode:"sort",layout:"pyramid",ask:"Tap the pyramid level where this food belongs!",
+ learn:{hero:pyramidSvg(),intro:'Time to build a <span class="hl">healthy food pyramid</span>! Each food goes on its own level. Watch the pyramid fill up as you play.',
+  boxes:[
+   {h:"The Food Pyramid",b:'Five levels. The wider the level, the more of that food we should eat.'},
+   {h:"Bottom = eat the MOST",b:'<b>Fruit & vegetables</b> make the wide base: 5 to 7 servings a day.<br>Then <b>carbohydrates</b> for energy: 3 to 5 a day.'},
+   {h:"Middle",b:'<b>Dairy</b> for strong bones and teeth: 2 to 3 a day.<br><b>Protein</b> to help us grow: 2 a day.'},
+   {h:"Top = eat the LEAST",b:'The tiny tip is <b>fats, oils and sugar</b>: only once or twice a week.'},
+   {h:"How to play",b:'A food pops up. Tap the <b>level</b> of the pyramid where it belongs. Get 3 in a row for a <b>COMBO</b> and earn coins. Every correct food gets stacked onto your pyramid!'}],
+  warn:"Tip: Is it a treat? Top. Is it from a plant you could pick? Bottom."},
+ bins:[{c:"fat",l:"Fats, oils & sugar",s:"once or twice a week"},{c:"prot",l:"Protein",s:"2 a day"},{c:"dairy",l:"Dairy",s:"2–3 a day"},{c:"carb",l:"Carbohydrates",s:"3–5 a day"},{c:"fv",l:"Fruit & vegetables",s:"5–7 a day"}],
+ tips:{fv:"Fruit and vegetables are the wide bottom of the pyramid: 5 to 7 a day.",carb:"Carbohydrates give energy: 3 to 5 servings a day.",dairy:"Dairy makes strong bones and teeth: 2 to 3 a day.",prot:"Protein helps us grow: 2 servings a day.",fat:"Fats, oils and sugar are the tiny top: only once or twice a week."},
+ items:[
+  {w:"🍎 apple",c:"fv"},{w:"🍌 banana",c:"fv"},{w:"🥕 carrot",c:"fv"},{w:"🥦 broccoli",c:"fv"},{w:"🍅 tomato",c:"fv"},{w:"🥬 spinach",c:"fv"},{w:"🍊 orange",c:"fv"},{w:"🍉 watermelon",c:"fv"},{w:"🥭 mango",c:"fv"},{w:"🌽 sweetcorn",c:"fv"},
+  {w:"🍞 bread",c:"carb"},{w:"🍝 pasta",c:"carb"},{w:"🍚 rice",c:"carb"},{w:"🥔 potato",c:"carb"},{w:"🥣 cereal",c:"carb"},{w:"🍲 pap",c:"carb"},{w:"🫓 roti",c:"carb"},
+  {w:"🥛 milk",c:"dairy"},{w:"🧀 cheese",c:"dairy"},{w:"🍦 plain yoghurt",c:"dairy"},{w:"🥛 maas",c:"dairy"},
+  {w:"🍗 chicken",c:"prot"},{w:"🐟 fish",c:"prot"},{w:"🥚 egg",c:"prot"},{w:"🫘 beans",c:"prot"},{w:"🥜 peanuts",c:"prot"},{w:"🥩 steak",c:"prot"},{w:"🌭 boerewors",c:"prot"},
+  {w:"🍬 sweets",c:"fat"},{w:"🍫 chocolate",c:"fat"},{w:"🍟 chips",c:"fat"},{w:"🥤 fizzy drink",c:"fat"},{w:"🍩 doughnut",c:"fat"},{w:"🧈 butter",c:"fat"},{w:"🍰 cake",c:"fat"},{w:"🫒 cooking oil",c:"fat"}]},
 
 {id:"g4-process",t:"Processed Food",d:"Unprocessed, processed and ultra-processed",mode:"battle",monster:{n:"Junk-o-Tron",line:"wraps everything in plastic",c:"#c0c8d8"},
  learn:{intro:'Some food comes straight from farms and nature. Some is <span class="hl">changed</span> before we eat it.',
@@ -2721,6 +3241,13 @@ const GEO4=[
   {ask:"Quick question",q:"Which foods are usually highest in nutrients and fibre?",a:"Unprocessed foods",opts:["Unprocessed foods","Ultra-processed foods","Sweets","Fizzy drinks"]},
   {ask:"Why do we process food?",q:"Pick the TRUE reason:",a:"To make it last longer",opts:["To make it last longer","To make it more dangerous","To remove all taste","To make it grow"]},
   {ask:"Why do we process food?",q:"Pick the TRUE reason:",a:"To kill harmful bacteria",opts:["To kill harmful bacteria","To add germs","To make it heavier","To make it colder"]},
+  {ask:"Unprocessed or processed?",q:"pasteurised milk",a:"Processed",opts:["Unprocessed","Processed","Ultra-processed"]},
+  {ask:"Unprocessed or processed?",q:"tomato sauce made from tomatoes",a:"Processed",opts:["Unprocessed","Processed","Ultra-processed"]},
+  {ask:"Unprocessed or processed?",q:"a handful of nuts and seeds",a:"Unprocessed",opts:["Unprocessed","Processed","Ultra-processed"]},
+  {ask:"Why do we process food?",q:"Pick the TRUE reason:",a:"To make it more convenient to prepare and eat",opts:["To make it more convenient to prepare and eat","To make it grow faster","To remove all nutrients","To make it more expensive"]},
+  {ask:"Why do we process food?",q:"Pick the TRUE reason:",a:"To improve the taste and texture",opts:["To improve the taste and texture","To make it go off faster","To add bacteria","To make it smaller"]},
+  {ask:"Quick question",q:"Why do our bodies need different food groups?",a:"Different foods do different jobs: energy, growing and fighting sickness",opts:["Different foods do different jobs: energy, growing and fighting sickness","So meals look colourful","Only so we feel full","They all do exactly the same job"]},
+  {ask:"Quick question",q:"Which is the healthier choice?",a:"More unprocessed food, less highly processed food",opts:["More unprocessed food, less highly processed food","Only ultra-processed food","Only sweets and chips","Never eat fruit"]},
   {ask:"How many servings?",q:"Fruit and vegetables each day:",a:"5 to 7",opts:["5 to 7","1","2","10 to 12"]},
   {ask:"How many servings?",q:"Carbohydrates (bread, pasta, rice) each day:",a:"3 to 5",opts:["3 to 5","1","8 to 10","0"]},
   {ask:"How many servings?",q:"Dairy products each day:",a:"2 to 3",opts:["2 to 3","7 to 9","none","10"]},
@@ -2795,12 +3322,18 @@ const GEO4=[
   {q:"Sheep are usually found in which parts of SA?",o:["the drier parts","the wettest forests","the cities"],a:"the drier parts"},
   {q:"'Reared' means the farmer...",o:["raises and takes care of it from young","sells it at once","sets it free"],a:"raises and takes care of it from young"},
   {q:"Goats are reared mostly for their...",o:["milk","wool","eggs"],a:"milk"},
+  {q:"Which animal gives us gelatine?",o:["pig","sheep","goat"],a:"pig"},
+  {q:"Butter, cheese and yoghurt come from...",o:["dairy cattle","pigs","sheep"],a:"dairy cattle"},
+  {q:"Goat skin can be made into...",o:["leather","wool","gelatine"],a:"leather"},
+  {q:"Wool is used to make...",o:["clothes and blankets","shoes and bags","cheese"],a:"clothes and blankets"},
+  {q:"Leather is used to make...",o:["shoes, belts and bags","jerseys","yoghurt"],a:"shoes, belts and bags"},
+  {q:"Why can beef cattle live in many provinces?",o:["they survive in hot conditions","they need snow","they live in sheds"],a:"they survive in hot conditions"},
   {q:"Stock farming is keeping...",o:["animals","only crops","only machines"],a:"animals"}]},
 
 {id:"g4-water",t:"Water & the Water Cycle",d:"Where Earth's water is and how it moves",mode:"match",ask:"Which word matches?",
  learn:{intro:'There would be no life on Earth without <span class="hl">water</span>. We use it in homes, on farms and in factories.',
   boxes:[
-   {h:"Where is Earth's water?",b:'about <b>96.5%</b> in the oceans<br>about <b>1.7%</b> in ice caps and glaciers<br>about <b>1.7%</b> in lakes, rivers and soil<br><b>97%</b> is salt water, only <b>3%</b> is fresh water!'},
+   {h:"Where is Earth's water?",b:'about <b>96.5%</b> in the oceans<br>about <b>1.7%</b> in ice caps and glaciers<br>about <b>1.7%</b> in lakes, rivers and soil<br>about <b>0.001%</b> is water vapour in the air<br><b>97%</b> is salt water, only <b>3%</b> is fresh water!'},
    {h:"Clean water",b:'We need clean water to stay healthy. Dirty water spreads diseases. Don\'t waste water or make it dirty.'},
    {h:"Evaporation",b:'The Sun heats water and it rises as water vapour. Warm air rises.'},
    {h:"Condensation",b:'Water vapour cools and forms clouds.'},
@@ -2819,7 +3352,9 @@ const GEO4=[
   {t:"Oceans",d:"Where about 96.5% of Earth's water is"},
   {t:"Fresh water",d:"Only about 3% of Earth's water"},
   {t:"Salt water",d:"About 97% of Earth's water"},
-  {t:"Dirty water",d:"Spreads diseases"}]},
+  {t:"Dirty water",d:"Spreads diseases"},
+  {t:"Water vapour",d:"Only about 0.001% of Earth's water, floating in the air"},
+  {t:"Warm air rises",d:"Carries water vapour up into the sky"}]},
 
 {id:"g4-taps",t:"Getting Water",d:"Boreholes, wells, dams and how water reaches taps",mode:"rush",time:12000,ask:"Getting water:",
  learn:{intro:'How does water get from the rain to our <span class="hl">taps</span>?',
@@ -2847,6 +3382,10 @@ const GEO4=[
   {q:"Where there are no taps or boreholes, water comes by...",o:["water truck","ship","train"],a:"water truck"},
   {q:"Where is rainwater stored underground?",o:["between rocks","inside trees","in clouds"],a:"between rocks"},
   {q:"Why do we need clean water?",o:["to stay healthy","to make it taste salty","to grow taller"],a:"to stay healthy"},
+  {q:"We use water in our homes, on farms and in...",o:["factories","clouds","rocks"],a:"factories"},
+  {q:"Dirty water spreads...",o:["diseases","sunshine","nutrients"],a:"diseases"},
+  {q:"How can we look after our water?",o:["don't waste it or make it dirty","leave taps running","throw litter in rivers"],a:"don't waste it or make it dirty"},
+  {q:"Water trucks deliver water...",o:["every few days","once a year","never"],a:"every few days"},
   {q:"Water first comes to us as...",o:["rain","snow only","ice"],a:"rain"}]},
 
 {id:"g4-final",t:"Final Exam Boss",d:"Random questions from every geography topic",mode:"battle",final:true,monster:{n:"The Drought Dragon",line:"wants every drop of water",c:"#f2a65a"}}
@@ -2959,17 +3498,300 @@ const ICONS={
  talk:'<svg viewBox="0 0 24 24"><path d="M4 5h16v10H10l-5 4v-4H4z" fill="#fff" stroke="#1c2230" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" stroke="#1c2230" stroke-width="1.6" stroke-linecap="round"/></svg>',
  heart:'<svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.8-7.5-10.2A4.2 4.2 0 0 1 12 7.2a4.2 4.2 0 0 1 7.5 2.6C19.5 15.2 12 20 12 20z" fill="#fff" stroke="#1c2230" stroke-width="1.6" stroke-linejoin="round"/></svg>'
 };
+/* =================== GRADE 5: GEOGRAPHY =================== */
+const RAINP={summer:[110,95,85,50,20,8,8,10,25,70,105,115],winter:[15,17,20,45,70,90,85,75,45,30,20,15],allyear:[60,65,70,65,60,55,55,60,60,65,62,58]};
+const MON="JFMAMJJASOND".split("");
+function rainSvg(vals,title){const mx=Math.max(...vals),top=Math.ceil(mx/20)*20,y=v=>160-v/top*130;let g="";
+ for(let v=0;v<=top;v+=top>100?40:20)g+=`<line x1="34" y1="${y(v)}" x2="330" y2="${y(v)}" stroke="#dfe7f4"/><text x="30" y="${y(v)+4}" text-anchor="end" font-family="Patrick Hand,cursive" font-size="12" fill="#1c2230">${v}</text>`;
+ vals.forEach((v,i)=>{const x=40+i*24;g+=`<rect x="${x}" y="${y(v)}" width="17" height="${160-y(v)}" fill="#4f8ef7" stroke="#1c2230" stroke-width="1.5"/><text x="${x+8.5}" y="176" text-anchor="middle" font-family="Patrick Hand,cursive" font-size="13" fill="#1c2230">${MON[i]}</text>`});
+ return `<svg viewBox="0 0 340 196" width="340" style="max-width:100%;display:block;margin:6px auto"><text x="180" y="14" text-anchor="middle" font-family="Kalam,cursive" font-weight="700" font-size="14" fill="#1c2230">${title||"Rainfall (mm) per month"}</text><line x1="34" y1="24" x2="34" y2="160" stroke="#1c2230" stroke-width="2"/><line x1="34" y1="160" x2="330" y2="160" stroke="#1c2230" stroke-width="2"/>${g}<text x="180" y="193" text-anchor="middle" font-family="Patrick Hand,cursive" font-size="11" fill="#56607a">months of the year</text></svg>`}
+const WXSYM={sunny:["☀️","Sunny"],pcloud:["⛅","Partly cloudy"],cloud:["☁️","Cloudy"],rain:["🌧️","Rain"],storm:["⛈️","Thunderstorms"],snow:["❄️","Snow"],wind:["🌬️","Windy"],fog:["🌫️","Fog"]};
+const GEO5=[
+{id:"w5-elements",t:"Weather Elements",d:"Temperature, wind, cloud cover, rainfall; rain, hail and snow",mode:"battle",monster:{n:"Stormzilla",line:"brews thunder in its belly",c:"#9fb7d9"},
+ learn:{intro:'<span class="hl">Weather</span> is what the air (atmosphere) is like at a certain place and time: hot or cold, wet or dry, windy or calm.',
+  boxes:[
+   {h:"Temperature",b:'How <b>hot or cold</b> the air is. Measured in <b>degrees Celsius (°C)</b>.<br>Maximum = highest temperature of the day. Minimum = lowest (usually just before sunrise).'},
+   {h:"Wind",b:'<b>Moving air</b>. We describe its <b>speed</b> (km/h) and <b>direction</b>. A wind is named after the direction it blows <b>FROM</b>: a south wind blows from the south.'},
+   {h:"Cloud cover",b:'How much of the sky is covered by cloud. Measured in <b>eighths (oktas)</b>: 0/8 = clear sky, 8/8 = totally overcast.'},
+   {h:"Rainfall",b:'How much rain falls, measured in <b>millimetres (mm)</b> with a rain gauge.'},
+   {h:"Precipitation",b:'Water that falls from clouds to the ground:<br><b>Rain</b>: drops of water<br><b>Hail</b>: balls of ice from thunderstorms (often summer on the Highveld)<br><b>Snow</b>: ice crystals when it is very cold (Drakensberg in winter)'},
+   {h:"How rain forms",b:'Sun heats water &rarr; it <b>evaporates</b> &rarr; warm moist air rises and cools &rarr; it <b>condenses</b> into clouds &rarr; drops get heavy &rarr; <b>precipitation</b>.'}],
+  warn:"Wind is named after where it comes FROM. A north wind blows from the north, towards the south."},
+ bank:[
+  {ask:"Weather elements",q:"Which of these is NOT a weather element?",a:"Soil type",opts:["Soil type","Temperature","Wind","Rainfall"]},
+  {ask:"Weather elements",q:"Temperature is measured in...",a:"degrees Celsius (°C)",opts:["degrees Celsius (°C)","millimetres (mm)","kilometres per hour","eighths"]},
+  {ask:"Weather elements",q:"Rainfall is measured in...",a:"millimetres (mm)",opts:["millimetres (mm)","degrees Celsius","litres","kilograms"]},
+  {ask:"Weather elements",q:"Cloud cover is measured in...",a:"eighths (oktas)",opts:["eighths (oktas)","millimetres","degrees","metres"]},
+  {ask:"Weather elements",q:"A sky with 8/8 cloud cover is...",a:"completely overcast",opts:["completely overcast","clear","half cloudy","foggy"]},
+  {ask:"Weather elements",q:"A sky with 0/8 cloud cover is...",a:"clear, with no clouds",opts:["clear, with no clouds","completely overcast","stormy","snowing"]},
+  {ask:"Wind",q:"A south-east wind blows...",a:"from the south-east",opts:["from the south-east","towards the south-east","only in summer","in a circle"]},
+  {ask:"Wind",q:"Wind is...",a:"moving air",opts:["moving air","falling water","a type of cloud","hot sunlight"]},
+  {ask:"Precipitation",q:"Balls of ice that fall during thunderstorms are called...",a:"hail",opts:["hail","snow","dew","fog"]},
+  {ask:"Precipitation",q:"Where in South Africa does snow fall most often?",a:"On high mountains like the Drakensberg in winter",opts:["On high mountains like the Drakensberg in winter","On the Durban beachfront in summer","In the Kalahari in summer","Everywhere every day"]},
+  {ask:"Precipitation",q:"Which is NOT a type of precipitation?",a:"Wind",opts:["Wind","Rain","Hail","Snow"]},
+  {ask:"Precipitation",q:"Precipitation is...",a:"water falling from clouds to the ground",opts:["water falling from clouds to the ground","water flowing in a river","air moving fast","the temperature at night"]},
+  {ask:"Rain",q:"What happens FIRST when rain forms?",a:"The sun heats water and it evaporates",opts:["The sun heats water and it evaporates","Drops fall from clouds","Clouds form","Water runs into the sea"]},
+  {ask:"Temperature",q:"When is the minimum temperature usually recorded?",a:"Just before sunrise",opts:["Just before sunrise","At lunchtime","At 3 pm","At sunset"]},
+  {ask:"Temperature",q:"Max 28 °C, min 14 °C. What is the difference (range)?",a:"14 °C",opts:["14 °C","42 °C","28 °C","2 °C"],why:"28 − 14 = 14 °C"}]},
+
+{id:"w5-instruments",t:"Weather Instruments",d:"Which tool measures what, and in which unit",mode:"match",ask:"Which instrument or word matches?",
+ learn:{intro:'Weather stations use <span class="hl">instruments</span> to measure the weather. Each one measures a different element.',
+  boxes:[
+   {h:"Thermometer 🌡️",b:'Measures <b>temperature</b> in <b>°C</b>.'},
+   {h:"Rain gauge",b:'Collects and measures <b>rainfall</b> in <b>mm</b>.'},
+   {h:"Wind vane",b:'Shows wind <b>direction</b>. The arrow <b>points to where the wind comes from</b>.'},
+   {h:"Windsock",b:'Shows wind direction <b>and</b> roughly how strong it is (seen at airports).'},
+   {h:"Anemometer",b:'Spinning cups measure wind <b>speed</b> in <b>km/h</b>.'},
+   {h:"Barometer",b:'Measures <b>air pressure</b>. Falling pressure often means rain is coming.'},
+   {h:"Compass directions",b:'N, NE, E, SE, S, SW, W, NW. Never Eat Soggy Weetbix (N, E, S, W clockwise).'}],
+  warn:"Wind VANE = direction. ANEMOMETER = speed."},
+ pairs:[
+  {t:"Thermometer",d:"Measures temperature in °C"},
+  {t:"Rain gauge",d:"Measures rainfall in millimetres"},
+  {t:"Wind vane",d:"Shows the direction the wind comes from"},
+  {t:"Anemometer",d:"Spinning cups that measure wind speed in km/h"},
+  {t:"Windsock",d:"Cloth tube at airports showing wind direction and strength"},
+  {t:"Barometer",d:"Measures air pressure"},
+  {t:"Oktas",d:"Eighths used to measure cloud cover"},
+  {t:"°C",d:"The unit for temperature"},
+  {t:"mm",d:"The unit for rainfall"},
+  {t:"km/h",d:"The unit for wind speed"},
+  {t:"Weather station",d:"A place where all the weather instruments are kept"}]},
+
+{id:"w5-maps",t:"Weather Maps & Records",d:"Symbols, temperature tables and effects on daily life",mode:"battle",monster:{n:"Forecast Fiend",line:"always gets the weather wrong",c:"#ffd36b"},
+ learn:{intro:'<span class="hl">Weather maps</span> and <span class="hl">weather records</span> help us plan our day. They use symbols and tables.',
+  boxes:[
+   {h:"Weather symbols",b:Object.values(WXSYM).map(([e,l])=>`<span style="display:inline-block;min-width:46%;margin:2px 0">${e} ${l}</span>`).join("")},
+   {h:"Weather forecast",b:'A prediction of what the weather <b>will be</b>. Shown on TV, apps and in newspapers using a map of SA with symbols and min/max temperatures.'},
+   {h:"Reading a record",b:'A table shows each place\'s min and max temperature and a symbol.<br><b>Range</b> = max &minus; min.<br>Hottest = highest max. Coldest = lowest min.'},
+   {h:"Effects on daily life",b:'<b>Clothes</b>: jersey or shorts?<br><b>Sport</b>: matches cancelled by storms<br><b>Farming</b>: planting needs rain; hail ruins crops<br><b>Transport</b>: fog and snow close roads<br><b>Safety</b>: lightning, floods, heatwaves'}],
+  warn:"Range = max − min. Always check the unit (°C)."},
+ gen(){
+  const C=["Durban","Cape Town","Johannesburg","Bloemfontein","Gqeberha","Polokwane","Kimberley"];
+  const cs=pick(C,4),keys=Object.keys(WXSYM).filter(k=>k!=="snow");
+  const rows=cs.map(c=>{const mn=rnd(2,18),mx=mn+rnd(6,16);return {c,mn,mx,s:ch(keys)}});
+  if(new Set(rows.map(r=>r.mx)).size<4||new Set(rows.map(r=>r.mn)).size<4)rows.forEach((r,i)=>{r.mn=3+i*4+rnd(0,1);r.mx=r.mn+8+i*2});
+  const sh=shuffle(rows.slice());
+  const tab=`<table class="iot wx"><tr><th>City</th><th></th><th>Min</th><th>Max</th></tr>${sh.map(r=>`<tr><td>${r.c}</td><td style="font-size:1.4em">${WXSYM[r.s][0]}</td><td>${r.mn}°</td><td>${r.mx}°</td></tr>`).join("")}</table>`;
+  const t=rnd(0,4),r=ch(rows);
+  if(t===0){const h=rows.reduce((a,b)=>b.mx>a.mx?b:a);return mc("Read the weather record:",tab+"Which city will be the HOTTEST?",h.c,cs,"Look for the highest maximum.")}
+  if(t===1){const h=rows.reduce((a,b)=>b.mn<a.mn?b:a);return mc("Read the weather record:",tab+"Which city will have the COLDEST night?",h.c,cs,"Look for the lowest minimum.")}
+  if(t===2)return mc("Read the weather record:",tab+`What is the temperature range in <b>${r.c}</b>?`,`${r.mx-r.mn} °C`,[`${r.mx+r.mn} °C`,`${r.mx} °C`,`${r.mn} °C`,`${r.mx-r.mn+2} °C`],`${r.mx} &minus; ${r.mn} = ${r.mx-r.mn}`);
+  if(t===3){const k=ch(Object.keys(WXSYM));return mc("Weather symbols:",`<div style="font-size:3em">${WXSYM[k][0]}</div>What does this symbol mean?`,WXSYM[k][1],Object.values(WXSYM).map(x=>x[1]),"")}
+  return ch([mc("Daily life","Thunderstorms and lightning are forecast. What should a sports team do?","Postpone the match and stay indoors","Play on the open field,Shelter under a tall tree,Go swimming".split(",")),
+   mc("Daily life","Thick fog is forecast for the highway. What should drivers do?","Drive slowly with headlights on","Drive faster to get through it,Switch off the lights,Ignore it".split(",")),
+   mc("Daily life","Why does a farmer watch the forecast?","To know when to plant and to protect crops from hail or frost","To choose a TV show,To pick a car colour,It doesn't matter to farmers".split(",")),
+   mc("Daily life","Max 34 °C and sunny. What should you take to school?","A water bottle, hat and sunscreen","A thick jacket,Snow boots,Nothing at all".split(",")),
+   mc("Quick question","A weather forecast is...","a prediction of the weather to come","a record of last year's weather,a type of cloud,a weather instrument".split(","))]);
+ }},
+
+{id:"w5-rainfall",t:"Rainfall in South Africa",d:"Summer, winter and all-year rainfall; reading rainfall graphs",mode:"battle",monster:{n:"Drizzle Dragon",line:"decides where the rain falls",c:"#7fd3e8"},
+ learn:{intro:'Rain does not fall evenly across South Africa. The <span class="hl">east is wetter</span> and the <span class="hl">west is drier</span>.',
+  boxes:[
+   {h:"Summer rainfall",b:'Most of South Africa (the interior, north and east, e.g. Johannesburg, Pretoria, Durban). Rain comes from <b>afternoon thunderstorms</b> in summer (Nov&ndash;Mar). Winters are dry.'+rainSvg(RAINP.summer,"Summer rainfall")},
+   {h:"Winter rainfall",b:'The <b>south-western Cape</b> (Cape Town). Rain comes from <b>cold fronts</b> in winter (May&ndash;Aug). Summers are hot and dry.'+rainSvg(RAINP.winter,"Winter rainfall")},
+   {h:"All-year rainfall",b:'The <b>southern coast</b> (Garden Route: George, Knysna). Rain falls in <b>every season</b>.'+rainSvg(RAINP.allyear,"All-year rainfall")},
+   {h:"East wet, west dry",b:'Warm moist air from the <b>Indian Ocean</b> brings rain to the east. The <b>west coast</b> (Northern Cape) gets very little rain: it is semi-desert.'},
+   {h:"Reading a rainfall graph",b:'Each bar = one month. Tall bars = wet months. Look at <b>which months</b> have the tall bars to find the pattern.'}],
+  warn:"Tall bars in Nov–Mar = summer rainfall. Tall bars in May–Aug = winter rainfall. Even bars = all-year."},
+ gen(){
+  const t=rnd(0,3),k=ch(["summer","winter","allyear"]),v=RAINP[k].map(x=>Math.max(2,x+rnd(-8,8))),L={summer:"Summer rainfall",winter:"Winter rainfall",allyear:"All-year rainfall"},P={summer:"Johannesburg",winter:"Cape Town",allyear:"George (Garden Route)"};
+  if(t===0)return mc("Read the rainfall graph:",rainSvg(v)+"Which rainfall pattern is this?",L[k],Object.values(L).concat(["No rainfall"]),k==="summer"?"Tall bars in summer months (Nov–Mar).":k==="winter"?"Tall bars in winter months (May–Aug).":"Rain in every month.");
+  if(t===1)return mc("Read the rainfall graph:",rainSvg(v)+"Which place could this graph be for?",P[k],Object.values(P).concat(["The Kalahari Desert"]),`${L[k]}: ${P[k]}.`);
+  if(t===2){const mi=v.indexOf(Math.max(...v)),M=["January","February","March","April","May","June","July","August","September","October","November","December"];
+   return mc("Read the rainfall graph:",rainSvg(v)+"Which month is the WETTEST?",M[mi],pick(M.filter((_,i)=>i!==mi),3),"Find the tallest bar.")}
+  return ch([mc("Rainfall","Which part of SA gets winter rainfall?","The south-western Cape (Cape Town)","KwaZulu-Natal,Gauteng,Limpopo".split(",")),
+   mc("Rainfall","Which part of SA gets rain all year round?","The southern coast (Garden Route)","The Highveld,The Northern Cape,The Kalahari".split(",")),
+   mc("Rainfall","Summer rain on the Highveld usually comes from...","afternoon thunderstorms","cold fronts,snow,the Atlantic Ocean".split(",")),
+   mc("Rainfall","Winter rain in Cape Town comes from...","cold fronts","afternoon thunderstorms,hurricanes,the Indian Ocean".split(",")),
+   mc("Rainfall","Which side of South Africa is the wettest?","The east","The west,The north-west,The middle of the Karoo".split(",")),
+   mc("Rainfall","Why is the west coast so dry?","It gets very little rain, so it is semi-desert","It snows every day,It is next to the Indian Ocean,It is too high up".split(","))]);
+ }},
+
+{id:"w5-climate",t:"Weather or Climate?",d:"Day-to-day weather versus long-term climate",mode:"sort",ask:"Is this about WEATHER or CLIMATE?",
+ learn:{intro:'People mix these up all the time, but they are different!',
+  boxes:[
+   {h:"Weather",b:'The conditions of the air at a place <b>at a certain time</b>: today, this week. It changes quickly.<br><span class="ex">It is raining in Durban this morning.</span>'},
+   {h:"Climate",b:'The <b>average weather</b> of a place measured over a <b>long time</b> (about 30 years).<br><span class="ex">Durban has hot, humid summers.</span>'},
+   {h:"Memory trick",b:'<b>Weather</b> = what you get <b>today</b>.<br><b>Climate</b> = what you <b>expect</b> every year.'},
+   {h:"South African climates",b:'<b>KZN coast</b>: hot and humid, summer rain (subtropical)<br><b>Highveld</b>: warm wet summers, cold dry frosty winters<br><b>Western Cape</b>: hot dry summers, cool wet winters (Mediterranean)<br><b>Karoo & Northern Cape</b>: hot, very dry, cold winter nights (semi-desert)<br><b>Garden Route</b>: mild with rain all year'}],
+  warn:"Words like 'today', 'tomorrow', 'this week' = WEATHER. 'Usually', 'every year', 'average' = CLIMATE."},
+ bins:[{c:"wx",l:"Weather",s:"right now / short time"},{c:"cl",l:"Climate",s:"average over many years"}],
+ tips:{wx:"Weather is what the air is like at a certain time, like today or this week.",cl:"Climate is the average weather over a long time, about 30 years."},
+ items:[
+  {w:"It is raining in Durban this morning.",c:"wx"},{w:"Tomorrow will be windy in Cape Town.",c:"wx"},{w:"There was a hailstorm in Pretoria yesterday.",c:"wx"},{w:"It is 31 °C at the beach right now.",c:"wx"},{w:"Fog is expected on the N3 tonight.",c:"wx"},{w:"This week will be cloudy and cool.",c:"wx"},{w:"It snowed in the Drakensberg last night.",c:"wx"},
+  {w:"Cape Town usually has wet winters.",c:"cl"},{w:"Durban has hot, humid summers.",c:"cl"},{w:"The Karoo is dry nearly every year.",c:"cl"},{w:"Johannesburg's winters are usually cold and dry.",c:"cl"},{w:"The average rainfall in George is about 800 mm a year.",c:"cl"},{w:"The Highveld gets summer thunderstorms most years.",c:"cl"},{w:"The Northern Cape is a semi-desert.",c:"cl"}]},
+
+{id:"w5-veg",t:"Natural Vegetation",d:"SA's plant regions and how plants adapt to climate",mode:"battle",monster:{n:"Thorny Thug",line:"prickles everyone who comes near",c:"#8fd694"},
+ learn:{intro:'<span class="hl">Natural vegetation</span> is the plants that grow in an area on their own, without people planting them. The climate decides what can grow.',
+  boxes:[
+   {h:"Forest",b:'Tall trees close together. Needs <b>lots of rain</b> all year. <span class="ex">Knysna forest, parts of KZN</span>'},
+   {h:"Grassland",b:'Mostly grass, few trees. <b>Summer rain</b>, cold frosty winters. <span class="ex">The Highveld (Free State, Gauteng)</span>'},
+   {h:"Savanna (bushveld)",b:'Grass with <b>scattered trees</b> like acacias and baobabs. Hot, summer rain. <span class="ex">Limpopo, Kruger Park</span>'},
+   {h:"Fynbos",b:'Small, hard-leaved shrubs like proteas. <b>Winter rain</b>, dry summers. <span class="ex">Western Cape</span>'},
+   {h:"Semi-desert (Karoo)",b:'Small bushes and <b>succulents</b>. Very little rain. <span class="ex">Karoo, Northern Cape</span>'},
+   {h:"How plants adapt",b:'<b>Store water</b> in thick fleshy leaves or stems (succulents, baobab trunk)<br><b>Long roots</b> to reach deep water<br><b>Small, waxy leaves or thorns</b> to lose less water<br><b>Grow back after fire</b> (grass from roots; some fynbos seeds need fire)<br><b>Grow tall</b> to reach sunlight (forest trees)'}],
+  warn:"Dry place = plants that SAVE water. Wet place = tall trees competing for light."},
+ bank:[
+  {ask:"Vegetation",q:"Natural vegetation is...",a:"plants that grow in an area on their own",opts:["plants that grow in an area on their own","crops planted by farmers","plants in a garden centre","only trees in parks"]},
+  {ask:"Vegetation",q:"Which vegetation is mostly grass with scattered trees?",a:"Savanna",opts:["Savanna","Forest","Fynbos","Desert"]},
+  {ask:"Vegetation",q:"Proteas grow naturally in which vegetation?",a:"Fynbos",opts:["Fynbos","Savanna","Grassland","Forest"]},
+  {ask:"Vegetation",q:"Where is fynbos found?",a:"The Western Cape",opts:["The Western Cape","Limpopo","Gauteng","The KZN coast"]},
+  {ask:"Vegetation",q:"Which vegetation needs the MOST rain?",a:"Forest",opts:["Forest","Semi-desert","Grassland","Savanna"]},
+  {ask:"Vegetation",q:"The Highveld is mostly...",a:"grassland",opts:["grassland","forest","fynbos","desert"]},
+  {ask:"Vegetation",q:"The Karoo has mostly...",a:"small bushes and succulents",opts:["small bushes and succulents","tall forest trees","rice fields","proteas only"]},
+  {ask:"Adaptations",q:"Why do succulents have thick, fleshy leaves?",a:"To store water",opts:["To store water","To catch insects","To keep warm","To grow flowers"]},
+  {ask:"Adaptations",q:"Why do many desert plants have very long roots?",a:"To reach water deep underground",opts:["To reach water deep underground","To hold on in strong wind only","To make food","To scare animals"]},
+  {ask:"Adaptations",q:"Why do acacia trees have thorns and tiny leaves?",a:"To lose less water and stop animals eating them",opts:["To lose less water and stop animals eating them","To catch rain","To look pretty","To grow taller"]},
+  {ask:"Adaptations",q:"How does a baobab survive long dry seasons?",a:"It stores water in its thick trunk",opts:["It stores water in its thick trunk","It moves to a wetter place","It drinks from rivers with its leaves","It never needs water"]},
+  {ask:"Adaptations",q:"Why do forest trees grow very tall?",a:"To reach the sunlight above other trees",opts:["To reach the sunlight above other trees","To find water","To escape fires","To avoid wind"]},
+  {ask:"Adaptations",q:"How does grassland survive winter fires?",a:"The grass grows back from its roots",opts:["The grass grows back from its roots","It has fireproof leaves","It moves away","It is always wet"]},
+  {ask:"Adaptations",q:"Waxy leaves help a plant to...",a:"stop water escaping",opts:["stop water escaping","catch more rain","grow roots","make seeds"]}]},
+
+{id:"m5-minerals",t:"Minerals of South Africa",d:"Gold, platinum, coal, diamonds, iron ore and where they are mined",mode:"match",ask:"Which mineral or place matches?",
+ learn:{intro:'<span class="hl">Minerals</span> are natural materials found in rocks in the earth. South Africa is one of the richest mining countries in the world!',
+  boxes:[
+   {h:"Gold 🥇",b:'<b>Gauteng</b> (Witwatersrand) and the <b>Free State</b>. Discovered in 1886. Used for jewellery, money and electronics.'},
+   {h:"Platinum",b:'<b>North West</b> (Rustenburg) and <b>Limpopo</b>. SA mines most of the world\'s platinum. Used in car exhaust systems and jewellery.'},
+   {h:"Coal",b:'<b>Mpumalanga</b> (eMalahleni / Witbank) and Limpopo. Burnt to make <b>electricity</b>.'},
+   {h:"Diamonds 💎",b:'<b>Kimberley</b> in the <b>Northern Cape</b> (the Big Hole). Used in jewellery and for cutting tools (the hardest natural material).'},
+   {h:"Iron ore",b:'<b>Northern Cape</b> (Sishen) and Limpopo. Used to make <b>steel</b> for cars, buildings and bridges.'},
+   {h:"Copper & more",b:'<b>Copper</b>: Phalaborwa (Limpopo), used for electric wires.<br><b>Manganese</b> and <b>chrome</b>: also used to make steel.'}],
+  warn:"Gold = Gauteng. Coal = Mpumalanga. Diamonds = Kimberley. Platinum = Rustenburg."},
+ pairs:[
+  {t:"Gold",d:"Mined in Gauteng and the Free State, discovered in 1886"},
+  {t:"Platinum",d:"Mined near Rustenburg; used in car exhaust systems"},
+  {t:"Coal",d:"Mined in Mpumalanga and burnt to make electricity"},
+  {t:"Diamonds",d:"Found at Kimberley; the hardest natural material"},
+  {t:"Iron ore",d:"Mined at Sishen; used to make steel"},
+  {t:"Copper",d:"Mined at Phalaborwa; used for electric wires"},
+  {t:"Minerals",d:"Natural materials found in rocks in the earth"},
+  {t:"Kimberley",d:"Diamond city with the Big Hole"},
+  {t:"Johannesburg",d:"City that grew because of gold: eGoli"},
+  {t:"Mpumalanga",d:"Province where most coal is mined"},
+  {t:"Steel",d:"Made from iron ore; used for cars, buildings and bridges"}]},
+
+{id:"m5-coal",t:"Coal: Non-Renewable",d:"Renewable or non-renewable? How coal forms and is used",mode:"sort",ask:"Renewable or non-renewable?",
+ learn:{intro:'<span class="hl">Coal</span> is a <b>fossil fuel</b>. It is a <b>non-renewable</b> resource: once we use it up, it is gone.',
+  boxes:[
+   {h:"How coal formed",b:'Millions of years ago, plants died in swamps &rarr; they were buried under mud and rock &rarr; heat and pressure slowly turned them into <b>coal</b>.'},
+   {h:"Non-renewable",b:'Takes <b>millions of years</b> to form, so it can\'t be replaced in our lifetime. Examples: coal, oil, natural gas, gold, diamonds.'},
+   {h:"Renewable",b:'Can be <b>replaced naturally</b> or will never run out. Examples: sunlight (solar), wind, water (hydro), trees (if replanted).'},
+   {h:"How SA uses coal",b:'Most of SA\'s <b>electricity</b> comes from coal-burning <b>power stations</b> (Eskom, mainly in Mpumalanga). Also used to make <b>steel</b> and fuel (Sasol).'},
+   {h:"Problems with coal",b:'Burning coal causes <b>air pollution</b> and smog, adds gases that warm the planet, and can cause acid rain. One day it will run out!'},
+   {h:"Save energy",b:'Switch off lights &middot; use solar geysers and panels &middot; use wind farms &middot; don\'t waste electricity'}],
+  warn:"Non-renewable = runs out. Renewable = keeps coming back."},
+ bins:[{c:"ren",l:"Renewable",s:"will not run out"},{c:"non",l:"Non-renewable",s:"will run out"}],
+ tips:{ren:"Renewable resources are replaced naturally and won't run out.",non:"Non-renewable resources take millions of years to form, so they will run out."},
+ items:[
+  {w:"Coal",c:"non"},{w:"Oil (petrol)",c:"non"},{w:"Natural gas",c:"non"},{w:"Gold",c:"non"},{w:"Diamonds",c:"non"},{w:"Platinum",c:"non"},{w:"Iron ore",c:"non"},
+  {w:"Sunlight (solar power)",c:"ren"},{w:"Wind",c:"ren"},{w:"Flowing water (hydro power)",c:"ren"},{w:"Trees that are replanted",c:"ren"},{w:"Ocean waves",c:"ren"},{w:"Rainwater",c:"ren"}]},
+
+{id:"m5-towns",t:"Mines & Settlements",d:"Mining towns, types of mines and migrant workers",mode:"rush",time:13000,ask:"Mines and settlements:",
+ learn:{intro:'When minerals are found, people arrive to work, and <span class="hl">settlements</span> (towns and cities) grow around the mines.',
+  boxes:[
+   {h:"Mining towns",b:'<b>Johannesburg</b> grew from a gold rush in 1886 (eGoli: place of gold)<br><b>Kimberley</b>: diamonds<br><b>Rustenburg</b>: platinum<br><b>eMalahleni</b>: coal ("place of coal")<br><b>Welkom</b>: gold in the Free State'},
+   {h:"Why towns grow",b:'Workers need <b>homes, shops, schools, clinics, roads and railways</b>. Businesses follow the jobs.'},
+   {h:"Types of mining",b:'<b>Open-cast (open-pit)</b>: minerals near the surface; a huge hole is dug (coal, the Big Hole).<br><b>Underground (shaft)</b>: deep tunnels; gold mines can be more than 3 km deep!<br><b>Alluvial</b>: minerals washed into rivers or sand (diamonds on the west coast).'},
+   {h:"Migrant workers",b:'People who travel <b>far from home</b> to work on mines (from other provinces, Lesotho, Mozambique). Many lived in <b>hostels</b> and saw their families only a few times a year.'},
+   {h:"Ghost towns",b:'When a mine <b>closes</b>, people leave to find work and the town can become empty. Some, like <b>Pilgrim\'s Rest</b>, became tourist towns.'}],
+  warn:"Gold built Johannesburg. Diamonds built Kimberley."},
+ items:[
+  {q:"Which city grew because of gold?",o:["Johannesburg","Kimberley","Cape Town"],a:"Johannesburg"},
+  {q:"Which city grew because of diamonds?",o:["Kimberley","Durban","Rustenburg"],a:"Kimberley"},
+  {q:"Rustenburg is known for...",o:["platinum","coal","diamonds"],a:"platinum"},
+  {q:"eMalahleni means...",o:["place of coal","place of gold","place of water"],a:"place of coal"},
+  {q:"Gold was discovered on the Witwatersrand in...",o:["1886","1652","1994"],a:"1886"},
+  {q:"Johannesburg's nickname eGoli means...",o:["place of gold","big city","many people"],a:"place of gold"},
+  {q:"A huge hole dug from the surface is...",o:["open-cast mining","underground mining","alluvial mining"],a:"open-cast mining"},
+  {q:"Deep tunnels under the ground are...",o:["underground (shaft) mining","open-cast mining","fishing"],a:"underground (shaft) mining"},
+  {q:"Diamonds washed into river sand are found by...",o:["alluvial mining","shaft mining","drilling for oil"],a:"alluvial mining"},
+  {q:"Workers who travel far from home to work are...",o:["migrant workers","farmers","tourists"],a:"migrant workers"},
+  {q:"Where did many migrant mine workers live?",o:["in hostels","on boats","in tents at the beach"],a:"in hostels"},
+  {q:"Why do towns grow around mines?",o:["workers need homes, shops and schools","the rocks are pretty","it always rains there"],a:"workers need homes, shops and schools"},
+  {q:"What can happen to a town when the mine closes?",o:["it can become a ghost town","it becomes a capital city","it floods"],a:"it can become a ghost town"},
+  {q:"Pilgrim's Rest was a gold-rush town that is now...",o:["a tourist town","a coal mine","a harbour"],a:"a tourist town"},
+  {q:"Gold mines in SA can be more than...",o:["3 km deep","3 m deep","30 cm deep"],a:"3 km deep"}]},
+
+{id:"m5-enviro",t:"Mining & the Environment",d:"How mining harms nature, and how we can fix it",mode:"sort",ask:"Is this a PROBLEM or a SOLUTION?",
+ learn:{intro:'Mining brings jobs and money, but it can <span class="hl">damage the environment</span>. Mines must try to repair the damage.',
+  boxes:[
+   {h:"Land",b:'Huge holes and <b>mine dumps</b> (the yellow hills around Johannesburg) scar the land and destroy habitats for plants and animals.'},
+   {h:"Water",b:'<b>Acid mine drainage</b>: poisonous water leaks from old mines into rivers. Mines also use lots of water.'},
+   {h:"Air",b:'<b>Dust</b> blows off mine dumps. Burning coal causes <b>smoke and smog</b> that make people sick.'},
+   {h:"Noise",b:'Blasting and heavy machines are loud and can crack nearby houses.'},
+   {h:"Solutions",b:'<b>Rehabilitation</b>: fill holes, cover dumps with soil and plant grass and trees<br>Clean (treat) polluted water<br>Spray water to keep dust down<br>Laws that make mines clean up<br>Recycle metals so we need to mine less'}],
+  warn:"Rehabilitation = repairing the land after mining."},
+ bins:[{c:"prob",l:"Problem",s:"harms the environment"},{c:"sol",l:"Solution",s:"helps fix it"}],
+ tips:{prob:"This harms the land, water, air or animals.",sol:"This helps to protect or repair the environment."},
+ items:[
+  {w:"Dust blowing off mine dumps",c:"prob"},{w:"Poisonous water leaking into rivers",c:"prob"},{w:"Smoke from burning coal",c:"prob"},{w:"Destroying animals' habitats",c:"prob"},{w:"Huge holes left in the ground",c:"prob"},{w:"Loud blasting that cracks houses",c:"prob"},{w:"Using up lots of clean water",c:"prob"},
+  {w:"Planting grass on old mine dumps",c:"sol"},{w:"Filling in old holes with soil",c:"sol"},{w:"Cleaning polluted water before it reaches rivers",c:"sol"},{w:"Spraying water to keep dust down",c:"sol"},{w:"Recycling old metal",c:"sol"},{w:"Laws that make mines clean up",c:"sol"},{w:"Planting trees where the mine was",c:"sol"}]},
+
+{id:"geo5-final",t:"Final Exam Boss",d:"Random questions from every geography topic",mode:"battle",final:true,monster:{n:"The Tornado Titan",line:"spins every fact into a muddle",c:"#a8c5e8"}}
+];
+
+/* ---------- Scope extras for Grade 5 maths (input-output, part of a whole, triangles) ---------- */
+(function(){
+ const T5=id=>MATHS.find(t=>t.id===id);
+ const ext=(id,fn,p,boxes,d)=>{const t=T5(id);if(!t)return;const g=t.gen;t.gen=g?function(){return Math.random()<p?fn():g.call(this)}:fn;if(boxes)t.learn.boxes.push(...boxes);if(d)t.d=d};
+ ext("m-patterns",()=>{
+  const k=rnd(2,9),c=rnd(0,12)*ch([1,1,-1]),f=x=>x*k+c,rule=`&times; ${k}${c>0?" + "+c:c<0?" &minus; "+(-c):""}`;
+  const ins=[1,2,3,4,5].map(i=>i*rnd(1,2)+rnd(0,1)).filter((v,i,a)=>a.indexOf(v)===i).slice(0,4).sort((a,b)=>a-b);
+  if(ins.some(x=>f(x)<0))return mc("Input-output table:",`Rule: <b>&times; ${k}</b>. Input 6. Output?`,6*k,[6+k,6*k+k,6*k-1],`6 &times; ${k} = ${6*k}`);
+  const tab=(hide)=>`<table class="iot"><tr><th>Input</th>${ins.map(x=>`<td>${x}</td>`).join("")}</tr><tr><th>Output</th>${ins.map((x,i)=>`<td>${i===hide?circ:f(x)}</td>`).join("")}</tr></table>`;
+  const t=rnd(0,2);
+  if(t===0){const h=rnd(0,ins.length-1),a=f(ins[h]);return mc("Input-output table:",`Rule: <b>${rule}</b>`+tab(h),a,[a+k,a-k,ins[h]*k,a+1],`${ins[h]} ${rule} = ${a}`)}
+  if(t===1){const wrong=[`&times; ${k+1}${c>0?" + "+c:c<0?" &minus; "+(-c):""}`,`+ ${f(ins[0])-ins[0]}`,`&times; ${k}${c>0?" &minus; "+c:c<0?" + "+(-c):" + 1"}`,`&times; ${k-1||k+2}`];
+   return mc("Find the rule:",tab(-1),rule,wrong,`Check every pair: ${ins.map(x=>`${x} ${rule} = ${f(x)}`).join(", ")}`)}
+  const x=rnd(6,12),y=f(x);return mc("Work backwards:",`Rule: <b>${rule}</b>. The output is <b>${y}</b>. What was the input?`,x,[x+1,x-1,y-c,Math.round(y/k)+1].filter(v=>v!==x),`Do the opposite: ${c>0?`${y} &minus; ${c} = ${y-c}, then `:c<0?`${y} + ${-c} = ${y-c}, then `:""}&divide; ${k} = ${x}`)
+ },.45,[{h:"Input-output tables",b:'Put a number <b>in</b>, apply the <b>rule</b>, get a number <b>out</b>.<table class="iot"><tr><th>Input</th><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>Output</th><td>5</td><td>8</td><td>11</td><td>14</td></tr></table>Rule: <b>&times; 3 + 2</b>'},
+   {h:"Find the input",b:'Work <b>backwards</b> with the opposite operations.<br>Rule &times; 3 + 2, output 20: 20 &minus; 2 = 18, 18 &divide; 3 = <b>6</b>'}],"Number patterns, rules and input-output tables");
+
+ ext("m-fractions",()=>{
+  const t=rnd(0,3);
+  if(t===0){const d=ch([2,3,4,5,6,8,10]),n=rnd(1,d-1),m=rnd(2,12)*d,a=m/d*n;
+   return mc("Part of a whole (fraction of an amount):",`What is ${fr(n,d)} of ${m}?`,a,[m/d,a+m/d,m-a,n*d].filter(x=>x!==a&&x>0),`${m} &divide; ${d} = ${m/d}, then &times; ${n} = ${a}`,"Divide by the bottom, multiply by the top.")}
+  if(t===1){const d=ch([3,4,5,6,8,10]),n=rnd(1,d-1);
+   return mc("Part of a whole:","What fraction of the bar is shaded?"+fbar(n,d),`${n}/${d}`,[`${d-n}/${d}`,`${n}/${d+1}`,`${d}/${n}`,`${n+1}/${d}`].filter(x=>x!==`${n}/${d}`),`${n} out of ${d} equal parts are shaded.`)}
+  if(t===2){const d=ch([4,5,6,8,10,12]),n=rnd(1,d-1);
+   return mc("Part of a whole:",`A pizza is cut into ${d} equal slices. ${n} slice${n>1?"s are":" is"} eaten. What fraction is LEFT?`,`${d-n}/${d}`,[`${n}/${d}`,`${d-n}/${n}`,`1/${d}`,`${d}/${d-n}`].filter(x=>x!==`${d-n}/${d}`),`${d} &minus; ${n} = ${d-n} slices left out of ${d}.`)}
+  const d=ch([5,6,8,10,12]),ns=pick(Array.from({length:d-1},(_,i)=>i+1),3),up=Math.random()<.5,s=ns.slice().sort((a,b)=>up?a-b:b-a),f=a=>a.map(n=>`${n}/${d}`).join(", ");
+  return mc(`Order from ${up?"SMALLEST to BIGGEST":"BIGGEST to SMALLEST"}:`,ns.map(n=>fr(n,d)).join(" &nbsp; "),f(s),[f(s.slice().reverse()),f([s[1],s[0],s[2]]),f([s[0],s[2],s[1]])],"Same denominator: compare the numerators.")
+ },.4,[{h:"Part of a whole",b:'A fraction shows equal parts of <b>one whole</b>.'+fbar(3,5)+'3 of the 5 equal parts are shaded = '+fr(3,5)},
+   {h:"Fraction of an amount",b:fr(3,4)+' of 20: <b>divide by the bottom</b> (20 &divide; 4 = 5), <b>multiply by the top</b> (5 &times; 3 = 15).'}],"Compare, order, convert, part of a whole");
+
+ ext("m-2d",()=>{
+  const t=rnd(0,2);
+  if(t===0){const k=ch(["eq","iso","sca"]);let s;
+   if(k==="eq"){const a=rnd(3,12);s=[a,a,a]}else if(k==="iso"){const a=rnd(4,12);let b=rnd(2,a+3);if(b===a)b++;s=shuffle([a,a,b])}else{s=pick([3,4,5,6,7,8,9,10,11],3)}
+   const L={eq:"Equilateral",iso:"Isosceles",sca:"Scalene"};
+   return mc("What kind of triangle?",`A triangle with sides ${s.join(" cm, ")} cm`,L[k],["Equilateral","Isosceles","Scalene","Right-angled"],{eq:"All 3 sides equal: equilateral.",iso:"Exactly 2 sides equal: isosceles.",sca:"No sides equal: scalene."}[k])}
+  if(t===1)return ch([mc("Triangles","A triangle with one 90° angle (a square corner) is...","right-angled","equilateral,obtuse-angled,a quadrilateral".split(",")),
+   mc("Triangles","Which triangle has 3 equal sides AND 3 equal angles?","Equilateral","Isosceles,Scalene,Right-angled".split(",")),
+   mc("Triangles","Which triangle has NO equal sides?","Scalene","Isosceles,Equilateral,Square".split(",")),
+   mc("Triangles","Which triangle has exactly 2 equal sides?","Isosceles","Scalene,Equilateral,Rectangle".split(",")),
+   mc("Triangles","How many sides and vertices does every triangle have?","3 sides, 3 vertices","3 sides, 4 vertices,4 sides, 4 vertices,2 sides, 3 vertices".split(","))]);
+  return ch([mc("Quadrilaterals","Which quadrilateral has 4 equal sides and 4 right angles?","Square","Rectangle,Rhombus,Trapezium".split(",")),
+   mc("Quadrilaterals","Which quadrilateral has only ONE pair of parallel sides?","Trapezium","Parallelogram,Rectangle,Square".split(",")),
+   mc("Quadrilaterals","A rhombus has...","4 equal sides, but its angles are not all 90°","4 right angles and unequal sides,only 3 sides,no parallel sides".split(",")),
+   mc("Polygons","What is a polygon?","A closed 2D shape with straight sides","Any 3D object,A shape with curved sides,An open line".split(",")),
+   mc("Polygons","A regular polygon has...","all sides and all angles equal","no equal sides,curved sides,only right angles".split(","))]);
+ },.45,[{h:"Triangles",b:'<b>Equilateral</b>: 3 equal sides, 3 equal angles<br><b>Isosceles</b>: 2 equal sides, 2 equal angles<br><b>Scalene</b>: no equal sides<br><b>Right-angled</b>: one 90° angle'}],"Triangles, quadrilaterals, polygons and symmetry");
+})();
+
 const SUBJECTS=[
- {id:"g4-english",grade:4,t:"English",d:"Parts of speech, nouns, pronouns, adverbs, apostrophes",c:"#2457d6",icon:"book",topics:E4},
- {id:"g4-maths",grade:4,t:"Mathematics",d:"Place value, rounding, + − × ÷, time, length, perimeter and area",c:"#e3427a",icon:"maths",topics:M4},
+ {id:"g4-english",grade:4,t:"English",d:"Parts of speech, pronouns, adjectives, figures of speech, sentences, punctuation",c:"#2457d6",icon:"book",topics:E4},
+ {id:"g4-maths",grade:4,t:"Mathematics",d:"Numbers & fractions, + − × ÷, time, measuring, data handling, CUBES",c:"#e3427a",icon:"maths",topics:M4},
  {id:"g4-ns",grade:4,t:"Natural Sciences & Technology",d:"Energy, light, heat, sound and planet Earth",c:"#1f8f5b",icon:"flask",topics:NS4},
- {id:"g4-geo",grade:4,t:"Social Sciences",d:"Geography: food, farming and water",c:"#c9781a",icon:"globe",topics:GEO4},
+ {id:"g4-geo",grade:4,t:"Geography",d:"Social Sciences: food groups, farming and water",c:"#c9781a",icon:"globe",topics:GEO4},
  {id:"g4-fal",grade:4,t:"First Additional Language",d:"Afrikaans or isiZulu",c:"#7b4fd6",icon:"talk"},
  {id:"g4-life",grade:4,t:"Life Skills",d:"Personal & Social Wellbeing: cultures and conflict",c:"#d43a3a",icon:"heart",topics:PSW4},
- {id:"english",grade:5,t:"English",d:"Grammar, poetry, words and sayings",c:"#2457d6",icon:"book",topics:TOPICS},
- {id:"maths",grade:5,t:"Mathematics",d:"Numbers, fractions, shapes and measurement",c:"#e3427a",icon:"maths",topics:MATHS},
+ {id:"english",grade:5,t:"English",d:"Grammar, sentences, punctuation, comprehension, visual texts, poetry and writing",c:"#2457d6",icon:"book",topics:TOPICS},
+ {id:"maths",grade:5,t:"Mathematics",d:"Whole numbers, fractions, patterns, data, measurement and geometry",c:"#e3427a",icon:"maths",topics:MATHS},
  {id:"natsci",grade:5,t:"Natural Sciences & Technology",d:"Living things, matter, energy, planet Earth",c:"#1f8f5b",icon:"flask"},
- {id:"socsci",grade:5,t:"Social Sciences",d:"History: Ancient Egypt",c:"#c9781a",icon:"globe",topics:HISTORY},
+ {id:"geo5",grade:5,t:"Geography",d:"Social Sciences: weather, climate, vegetation, minerals and mining",c:"#c9781a",icon:"globe",topics:GEO5},
+ {id:"socsci",grade:5,t:"History",d:"Social Sciences: Ancient Egypt (extra practice)",c:"#8a5a2b",icon:"globe",topics:HISTORY},
  {id:"fal",grade:5,t:"First Additional Language",d:"Afrikaans or isiZulu",c:"#7b4fd6",icon:"talk"},
  {id:"life",grade:5,t:"Life Skills",d:"Personal & Social Wellbeing: religions, poverty, food security",c:"#d43a3a",icon:"heart",topics:PSW}
 ];
@@ -3114,7 +3936,7 @@ $("#reset-yes").onclick=()=>{delete S.subj[SUB.id];save();$("#reset-confirm").hi
 /* ---------- LEARN ---------- */
 function openLearn(t){
   T=t;const L=t.learn;
-  $("#l-title").textContent=t.t;$("#l-intro").innerHTML=L.intro;
+  $("#l-title").textContent=t.t;$("#l-intro").innerHTML=L.intro;$("#l-hero").hidden=!L.hero;$("#l-hero").innerHTML=L.hero||"";
   let h=`<div class="cl"><div class="cloud"><svg viewBox="0 0 260 160"><use href="#cloudsym"/></svg><span>${t.t}</span></div></div>`;
   L.boxes.forEach((b,i)=>{h+=`<div class="box"><h3><span class="num">${i+1}</span><span class="chip">${b.h}</span></h3>${b.b}</div>`});
   h+=`<div class="warn"><svg class="ico" style="width:30px;height:30px" viewBox="0 0 24 24"><path d="M12 3l10 18H2z" fill="#ffe066" stroke="#1c2230" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v5M12 17.5v.5" stroke="#1c2230" stroke-width="2.4" stroke-linecap="round"/></svg><span>${L.warn}</span></div>`;
@@ -3241,8 +4063,8 @@ let N;const NLEN=12;
 function startSort(){
   N={list:T.items?pick(T.items,NLEN):Array.from({length:NLEN},()=>T.genSort()),i:0,score:0,combo:1,res:[],lock:false};
   $("#s-title").textContent=T.t+": Sort-It";$("#s-ask").textContent=T.ask;
-  const nb=T.bins.length;$("#s-bins").className="bins c"+(nb<=4?nb:nb===6||nb===5?3:4);
-  $("#s-bins").innerHTML=T.bins.map(b=>`<button class="bin" data-c="${b.c}"><b>${b.l}</b><span>${b.s}</span></button>`).join("");
+  const nb=T.bins.length;$("#s-bins").className=T.layout==="pyramid"?"bins pyr":"bins c"+(nb<=4?nb:nb===6||nb===5?3:4);
+  $("#s-bins").innerHTML=T.bins.map(b=>`<button class="bin" data-c="${b.c}"><b>${b.l}</b><span>${b.s}</span>${T.layout==="pyramid"?'<i class="pile"></i>':""}</button>`).join("");
   show("v-sort");drawSort();
 }
 function drawSort(){
@@ -3256,6 +4078,7 @@ $("#s-bins").addEventListener("click",e=>{
   const w=N.list[N.i],ok=b.dataset.c===w.c;
   $(`#s-bins [data-c="${w.c}"]`).classList.add("good");
   const label=T.bins.find(x=>x.c===w.c).l;
+  if(ok&&T.layout==="pyramid"){const p=b.querySelector(".pile"),em=(w.w.match(/^\S+/)||[""])[0];if(p&&p.textContent.length<24)p.textContent+=em}
   if(ok){N.score+=50*N.combo;N.combo=Math.min(3,N.combo+1);S.coins+=N.combo===3?1:0;burst("#s-arena",N.combo===3?"COMBO!":"YES!",true);$("#s-explain").innerHTML='<b class="right">Correct!</b> '+T.tips[w.c]}
   else{b.classList.add("bad");N.combo=1;burst("#s-arena","OOPS!");$("#s-explain").innerHTML=`<b class="wrong">It's ${label}.</b> `+T.tips[w.c]}
   N.res.push(ok);save();stats();$("#s-score").textContent=N.score;$("#s-combo").textContent="x"+N.combo;dots("#s-dots",N.res,NLEN);
