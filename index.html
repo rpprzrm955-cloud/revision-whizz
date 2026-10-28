@@ -2229,6 +2229,45 @@ function pyramidSvg(hi){const cx=150,hw=y=>(y-8)/282*140;let o="";
   o+=`<text x="300" y="${y1+25}" font-family="Kalam,cursive" font-weight="700" font-size="15" fill="#1c2230" opacity="${dim?.35:1}">${l}</text><text x="300" y="${y1+43}" font-family="Patrick Hand,cursive" font-size="14" fill="#56607a" opacity="${dim?.35:1}">${sv}</text>`});
  o+=`<text x="12" y="30" font-family="Kalam,cursive" font-size="13" fill="#e3427a">eat LEAST ↑</text><text x="12" y="282" font-family="Kalam,cursive" font-size="13" fill="#1f8f5b">eat MOST ↓</text>`;
  return `<svg viewBox="0 0 450 296" width="440" style="max-width:100%;display:block;margin:8px auto">${o}</svg>`}
+const WC=[
+ {k:"evap",n:"Evaporation",d:"The Sun heats water in the sea and lakes, and it rises as water vapour",lx:92,ly:205,p:["M70 300c-8-30 8-50 0-80s8-50 0-80","M120 300c-8-30 8-50 0-80s8-50 0-80"]},
+ {k:"warm",n:"Warm air rises",d:"Warm air carries the water vapour up into the sky",lx:205,ly:240,p:["M205 300V175"]},
+ {k:"cond",n:"Condensation",d:"Water vapour cools high up and forms clouds",lx:268,ly:42,p:["M185 78Q270 30 355 66"]},
+ {k:"prec",n:"Precipitation",d:"Water falls from the clouds as rain, hail or snow",lx:530,ly:150,p:["M478 112v74","M446 118v62","M510 118v62"],rain:1},
+ {k:"run",n:"Surface run-off",d:"Water flows over the ground and down into rivers and the sea",lx:372,ly:222,p:["M430 236Q360 268 300 286Q260 296 238 300"]},
+ {k:"inf",n:"Infiltration",d:"Water soaks down into the ground",lx:520,ly:332,p:["M520 300v58"]},
+ {k:"trans",n:"Transpiration",d:"Plants give off water vapour from their leaves",lx:300,ly:166,p:["M300 232c-6-16 6-26 0-42"]},
+ {k:"gws",n:"Ground water store",d:"Water kept underground between the rocks",lx:410,ly:386,p:[]}];
+let WCN=0;
+function waterCycleSvg(hi){const id="wc"+(++WCN),quiz=hi!==undefined;let o="";
+ o+=`<defs><linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe6ff"/><stop offset="1" stop-color="#f3f9ff"/></linearGradient>`;
+ ["a","h"].forEach(m=>o+=`<marker id="${id}${m}" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${m==="h"?"#e3427a":"#2457d6"}"/></marker>`);
+ o+=`</defs><rect x="0" y="0" width="620" height="410" rx="14" fill="url(#${id}s)"/>`;
+ // underground + ground water store
+ o+=`<path d="M200 300H620V410H200Z" fill="#c99a6b" stroke="#1c2230" stroke-width="2.5"/><path d="M200 370Q300 362 410 372T620 368V400H200Z" fill="${hi==="gws"?"#ffb3c8":"#7fc8f0"}" stroke="${hi==="gws"?"#e3427a":"#1c2230"}" stroke-width="${hi==="gws"?4:2}"/>`;
+ o+=`<g fill="#a8784c">${[230,290,350,440,500,570].map((x,i)=>`<ellipse cx="${x}" cy="${330+(i%2)*14}" rx="${10+i%3*4}" ry="7"/>`).join("")}</g>`;
+ // sea
+ o+=`<path d="M0 300H240V410H0Z" fill="#4f9be8" stroke="#1c2230" stroke-width="2.5"/><path d="M15 325q15-8 30 0t30 0 30 0 30 0 30 0 30 0 30 0" fill="none" stroke="#fff" stroke-width="2.5" opacity=".8"/><path d="M30 355q15-8 30 0t30 0 30 0 30 0 30 0" fill="none" stroke="#fff" stroke-width="2.5" opacity=".6"/>`;
+ // mountain + ground
+ o+=`<path d="M380 300L470 150L560 255L590 225L620 250V300Z" fill="#9aa7b8" stroke="#1c2230" stroke-width="2.5" stroke-linejoin="round"/><path d="M448 186L470 150L494 190L480 182L468 196Z" fill="#fff" stroke="#1c2230" stroke-width="2"/>`;
+ o+=`<path d="M240 300Q330 280 400 250Q450 236 470 300Z" fill="#8fd694" stroke="#1c2230" stroke-width="2.5"/><path d="M200 300H620" stroke="#1c2230" stroke-width="2.5"/>`;
+ // river down the slope
+ o+=`<path d="M455 232Q400 262 330 284Q280 298 240 302" fill="none" stroke="#4f9be8" stroke-width="7" stroke-linecap="round"/>`;
+ // trees and cows
+ o+=[[300,250],[262,268],[345,258]].map(([x,y])=>`<rect x="${x-4}" y="${y}" width="8" height="${300-y}" fill="#8a5a2b" stroke="#1c2230" stroke-width="1.5"/><circle cx="${x}" cy="${y-6}" r="17" fill="#3fa565" stroke="#1c2230" stroke-width="2"/>`).join("");
+ o+=`<text x="372" y="296" font-size="16">🐄</text><text x="398" y="292" font-size="14">🐄</text>`;
+ // sun + clouds
+ o+=`<circle cx="62" cy="62" r="30" fill="#ffe066" stroke="#1c2230" stroke-width="3"/><path d="M62 18v-10M62 106v10M18 62h-10M106 62h10M31 31l-7-7M93 31l7-7M31 93l-7 7" stroke="#1c2230" stroke-width="3" stroke-linecap="round"/>`;
+ const cloud=(x,y,c)=>`<g transform="translate(${x} ${y})" fill="${c}" stroke="#1c2230" stroke-width="2.5"><path d="M0 30a22 22 0 0 1 20-28a28 28 0 0 1 50-4a22 22 0 0 1 38 14a18 18 0 0 1 2 36H6a16 16 0 0 1-6-18z"/></g>`;
+ o+=cloud(140,58,"#fff")+cloud(420,62,"#c9d2e0");
+ // arrows
+ WC.forEach(st=>{const on=hi===st.k,dim=quiz&&!on,col=on?"#e3427a":"#2457d6";
+  st.p.forEach(d=>o+=`<path d="${d}" fill="none" stroke="${col}" stroke-width="${on?6:st.rain?3:4}" stroke-linecap="round" ${st.rain?'stroke-dasharray="6 8"':""} marker-end="url(#${id}${on?"h":"a"})" opacity="${dim?.45:1}"/>`)});
+ // labels
+ WC.forEach(st=>{const on=hi===st.k;
+  if(quiz){if(on)o+=`<circle cx="${st.lx}" cy="${st.ly}" r="19" fill="#e3427a" stroke="#1c2230" stroke-width="3"/><text x="${st.lx}" y="${st.ly+8}" text-anchor="middle" font-family="Kalam,cursive" font-weight="700" font-size="24" fill="#fff">?</text>`;return}
+  const w=st.n.length*8.2+16;o+=`<rect x="${st.lx-w/2}" y="${st.ly-13}" width="${w}" height="24" rx="7" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="${st.lx}" y="${st.ly+4}" text-anchor="middle" font-family="Kalam,cursive" font-weight="700" font-size="14" fill="#1c2230">${st.n}</text>`});
+ return `<svg viewBox="0 0 620 410" width="600" style="max-width:100%;display:block;margin:8px auto;border-radius:14px">${o}</svg>`}
 /* =================== GRADE 4: ENGLISH =================== */
 const E4=[
 {id:"e4-speech",t:"Parts of Speech",d:"Noun, pronoun, adjective, verb, adverb, preposition, conjunction, interjection",mode:"sort",ask:"What part of speech is the underlined word?",
@@ -3331,7 +3370,7 @@ const GEO4=[
   {q:"Stock farming is keeping...",o:["animals","only crops","only machines"],a:"animals"}]},
 
 {id:"g4-water",t:"Water & the Water Cycle",d:"Where Earth's water is and how it moves",mode:"match",ask:"Which word matches?",
- learn:{intro:'There would be no life on Earth without <span class="hl">water</span>. We use it in homes, on farms and in factories.',
+ learn:{hero:waterCycleSvg(),intro:'There would be no life on Earth without <span class="hl">water</span>. We use it in homes, on farms and in factories.',
   boxes:[
    {h:"Where is Earth's water?",b:'about <b>96.5%</b> in the oceans<br>about <b>1.7%</b> in ice caps and glaciers<br>about <b>1.7%</b> in lakes, rivers and soil<br>about <b>0.001%</b> is water vapour in the air<br><b>97%</b> is salt water, only <b>3%</b> is fresh water!'},
    {h:"Clean water",b:'We need clean water to stay healthy. Dirty water spreads diseases. Don\'t waste water or make it dirty.'},
@@ -3355,6 +3394,29 @@ const GEO4=[
   {t:"Dirty water",d:"Spreads diseases"},
   {t:"Water vapour",d:"Only about 0.001% of Earth's water, floating in the air"},
   {t:"Warm air rises",d:"Carries water vapour up into the sky"}]},
+
+{id:"g4-wcquiz",t:"Water Cycle Picture Quiz",d:"Spot each stage of the water cycle on the picture",mode:"battle",monster:{n:"Captain Cloudburst",line:"rains on everyone's parade",c:"#9fd3ff"},
+ learn:{hero:waterCycleSvg(),intro:'Study the <span class="hl">water cycle picture</span>. In the game, one arrow turns <b style="color:#e3427a">pink with a ?</b>. Name that stage to zap the monster!',
+  boxes:[
+   {h:"Going UP",b:'<b>Evaporation</b>: the Sun heats the sea and water rises as vapour.<br><b>Warm air rises</b>: carries the vapour up.<br><b>Transpiration</b>: plants breathe out water vapour from their leaves.'},
+   {h:"In the SKY",b:'<b>Condensation</b>: vapour cools and turns into clouds. The clouds get heavy and are blown inland.'},
+   {h:"Coming DOWN",b:'<b>Precipitation</b>: rain, hail or snow falls from the clouds, often over mountains.'},
+   {h:"On the GROUND",b:'<b>Surface run-off</b>: water flows downhill into rivers and back to the sea.<br><b>Infiltration</b>: water soaks into the soil.<br><b>Ground water store</b>: water kept underground between the rocks.'},
+   {h:"It's a CYCLE",b:'It goes round and round, forever: evaporation &rarr; condensation &rarr; precipitation &rarr; run-off &rarr; back to the sea!'}],
+  warn:"UP = evaporation, transpiration. SKY = condensation. DOWN = precipitation. GROUND = run-off, infiltration."},
+ gen(){
+  const t=rnd(0,4),st=ch(WC),names=WC.map(x=>x.n);
+  if(t<=1)return mc("Water cycle picture:",waterCycleSvg(st.k)+"What is happening at the pink <b>?</b>",st.n,names,st.d+".","Is the water going up, down, or soaking in?");
+  if(t===2){const o=ch(WC.filter(x=>x!==st));return mc("Water cycle picture:",waterCycleSvg(st.k)+"Which sentence describes the pink <b>?</b>",st.d,WC.filter(x=>x!==st).map(x=>x.d),`This is ${st.n.toLowerCase()}.`)}
+  if(t===3){const order=[["Evaporation","Condensation"],["Condensation","Precipitation"],["Precipitation","Surface run-off"],["Warm air rises","Condensation"]],[a,b]=ch(order);
+   return mc("Water cycle order:",waterCycleSvg()+`What comes straight AFTER <b>${a}</b>?`,b,names.filter(n=>n!==a&&n!==b),`${a} &rarr; ${b}`)}
+  return ch([mc("Water cycle","Where does evaporation mostly happen in the picture?","From the sea and lakes","From the mountain top,Under the ground,Inside the clouds".split(","),"The Sun heats the water in the sea."),
+   mc("Water cycle","What makes the water evaporate?","Heat from the Sun","The wind only,The cows,The mountain".split(",")),
+   mc("Water cycle","Where does the water go during infiltration?","Down into the ground","Up into the sky,Into the clouds,Into the trees' leaves".split(",")),
+   mc("Water cycle","Which stage happens in the TREES' leaves?","Transpiration","Infiltration,Precipitation,Run-off".split(",")),
+   mc("Water cycle","Which stage forms the CLOUDS?","Condensation","Evaporation,Infiltration,Run-off".split(",")),
+   mc("Water cycle","Why is it called a CYCLE?","It goes round and round and never ends","It happens only once,It is a type of bicycle,It only happens in winter".split(","))]);
+ }},
 
 {id:"g4-taps",t:"Getting Water",d:"Boreholes, wells, dams and how water reaches taps",mode:"rush",time:12000,ask:"Getting water:",
  learn:{intro:'How does water get from the rain to our <span class="hl">taps</span>?',
